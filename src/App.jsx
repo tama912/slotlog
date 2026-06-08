@@ -115,11 +115,11 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 /* form */
 .form-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:20px;margin-bottom:14px}
 .form-title{font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:var(--t1);margin-bottom:18px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.form-row{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:12px;width:100%;box-sizing:border-box}
 .form-full{margin-bottom:12px}
 .form-label{display:block;font-size:11px;font-weight:700;color:var(--t2);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:5px}
 .form-input-wrap{position:relative}
-.form-input{width:100%;padding:11px 13px;background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r-sm);color:var(--t1);font-family:'Nunito Sans',sans-serif;font-size:16px;outline:none;transition:border-color .15s;-moz-appearance:textfield}
+.form-input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:11px 13px;background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r-sm);color:var(--t1);font-family:'Nunito Sans',sans-serif;font-size:16px;outline:none;transition:border-color .15s;-moz-appearance:textfield}
 .form-input::-webkit-outer-spin-button,.form-input::-webkit-inner-spin-button{-webkit-appearance:none}
 .form-input:focus{border-color:var(--orange);background:#fff}
 .form-input::placeholder{color:var(--t3)}
@@ -182,7 +182,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 
 @keyframes slideUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .su{animation:slideUp .28s ease both}
-.form-row{grid-template-columns:1fr}@media(min-width:768px){.form-row{grid-template-columns:1fr 1fr}}
+
 `;
 
 /* ── Chart Tooltip ── */
