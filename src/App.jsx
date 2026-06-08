@@ -114,6 +114,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-header-left{flex:1;min-width:0}
 .rec-machine{font-size:16px;font-weight:800;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;line-height:1.2;margin-bottom:2px}
 .rec-store{font-size:11px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;font-weight:500}
+.rec-store-inline{font-size:11px;color:var(--t3);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:90px;flex-shrink:0}
 .rec-profit{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;letter-spacing:-1px;white-space:nowrap;flex-shrink:0;line-height:1}
 .rec-profit.plus{color:var(--green)}.rec-profit.minus{color:var(--red)}.rec-profit.zero{color:var(--t2)}
 /* bottom row: 日付 + 投資/回収 + menu */
@@ -140,18 +141,18 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-menu-item:first-child{border-bottom:1px solid var(--border)}
 .rec-menu-item.edit{color:var(--t1)}.rec-menu-item.edit:hover{background:var(--orange-l);color:var(--orange)}
 .rec-menu-item.del{color:var(--red)}.rec-menu-item.del:hover{background:var(--red-l)}
-.month-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0}
-.month-label{font-size:12px;font-weight:700;color:var(--t3);letter-spacing:0.06em;text-transform:uppercase}
+.month-row{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0 10px;border-bottom:1px solid var(--border);margin-bottom:10px}
+.month-label{font-size:13px;font-weight:800;color:var(--t1);letter-spacing:-0.2px}
 
 /* form */
 .form-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:20px;margin-bottom:var(--sp-2)}
 .form-title{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--t1);margin-bottom:var(--sp-2)}
 .form-row{display:grid;grid-template-columns:1fr;gap:var(--sp-2);margin-bottom:var(--sp-2);width:100%;box-sizing:border-box}
-.form-full{margin-bottom:18px}
+.form-full{margin-bottom:14px}
 .form-label{display:block;font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.07em;text-transform:uppercase;margin-bottom:7px}
-.form-group-sep{height:var(--sp-2);background:none}
+.form-group-sep{height:14px;background:none}
 .form-input-wrap{position:relative}
-.form-input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:13px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-md);color:var(--t1);font-family:'Nunito Sans',sans-serif;font-size:16px;outline:none;transition:border-color .15s, background .15s;-moz-appearance:textfield}
+.form-input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:11px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-md);color:var(--t1);font-family:'Nunito Sans',sans-serif;font-size:16px;outline:none;transition:border-color .15s, background .15s;-moz-appearance:textfield}
 .form-input::-webkit-outer-spin-button,.form-input::-webkit-inner-spin-button{-webkit-appearance:none}
 .form-input:focus{border-color:var(--orange);background:#fff;border-width:1.5px}
 .form-row>*,.form-full{width:100%;max-width:100%;min-width:0;box-sizing:border-box;overflow:hidden}
@@ -379,34 +380,31 @@ export default function App() {
     const [menuOpen, setMenuOpen] = useState(false);
     return (
       <div className={`rec-item ${profitColor(r.profit)} su`} style={{animationDelay:`${delay}s`}} onClick={()=>menuOpen&&setMenuOpen(false)}>
-        {/* 上段: 機種名（主役）＋収支 */}
+        {/* 主役行: 機種名 + 収支 */}
         <div className="rec-header">
           <div className="rec-header-left">
             <div className="rec-machine" title={r.machine}>{r.machine}</div>
-            <div className="rec-store" title={r.store}>{r.store}</div>
           </div>
-          <div style={{display:"flex",flexDirection:"column",alignItems:"flex-end",gap:4,flexShrink:0}}>
+          <div style={{display:"flex",alignItems:"center",gap:8,flexShrink:0}}>
             <div className={`rec-profit ${profitColor(r.profit)}`}>{profitStr(r.profit)}</div>
-            <span className={`rec-badge ${r.profit>0?"win":r.profit<0?"lose":"draw"}`}>
-              {r.profit>0?"WIN":r.profit<0?"LOSE":"DRAW"}
-            </span>
+            <div className="rec-menu-wrap">
+              <button className="rec-menu-btn" onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
+              {menuOpen && (
+                <div className="rec-menu-dropdown">
+                  <button className="rec-menu-item edit" onClick={e=>{e.stopPropagation();setMenuOpen(false);startEdit(r);}}>✏️ 編集</button>
+                  <button className="rec-menu-item del"  onClick={e=>{e.stopPropagation();setMenuOpen(false);handleDelete(r.id);}}>🗑️ 削除</button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-        {/* 下段: 日付・投資/回収・メニュー */}
+        {/* 補助行: 日付・店舗・投資/回収 */}
         <div className="rec-footer">
-          <div className="rec-date">{fmtDate(r.date)}</div>
-          <div className="rec-amounts">
+          <span className="rec-date">{fmtDate(r.date)}</span>
+          {r.store && r.store!=="店舗不明" && <span className="rec-store-inline">{r.store}</span>}
+          <div className="rec-amounts" style={{marginLeft:"auto"}}>
             <div className="rec-amt invest"><span className="rec-amt-icon">↓</span>¥{r.invest.toLocaleString()}</div>
             <div className="rec-amt collect"><span className="rec-amt-icon">↑</span>¥{r.collect.toLocaleString()}</div>
-          </div>
-          <div className="rec-menu-wrap" style={{marginLeft:"auto"}}>
-            <button className="rec-menu-btn" onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
-            {menuOpen && (
-              <div className="rec-menu-dropdown">
-                <button className="rec-menu-item edit" onClick={e=>{e.stopPropagation();setMenuOpen(false);startEdit(r);}}>✏️ 編集</button>
-                <button className="rec-menu-item del"  onClick={e=>{e.stopPropagation();setMenuOpen(false);handleDelete(r.id);}}>🗑️ 削除</button>
-              </div>
-            )}
           </div>
         </div>
         {r.memo && <div className="rec-memo">{r.memo}</div>}
@@ -457,13 +455,13 @@ export default function App() {
                   <div className="kpi-label">平均収支</div>
                   <div className={`kpi-val sub ${profitColor(avgProfit)}`}>{profitStr(avgProfit)}</div>
                 </div>
-                <div className="kpi-sub">
-                  <div className="kpi-label">勝率</div>
-                  <div className="kpi-val sub orange">{winRate!=null?`${winRate}%`:"0%"}</div>
+                <div className="kpi-sub" style={{borderColor:"var(--orange-m)",background:"rgba(249,115,22,0.04)"}}>
+                  <div className="kpi-label" style={{color:"var(--orange)"}}>勝率</div>
+                  <div className="kpi-val sub" style={{color:"var(--orange)",fontSize:20}}>{winRate!=null?`${winRate}%`:"0%"}</div>
                 </div>
                 <div className="kpi-sub">
                   <div className="kpi-label">実戦</div>
-                  <div className="kpi-val sub orange">{records.length}<span style={{fontSize:12,marginLeft:1,fontWeight:700}}>回</span></div>
+                  <div className="kpi-val sub orange" style={{fontSize:16}}>{records.length}<span style={{fontSize:11,marginLeft:1,fontWeight:700}}>回</span></div>
                 </div>
               </div>
             </div>
@@ -616,7 +614,7 @@ export default function App() {
                 <div key={month}>
                   <div className="month-row">
                     <div className="month-label">{fmtMon(month)}</div>
-                    <div className={`sum-val ${profitColor(mp)}`} style={{fontSize:14}}>{profitStr(mp)}</div>
+                    <div className={`sum-val ${profitColor(mp)}`} style={{fontSize:15,fontWeight:800,letterSpacing:"-0.3px"}}>{profitStr(mp)}</div>
                   </div>
                   {visible.map((r,i)=><RecCard key={r.id} r={r} delay={i*0.03}/>)}
                   {recs.length > LIST_PAGE_SIZE && (
@@ -702,7 +700,6 @@ export default function App() {
             )}
             <div className="settings-section">
               <div className="settings-title">データのバックアップ</div>
-              <div className="settings-info">機種変更や端末移行時のデータバックアップ用です。</div>
               <div className="settings-card">
                 <div className="settings-row">
                   <div><div className="settings-row-label">データをエクスポート</div><div className="settings-row-sub">全 <strong style={{color:"var(--orange)"}}>{records.length}</strong> 件をJSONで保存</div></div>
@@ -723,18 +720,10 @@ export default function App() {
                     <div className="settings-row-label">スロログ 🎰</div>
                     <div className="settings-row-sub">スロット収支をシンプルに記録</div>
                   </div>
-                </div>
-                <div className="settings-row">
-                  <div><div className="settings-row-label">バージョン</div></div>
-                  <div style={{fontSize:14,fontWeight:700,color:"var(--t2)"}}>1.0.0</div>
-                </div>
-                <div className="settings-row">
-                  <div><div className="settings-row-label">開発者</div></div>
-                  <div style={{fontSize:14,fontWeight:700,color:"var(--t2)"}}>TamaFactory</div>
-                </div>
-                <div className="settings-row">
-                  <div><div className="settings-row-label">最終更新</div></div>
-                  <div style={{fontSize:14,fontWeight:700,color:"var(--t2)"}}>2026/06/08</div>
+                  <div style={{fontSize:12,color:"var(--t3)",textAlign:"right",lineHeight:1.8}}>
+                    <div>v1.0.0 · TamaFactory</div>
+                    <div>2026/06/08</div>
+                  </div>
                 </div>
               </div>
             </div>
