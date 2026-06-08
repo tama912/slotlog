@@ -122,6 +122,9 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .form-input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:11px 13px;background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r-sm);color:var(--t1);font-family:'Nunito Sans',sans-serif;font-size:16px;outline:none;transition:border-color .15s;-moz-appearance:textfield}
 .form-input::-webkit-outer-spin-button,.form-input::-webkit-inner-spin-button{-webkit-appearance:none}
 .form-input:focus{border-color:var(--orange);background:#fff}
+input[type="date"].form-input{-webkit-appearance:none;appearance:none;width:100%;max-width:100%;min-width:0;box-sizing:border-box;display:block}
+.form-row>*,.form-full{width:100%;max-width:100%;min-width:0;box-sizing:border-box;overflow:hidden}
+.form-card,.form-full{width:100%;max-width:100%;box-sizing:border-box}
 .form-input::placeholder{color:var(--t3)}
 /* autocomplete dropdown */
 .autocomplete{position:absolute;top:100%;left:0;right:0;background:var(--card);border:1px solid var(--border);border-radius:0 0 var(--r-sm) var(--r-sm);box-shadow:0 4px 12px rgba(0,0,0,.1);z-index:100;max-height:160px;overflow-y:auto}
