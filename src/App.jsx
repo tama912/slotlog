@@ -125,6 +125,13 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-amt.collect{background:#f0fdf4;color:#15803d}
 .rec-amt-icon{font-size:10px;opacity:0.7}
 .rec-memo{font-size:11px;color:var(--t3);margin-top:6px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;max-height:1.5em;line-height:1.4}
+/* Win/Lose badge */
+.rec-badge{font-family:'Nunito',sans-serif;font-size:10px;font-weight:800;letter-spacing:0.10em;padding:2px 7px;border-radius:4px;flex-shrink:0;align-self:flex-start;margin-top:1px}
+.rec-badge.win{background:var(--green-l);color:var(--green)}
+.rec-badge.lose{background:var(--red-l);color:var(--red)}
+.rec-badge.draw{background:var(--bg2);color:var(--t3)}
+/* Hero copy under KPI */
+.hero-copy{font-size:12px;font-weight:600;color:var(--orange);margin-top:6px;opacity:0.85}
 .rec-menu-wrap{position:relative;flex-shrink:0;margin-left:8px}
 .rec-menu-btn{background:none;border:none;cursor:pointer;color:var(--t3);font-size:18px;padding:8px 10px;border-radius:8px;line-height:1;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .rec-menu-btn:hover{background:var(--bg2);color:var(--t2)}
@@ -378,7 +385,12 @@ export default function App() {
             <div className="rec-machine" title={r.machine}>{r.machine}</div>
             <div className="rec-store" title={r.store}>{r.store}</div>
           </div>
-          <div className={`rec-profit ${profitColor(r.profit)}`}>{profitStr(r.profit)}</div>
+          <div style={{display:"flex",flexDirection:"column",alignItems:"flex-end",gap:4,flexShrink:0}}>
+            <div className={`rec-profit ${profitColor(r.profit)}`}>{profitStr(r.profit)}</div>
+            <span className={`rec-badge ${r.profit>0?"win":r.profit<0?"lose":"draw"}`}>
+              {r.profit>0?"WIN":r.profit<0?"LOSE":"DRAW"}
+            </span>
+          </div>
         </div>
         {/* 下段: 日付・投資/回収・メニュー */}
         <div className="rec-footer">
@@ -428,6 +440,16 @@ export default function App() {
               <div className="kpi hero">
                 <div className="kpi-hero-label">今月の収支</div>
                 <div className={`kpi-val hero ${profitColor(monthProfit)}`}>{profitStr(monthProfit)}</div>
+                {monthRecs.length > 0 && (
+                  <div className="hero-copy">
+                    {monthProfit > 0
+                      ? `${monthRecs.length}戦${monthRecs.filter(r=>r.profit>0).length}勝 — 今月は勝ち越し！`
+                      : monthProfit < 0
+                      ? `${monthRecs.length}戦${monthRecs.filter(r=>r.profit>0).length}勝 — 巻き返しのチャンス`
+                      : `${monthRecs.length}戦 — 引き分け`
+                    }
+                  </div>
+                )}
               </div>
               {/* Sub row: 総収支・勝率・実戦回数 */}
               <div className="kpi-sub-row">
@@ -511,6 +533,11 @@ export default function App() {
               <div className="sum-cell accent">
                 <div className="kpi-hero-label">今月の収支</div>
                 <div className={`kpi-val hero ${profitColor(viewMonthProfit)}`}>{profitStr(viewMonthProfit)}</div>
+                {viewMonthRecs.length > 0 && (
+                  <div className="hero-copy">
+                    {viewMonthRecs.length}戦{viewMonthRecs.filter(r=>r.profit>0).length}勝{viewMonthRecs.filter(r=>r.profit<0).length}敗
+                  </div>
+                )}
               </div>
               {/* Sub row */}
               <div className="sum-sub-row">
@@ -561,7 +588,7 @@ export default function App() {
                       <div className={`machine-rank${i<3?" top":""}`}>{i+1}</div>
                       <div className="machine-info">
                         <div className="machine-name">{m.name}</div>
-                        <div className="machine-meta">{m.count}回</div>
+                        <div className="machine-meta">{m.count}回{i===0?" · 最多収支":""}{ i===machineStats.length-1&&machineStats.length>1?" · 要注意":""}</div>
                       </div>
                       <div className="machine-bar-wrap">
                         <div className={`machine-bar ${m.profit>=0?"plus":"minus"}`} style={{width:`${Math.abs(m.profit)/maxAbs*100}%`}}/>
