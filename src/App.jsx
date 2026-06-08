@@ -38,13 +38,14 @@ const calcYTicks  = (data) => {
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Nunito+Sans:wght@400;600&display=swap');
 :root{
-  --bg:#fafaf9;--bg2:#f4f4f0;--card:#ffffff;
-  --border:#e8e4dc;--border2:#d4cfc5;
-  --t1:#1c1917;--t2:#78716c;--t3:#a8a29e;
+  --sp-1:8px;--sp-2:16px;--sp-3:24px;--sp-4:32px;
+  --bg:#f7f6f3;--bg2:#eeecea;--card:#ffffff;
+  --t1:#1c1917;--t2:#6b6560;--t3:#a09c98;
+  --border:#e5e1d9;
   --orange:#f97316;--orange-l:#fff7ed;--orange-m:#fed7aa;
-  --green:#16a34a;--green-l:#f0fdf4;
+  --green:#15803d;--green-l:#f0fdf4;
   --red:#dc2626;--red-l:#fef2f2;
-  --r-sm:10px;--r-md:16px;--r-lg:22px;
+  --r-md:12px;--r-lg:16px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 input,select,textarea{width:100%;max-width:100%;min-width:0;box-sizing:border-box}
@@ -53,25 +54,25 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .header{background:var(--card);border-bottom:1px solid var(--border);padding:18px 20px 14px;position:sticky;top:0;z-index:50}
 .logo{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;color:var(--t1);letter-spacing:-0.3px}
 .logo span{color:var(--orange)}
-.logo-sub{font-size:12px;color:var(--orange);font-weight:600;margin-top:2px}
+.logo-sub{font-size:12px;color:var(--t2);font-weight:500;margin-top:3px}
 .kpi-grid{display:flex;flex-direction:column;gap:10px;padding:14px 14px 0}
 /* hero: 今月収支 — full width, large */
 .kpi{background:var(--card);border-radius:var(--r-md);padding:14px 16px;border:1px solid var(--border)}
 .kpi.hero{background:var(--orange-l);border-color:var(--orange-m);padding:18px 20px;border-radius:var(--r-lg)}
 .kpi-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:10px 10px;border:1px solid var(--border);overflow:hidden}
-.kpi-label{font-size:10px;color:var(--t3);font-weight:700;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:3px}
+.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:13px 12px 12px;border:1px solid var(--border);overflow:hidden}
+.kpi-label{font-size:10px;color:var(--t3);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
 .kpi-hero-label{font-size:12px;color:var(--orange);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px}
 /* hero value: bigger */
 .kpi-val{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.5px;line-height:1}
 .kpi-val.hero{font-size:34px;letter-spacing:-1px}
-.kpi-val.sub{font-size:15px;letter-spacing:-0.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kpi-val.sub{font-size:17px;letter-spacing:-0.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1}
 .kpi-val.plus{color:var(--green)}.kpi-val.minus{color:var(--red)}.kpi-val.zero{color:var(--t2)}.kpi-val.orange{color:var(--orange)}
 .section{padding:14px 14px 0}
 .section-title{font-size:13px;font-weight:700;color:var(--t3);padding:14px 0 8px;letter-spacing:0.04em;text-transform:uppercase}
 .month-nav{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:10px 14px;margin-bottom:14px}
 .month-nav-btn{background:none;border:none;cursor:pointer;padding:10px 16px;font-size:18px;color:var(--t2);border-radius:8px;line-height:1;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
-.month-nav-btn:hover{background:var(--bg2)}.month-nav-btn:disabled{color:var(--border2);cursor:default}
+.month-nav-btn:hover{background:var(--bg2)}.month-nav-btn:disabled{color:var(--border);cursor:default}
 .month-nav-label{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--t1)}
 .graph-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:16px 8px 8px;margin-bottom:14px;overflow:hidden}
 .graph-title{font-size:13px;font-weight:700;color:var(--t2);margin-bottom:12px;padding:0 10px}
@@ -87,9 +88,9 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .sum-val.plus{color:var(--green)}.sum-val.minus{color:var(--red)}.sum-val.zero{color:var(--t2)}.sum-val.orange{color:var(--orange)}
 .machine-table{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:14px}
 /* ranking rows */
-.machine-row{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--border)}
+.machine-row{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--border)}
 .machine-row:last-child{border-bottom:none}
-.machine-rank{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--t3);width:20px;flex-shrink:0;text-align:center}
+.machine-rank{font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:var(--t3);width:22px;flex-shrink:0;text-align:center;line-height:1}
 .machine-rank.top{color:var(--orange)}
 .machine-info{flex:1;min-width:0}
 .machine-name{font-size:14px;font-weight:700;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -98,18 +99,22 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .machine-bar-wrap{flex:1;max-width:80px;height:6px;background:var(--bg2);border-radius:3px;overflow:hidden}
 .machine-bar{height:100%;border-radius:3px;transition:width .4s ease}
 .machine-bar.plus{background:var(--green)}.machine-bar.minus{background:var(--red)}
+.machine-row.first{padding:14px 16px;background:rgba(249,115,22,0.03)}
+.machine-row.first .machine-name{font-size:15px;font-weight:800}
+.machine-row.first .machine-rank{font-size:14px;color:var(--orange)}
+.machine-row.first .machine-profit{font-size:16px}
 .machine-profit{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;flex-shrink:0;text-align:right;min-width:72px}
 
 /* record card */
-.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 14px 12px 18px;margin-bottom:8px;position:relative}
-.rec-item::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:4px;border-radius:0 3px 3px 0;background:var(--border2)}
+.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 14px 12px 18px;margin-bottom:8px;position:relative}
+.rec-item::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:0 2px 2px 0;background:var(--border)}
 .rec-item.plus::before{background:var(--green)}.rec-item.minus::before{background:var(--red)}
 /* top row: 機種名(主役) + 収支 */
 .rec-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px;gap:8px}
 .rec-header-left{flex:1;min-width:0}
 .rec-machine{font-size:16px;font-weight:800;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;line-height:1.2;margin-bottom:2px}
 .rec-store{font-size:11px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
-.rec-profit{font-family:'Nunito',sans-serif;font-size:20px;font-weight:800;letter-spacing:-0.5px;white-space:nowrap;flex-shrink:0}
+.rec-profit{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.8px;white-space:nowrap;flex-shrink:0;line-height:1}
 .rec-profit.plus{color:var(--green)}.rec-profit.minus{color:var(--red)}.rec-profit.zero{color:var(--t2)}
 /* bottom row: 日付 + 投資/回収 + menu */
 .rec-footer{display:flex;align-items:center;gap:8px;margin-top:7px}
@@ -132,20 +137,21 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .month-label{font-size:12px;font-weight:700;color:var(--t3);letter-spacing:0.06em;text-transform:uppercase}
 
 /* form */
-.form-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:20px;margin-bottom:14px}
-.form-title{font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:var(--t1);margin-bottom:18px}
-.form-row{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:12px;width:100%;box-sizing:border-box}
-.form-full{margin-bottom:12px}
-.form-label{display:block;font-size:11px;font-weight:700;color:var(--t2);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:5px}
+.form-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:20px;margin-bottom:var(--sp-2)}
+.form-title{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--t1);margin-bottom:var(--sp-2)}
+.form-row{display:grid;grid-template-columns:1fr;gap:var(--sp-2);margin-bottom:var(--sp-2);width:100%;box-sizing:border-box}
+.form-full{margin-bottom:var(--sp-2)}
+.form-label{display:block;font-size:11px;font-weight:700;color:var(--t2);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:6px}
+.form-group-sep{height:1px;background:var(--border);margin:4px 0 var(--sp-2)}
 .form-input-wrap{position:relative}
-.form-input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:11px 13px;background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r-sm);color:var(--t1);font-family:'Nunito Sans',sans-serif;font-size:16px;outline:none;transition:border-color .15s;-moz-appearance:textfield}
+.form-input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:11px 13px;background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r-md);color:var(--t1);font-family:'Nunito Sans',sans-serif;font-size:16px;outline:none;transition:border-color .15s;-moz-appearance:textfield}
 .form-input::-webkit-outer-spin-button,.form-input::-webkit-inner-spin-button{-webkit-appearance:none}
 .form-input:focus{border-color:var(--orange);background:#fff}
 .form-row>*,.form-full{width:100%;max-width:100%;min-width:0;box-sizing:border-box;overflow:hidden}
 .form-card,.form-full{width:100%;max-width:100%;box-sizing:border-box}
 .form-input::placeholder{color:var(--t3)}
 /* autocomplete dropdown */
-.autocomplete{position:absolute;top:100%;left:0;right:0;background:var(--card);border:1px solid var(--border);border-radius:0 0 var(--r-sm) var(--r-sm);box-shadow:0 4px 12px rgba(0,0,0,.1);z-index:100;max-height:160px;overflow-y:auto}
+.autocomplete{position:absolute;top:100%;left:0;right:0;background:var(--card);border:1px solid var(--border);border-radius:0 0 var(--r-md) var(--r-md);box-shadow:0 4px 12px rgba(0,0,0,.1);z-index:100;max-height:160px;overflow-y:auto}
 .autocomplete-item{padding:12px 13px;font-size:14px;color:var(--t1);cursor:pointer;font-weight:600;border-bottom:1px solid var(--border);min-height:44px;display:flex;align-items:center}
 .autocomplete-item:last-child{border-bottom:none}
 .autocomplete-item:hover{background:var(--orange-l);color:var(--orange)}
@@ -158,21 +164,21 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 }
 .profit-preview.is-plus{background:var(--green-l);border-color:#86efac}
 .profit-preview.is-minus{background:var(--red-l);border-color:#fca5a5}
-.profit-preview.is-zero{background:#f5f5f3;border-color:var(--border2)}
+.profit-preview.is-zero{background:#f5f5f3;border-color:var(--border)}
 .profit-preview-val.empty{color:var(--t3);font-size:28px;letter-spacing:0}
 .profit-preview-sub{font-size:12px;font-weight:700;margin-top:6px;opacity:0.75}
 .profit-preview-label{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px}
 .profit-preview-val{font-family:'Nunito',sans-serif;font-size:36px;font-weight:800;letter-spacing:-1px;line-height:1}
 .profit-preview-val.plus{color:var(--green)}.profit-preview-val.minus{color:var(--red)}.profit-preview-val.zero{color:var(--t2)}
 .submit-btn{width:100%;padding:14px;background:var(--orange);color:#fff;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;border:none;border-radius:var(--r-md);cursor:pointer;transition:background .15s,transform .1s}
-.submit-btn:hover{background:#ea6c0a}.submit-btn:active{transform:scale(0.98)}.submit-btn:disabled{background:var(--border2);cursor:default;transform:none}
+.submit-btn:hover{background:#ea6c0a}.submit-btn:active{transform:scale(0.98)}.submit-btn:disabled{background:var(--border);cursor:default;transform:none}
 .edit-badge{display:inline-block;background:var(--orange-l);color:var(--orange);font-size:11px;font-weight:700;border-radius:6px;padding:2px 8px;margin-left:8px;border:1px solid var(--orange-m)}
 
 /* settings */
-.settings-section{margin-bottom:20px}
-.settings-title{font-size:13px;font-weight:700;color:var(--t3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px}
+.settings-section{margin-bottom:var(--sp-3)}
+.settings-title{font-size:11px;font-weight:700;color:var(--t3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:var(--sp-1)}
 .settings-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
-.settings-row{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--border)}
+.settings-row{display:flex;justify-content:space-between;align-items:center;padding:var(--sp-2) var(--sp-2);border-bottom:1px solid var(--border);gap:var(--sp-1)}
 .settings-row:last-child{border-bottom:none}
 .settings-row-label{font-size:14px;font-weight:700;color:var(--t1)}
 .settings-row-sub{font-size:12px;color:var(--t3);margin-top:2px}
@@ -180,8 +186,8 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .settings-btn:hover{background:#ea6c0a}
 .settings-btn.secondary{background:var(--bg2);color:var(--t2);border:1px solid var(--border)}
 .settings-btn.secondary:hover{background:var(--border)}
-.settings-btn.danger{background:var(--red-l);color:var(--red);border:1px solid #fca5a5}
-.settings-btn.danger:hover{background:var(--red);color:#fff}
+.settings-btn.danger{background:transparent;color:var(--red);border:1.5px solid var(--red);font-weight:800}
+.settings-btn.danger:hover{background:var(--red-l)}
 .settings-info{font-size:13px;color:var(--t2);background:var(--bg2);border-radius:var(--r-md);padding:12px 16px;margin-bottom:12px;line-height:1.6}
 
 /* undo toast */
@@ -190,7 +196,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 @keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(8px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 
 /* onboarding */
-.onboard-card{background:linear-gradient(135deg,var(--orange-l),#fff);border:1.5px solid var(--orange-m);border-radius:var(--r-lg);padding:20px;margin-bottom:14px}
+.onboard-card{background:var(--orange-l);border:1px solid var(--orange-m);border-radius:var(--r-lg);padding:var(--sp-2);margin-bottom:var(--sp-2)}
 .onboard-title{font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:var(--t1);margin-bottom:14px}
 .onboard-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
 .onboard-step{display:flex;align-items:flex-start;gap:12px}
@@ -204,7 +210,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .show-more-btn:hover{background:var(--bg2)}
 
 /* empty */
-.empty-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:24px 20px;text-align:center}
+.empty-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp-3) var(--sp-2);text-align:center}
 .empty-ico{font-size:32px;margin-bottom:8px}.empty-txt{font-size:14px;color:var(--t2);font-weight:600}.empty-hint{font-size:12px;color:var(--t3);margin-top:4px}
 
 /* bnav */
@@ -403,21 +409,15 @@ export default function App() {
       <style>{CSS}</style>
       <div className="app">
         <div className="header">
-          {tab === 0 ? (
-            <>
-              <div className="logo">スロ<span>ログ</span> 🎰</div>
-              <div className="logo-sub">今日も収支を記録しよう</div>
-            </>
-          ) : (
-            <>
-              <div className="logo" style={{fontSize:18}}>
-                {["","収支分析","実戦履歴","収支を記録","設定"][tab]}
-              </div>
-              <div className="logo-sub">
-                {["","日別グラフと機種別成績","過去の実戦記録","今日の収支を入力","データ管理とアプリ情報"][tab]}
-              </div>
-            </>
-          )}
+          <div className="logo">
+            {tab === 0
+              ? <>スロ<span>ログ</span> 🎰</>
+              : ["","収支分析","実戦履歴","収支を記録","設定"][tab]
+            }
+          </div>
+          <div className="logo-sub">
+            {["今日も収支を記録しよう","日別グラフと機種別成績","過去の実戦記録","今日の収支を入力","データ管理とアプリ情報"][tab]}
+          </div>
         </div>
 
         {/* ═══ HOME ═══ */}
@@ -487,7 +487,7 @@ export default function App() {
                   {sorted.slice(0,3).map((r,i)=><RecCard key={r.id} r={r} delay={i*0.05}/>)}
                   {sorted.length>3 && (
                     <div style={{textAlign:"center",paddingBottom:8}}>
-                      <button onClick={()=>setTab(2)} style={{background:"none",border:"1px solid var(--border)",borderRadius:"var(--r-sm)",padding:"8px 20px",fontSize:13,color:"var(--t2)",fontWeight:700,cursor:"pointer",fontFamily:"'Nunito',sans-serif"}}>
+                      <button onClick={()=>setTab(2)} style={{background:"none",border:"1px solid var(--border)",borderRadius:"var(--r-md)",padding:"8px 20px",fontSize:13,color:"var(--t2)",fontWeight:700,cursor:"pointer",fontFamily:"'Nunito',sans-serif"}}>
                         すべての記録を見る →
                       </button>
                     </div>
@@ -557,7 +557,7 @@ export default function App() {
                 {(() => {
                   const maxAbs = Math.max(...machineStats.map(m=>Math.abs(m.profit)), 1);
                   return machineStats.map((m,i) => (
-                    <div className="machine-row" key={i}>
+                    <div className={`machine-row${i===0?" first":""}`} key={i}>
                       <div className={`machine-rank${i<3?" top":""}`}>{i+1}</div>
                       <div className="machine-info">
                         <div className="machine-name">{m.name}</div>
@@ -610,20 +610,23 @@ export default function App() {
               <div className="form-title">
                 {editId ? <>編集<span className="edit-badge">修正中</span></> : "🎰 収支を記録"}
               </div>
-              <div className="form-row">
-                <div>
-                  <label className="form-label">日付</label>
-                  <input className="form-input" type="text" inputMode="numeric" placeholder="例: 2026-06-08" value={form.date} onChange={e=>setForm(p=>({...p,date:e.target.value}))} maxLength={10} pattern="\d{4}-\d{2}-\d{2}"/>
-                </div>
-                <div>
-                  <label className="form-label">店舗名</label>
-                  <AutocompleteInput value={form.store} onChange={v=>setForm(p=>({...p,store:v}))} candidates={history.stores} placeholder="〇〇パチンコ" className="form-input"/>
-                </div>
+              {/* Group 1: 日付 */}
+              <div className="form-full">
+                <label className="form-label">日付</label>
+                <input className="form-input" type="text" inputMode="numeric" placeholder="例: 2026-06-08" value={form.date} onChange={e=>setForm(p=>({...p,date:e.target.value}))} maxLength={10} pattern="\d{4}-\d{2}-\d{2}"/>
+              </div>
+              <div className="form-group-sep"/>
+              {/* Group 2: 店舗・機種 */}
+              <div className="form-full">
+                <label className="form-label">店舗名</label>
+                <AutocompleteInput value={form.store} onChange={v=>setForm(p=>({...p,store:v}))} candidates={history.stores} placeholder="〇〇パチンコ" className="form-input"/>
               </div>
               <div className="form-full">
                 <label className="form-label">機種名</label>
                 <AutocompleteInput value={form.machine} onChange={v=>setForm(p=>({...p,machine:v}))} candidates={history.machines} placeholder="〇〇〇" className="form-input"/>
               </div>
+              <div className="form-group-sep"/>
+              {/* Group 3: 投資・回収 */}
               <div className="form-row">
                 <div>
                   <label className="form-label">投資金額 (円)</label>
@@ -654,7 +657,7 @@ export default function App() {
               </button>
               {editId && (
                 <button onClick={()=>{setEditId(null);setForm(EMPTY_FORM);setTab(2);}}
-                  style={{width:"100%",marginTop:8,padding:"10px",background:"none",border:"1px solid var(--border)",borderRadius:"var(--r-sm)",color:"var(--t2)",fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:13,cursor:"pointer"}}>
+                  style={{width:"100%",marginTop:8,padding:"10px",background:"none",border:"1px solid var(--border)",borderRadius:"var(--r-md)",color:"var(--t2)",fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:13,cursor:"pointer"}}>
                   キャンセル
                 </button>
               )}
