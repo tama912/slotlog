@@ -51,42 +51,42 @@ const CSS = `
 input,select,textarea{width:100%;max-width:100%;min-width:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .app{max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden;padding-bottom:88px}
-.header{background:var(--card);border-bottom:1px solid var(--border);padding:18px 20px 14px;position:sticky;top:0;z-index:50}
-.logo{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;color:var(--t1);letter-spacing:-0.3px}
+.header{background:var(--card);border-bottom:1px solid var(--border);padding:16px var(--sp-2) 14px;position:sticky;top:0;z-index:50}
+.logo{font-family:'Nunito',sans-serif;font-size:20px;font-weight:800;color:var(--t1);letter-spacing:-0.3px;line-height:1.2}
 .logo span{color:var(--orange)}
-.logo-sub{font-size:12px;color:var(--t2);font-weight:500;margin-top:3px}
-.kpi-grid{display:flex;flex-direction:column;gap:10px;padding:14px 14px 0}
+.logo-sub{font-size:11px;color:var(--t3);font-weight:500;margin-top:3px;letter-spacing:0.01em}
+.kpi-grid{display:flex;flex-direction:column;gap:10px;padding:var(--sp-2) var(--sp-2) 0}
 /* hero: 今月収支 — full width, large */
 .kpi{background:var(--card);border-radius:var(--r-md);padding:14px 16px;border:1px solid var(--border)}
-.kpi.hero{background:var(--orange-l);border-color:var(--orange-m);padding:18px 20px;border-radius:var(--r-lg)}
+.kpi.hero{background:var(--orange-l);border-color:var(--orange-m);padding:22px 20px 20px;border-radius:var(--r-lg)}
 .kpi-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:13px 12px 12px;border:1px solid var(--border);overflow:hidden}
-.kpi-label{font-size:10px;color:var(--t3);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
+.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:14px 12px 13px;border:1px solid var(--border);overflow:hidden}
+.kpi-label{font-size:9px;color:var(--t3);font-weight:700;letter-spacing:0.07em;text-transform:uppercase;margin-bottom:7px}
 .kpi-hero-label{font-size:12px;color:var(--orange);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px}
 /* hero value: bigger */
 .kpi-val{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.5px;line-height:1}
-.kpi-val.hero{font-size:34px;letter-spacing:-1px}
-.kpi-val.sub{font-size:17px;letter-spacing:-0.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1}
+.kpi-val.hero{font-size:36px;font-weight:800;letter-spacing:-1.5px;line-height:1}
+.kpi-val.sub{font-size:18px;font-weight:800;letter-spacing:-0.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1}
 .kpi-val.plus{color:var(--green)}.kpi-val.minus{color:var(--red)}.kpi-val.zero{color:var(--t2)}.kpi-val.orange{color:var(--orange)}
-.section{padding:14px 14px 0}
+.section{padding:var(--sp-2) var(--sp-2) 0}
 .section-title{font-size:13px;font-weight:700;color:var(--t3);padding:14px 0 8px;letter-spacing:0.04em;text-transform:uppercase}
 .month-nav{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:10px 14px;margin-bottom:14px}
 .month-nav-btn{background:none;border:none;cursor:pointer;padding:10px 16px;font-size:18px;color:var(--t2);border-radius:8px;line-height:1;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .month-nav-btn:hover{background:var(--bg2)}.month-nav-btn:disabled{color:var(--border);cursor:default}
 .month-nav-label{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--t1)}
-.graph-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:16px 8px 8px;margin-bottom:14px;overflow:hidden}
+.graph-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:18px 10px 12px;margin-bottom:var(--sp-2);overflow:hidden}
 .graph-title{font-size:13px;font-weight:700;color:var(--t2);margin-bottom:12px;padding:0 10px}
 .ctip{background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-family:'Nunito',sans-serif;font-size:13px;box-shadow:0 4px 12px rgba(0,0,0,.1)}
 .ctip-date{color:var(--t3);font-size:11px;margin-bottom:2px}
-.sum-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.sum-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:var(--sp-2)}
 .sum-cell{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 16px}
 .sum-cell.accent{background:var(--orange-l);border-color:var(--orange-m);padding:18px 20px;border-radius:var(--r-lg)}
 .sum-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .sum-sub{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 14px}
 .sum-label{font-size:11px;font-weight:700;color:var(--t3);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:5px}
-.sum-val{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.5px}
+.sum-val{font-family:'Nunito',sans-serif;font-size:36px;font-weight:800;letter-spacing:-1.5px;line-height:1}
 .sum-val.plus{color:var(--green)}.sum-val.minus{color:var(--red)}.sum-val.zero{color:var(--t2)}.sum-val.orange{color:var(--orange)}
-.machine-table{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:14px}
+.machine-table{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:var(--sp-2)}
 /* ranking rows */
 .machine-row{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--border)}
 .machine-row:last-child{border-bottom:none}
@@ -106,15 +106,15 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .machine-profit{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;flex-shrink:0;text-align:right;min-width:72px}
 
 /* record card */
-.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 14px 12px 18px;margin-bottom:8px;position:relative}
+.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 14px 13px 18px;margin-bottom:10px;position:relative}
 .rec-item::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:0 2px 2px 0;background:var(--border)}
 .rec-item.plus::before{background:var(--green)}.rec-item.minus::before{background:var(--red)}
 /* top row: 機種名(主役) + 収支 */
 .rec-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px;gap:8px}
 .rec-header-left{flex:1;min-width:0}
 .rec-machine{font-size:16px;font-weight:800;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;line-height:1.2;margin-bottom:2px}
-.rec-store{font-size:11px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
-.rec-profit{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.8px;white-space:nowrap;flex-shrink:0;line-height:1}
+.rec-store{font-size:11px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;font-weight:500}
+.rec-profit{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;letter-spacing:-1px;white-space:nowrap;flex-shrink:0;line-height:1}
 .rec-profit.plus{color:var(--green)}.rec-profit.minus{color:var(--red)}.rec-profit.zero{color:var(--t2)}
 /* bottom row: 日付 + 投資/回収 + menu */
 .rec-footer{display:flex;align-items:center;gap:8px;margin-top:7px}
@@ -142,7 +142,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .form-row{display:grid;grid-template-columns:1fr;gap:var(--sp-2);margin-bottom:var(--sp-2);width:100%;box-sizing:border-box}
 .form-full{margin-bottom:var(--sp-2)}
 .form-label{display:block;font-size:11px;font-weight:700;color:var(--t2);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:6px}
-.form-group-sep{height:1px;background:var(--border);margin:4px 0 var(--sp-2)}
+.form-group-sep{height:var(--sp-2);background:none}
 .form-input-wrap{position:relative}
 .form-input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:11px 13px;background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r-md);color:var(--t1);font-family:'Nunito Sans',sans-serif;font-size:16px;outline:none;transition:border-color .15s;-moz-appearance:textfield}
 .form-input::-webkit-outer-spin-button,.form-input::-webkit-inner-spin-button{-webkit-appearance:none}
@@ -471,7 +471,7 @@ export default function App() {
                   {chartData.length>=2 && (
                     <div className="graph-card su">
                       <div className="graph-title">直近の収支推移</div>
-                      <ResponsiveContainer width="100%" height={110}>
+                      <ResponsiveContainer width="100%" height={95}>
                         <BarChart data={chartData} margin={{top:4,right:10,left:0,bottom:0}}>
                           <CartesianGrid stroke="#f0ece4" vertical={false}/>
                           <XAxis dataKey="date" tick={{fontSize:10,fill:"#a8a29e"}} tickLine={false} axisLine={false} interval="preserveStartEnd"/>
@@ -531,7 +531,7 @@ export default function App() {
             {chartData.length>=1 ? (
               <div className="graph-card su">
                 <div className="graph-title">日別収支</div>
-                <ResponsiveContainer width="100%" height={155}>
+                <ResponsiveContainer width="100%" height={130}>
                   <BarChart data={chartData} margin={{top:8,right:10,left:0,bottom:4}}>
                     <CartesianGrid stroke="#f0ece4" vertical={false}/>
                     <XAxis dataKey="date" tick={{fontSize:10,fill:"#a8a29e"}} tickLine={false} axisLine={false} interval="preserveStartEnd"/>
