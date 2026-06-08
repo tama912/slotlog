@@ -86,31 +86,38 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .sum-val{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.5px}
 .sum-val.plus{color:var(--green)}.sum-val.minus{color:var(--red)}.sum-val.zero{color:var(--t2)}.sum-val.orange{color:var(--orange)}
 .machine-table{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:14px}
-.machine-table-head{display:grid;grid-template-columns:1fr 60px 90px;gap:0;padding:8px 16px;background:var(--bg2);border-bottom:1px solid var(--border)}
-.machine-table-hd{font-size:11px;font-weight:700;color:var(--t3);letter-spacing:0.05em;text-transform:uppercase;text-align:right}
-.machine-table-hd:first-child{text-align:left}
-.machine-row{display:grid;grid-template-columns:1fr 60px 90px;gap:0;padding:11px 16px;border-bottom:1px solid var(--border);align-items:center}
+/* ranking rows */
+.machine-row{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--border)}
 .machine-row:last-child{border-bottom:none}
+.machine-rank{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--t3);width:20px;flex-shrink:0;text-align:center}
+.machine-rank.top{color:var(--orange)}
+.machine-info{flex:1;min-width:0}
 .machine-name{font-size:14px;font-weight:700;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.machine-count{font-size:14px;font-weight:700;color:var(--t2);text-align:right}
-.machine-profit{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;text-align:right}
+.machine-meta{font-size:11px;color:var(--t3);margin-top:1px}
+/* bar */
+.machine-bar-wrap{flex:1;max-width:80px;height:6px;background:var(--bg2);border-radius:3px;overflow:hidden}
+.machine-bar{height:100%;border-radius:3px;transition:width .4s ease}
+.machine-bar.plus{background:var(--green)}.machine-bar.minus{background:var(--red)}
+.machine-profit{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;flex-shrink:0;text-align:right;min-width:72px}
 
 /* record card */
-.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 16px 14px 20px;margin-bottom:9px;position:relative}
-.rec-item::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:4px;border-radius:0 3px 3px 0;background:var(--border2)}
+.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 14px 12px 18px;margin-bottom:8px;position:relative}
+.rec-item::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:4px;border-radius:0 3px 3px 0;background:var(--border2)}
 .rec-item.plus::before{background:var(--green)}.rec-item.minus::before{background:var(--red)}
-.rec-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.rec-date{font-size:12px;color:var(--t3);font-weight:600}
-.rec-profit{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.5px;white-space:nowrap}
+/* top row: 機種名(主役) + 収支 */
+.rec-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px;gap:8px}
+.rec-header-left{flex:1;min-width:0}
+.rec-machine{font-size:16px;font-weight:800;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;line-height:1.2;margin-bottom:2px}
+.rec-store{font-size:11px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.rec-profit{font-family:'Nunito',sans-serif;font-size:20px;font-weight:800;letter-spacing:-0.5px;white-space:nowrap;flex-shrink:0}
 .rec-profit.plus{color:var(--green)}.rec-profit.minus{color:var(--red)}.rec-profit.zero{color:var(--t2)}
-.rec-body{display:flex;justify-content:space-between;align-items:flex-start}
-.rec-left{flex:1;min-width:0;overflow:hidden}
-.rec-machine{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
-.rec-store{font-size:12px;color:var(--t2);margin-bottom:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
-.rec-amounts{display:flex;gap:10px}
-.rec-amt{font-size:12px;color:var(--t3);font-weight:600}
+/* bottom row: 日付 + 投資/回収 + menu */
+.rec-footer{display:flex;align-items:center;gap:8px;margin-top:7px}
+.rec-date{font-size:11px;color:var(--t3);font-weight:600;flex-shrink:0}
+.rec-amounts{display:flex;gap:8px;flex:1}
+.rec-amt{font-size:11px;color:var(--t3);font-weight:600}
 .rec-amt span{color:var(--t2);font-weight:700}
-.rec-memo{font-size:12px;color:var(--t2);margin-top:8px;padding-top:8px;border-top:1px solid var(--border);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;max-height:2.8em;line-height:1.4}
+.rec-memo{font-size:11px;color:var(--t3);margin-top:6px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;max-height:1.5em;line-height:1.4}
 .rec-menu-wrap{position:relative;flex-shrink:0;margin-left:8px}
 .rec-menu-btn{background:none;border:none;cursor:pointer;color:var(--t3);font-size:18px;padding:8px 10px;border-radius:8px;line-height:1;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .rec-menu-btn:hover{background:var(--bg2);color:var(--t2)}
@@ -140,9 +147,16 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .autocomplete-item{padding:12px 13px;font-size:14px;color:var(--t1);cursor:pointer;font-weight:600;border-bottom:1px solid var(--border);min-height:44px;display:flex;align-items:center}
 .autocomplete-item:last-child{border-bottom:none}
 .autocomplete-item:hover{background:var(--orange-l);color:var(--orange)}
-.profit-preview{display:flex;justify-content:space-between;align-items:center;background:var(--bg2);border-radius:var(--r-sm);padding:10px 14px;margin-bottom:12px}
-.profit-preview-label{font-size:12px;font-weight:700;color:var(--t2)}
-.profit-preview-val{font-family:'Nunito',sans-serif;font-size:20px;font-weight:800}
+.profit-preview{
+  display:flex;justify-content:space-between;align-items:center;
+  border-radius:var(--r-md);padding:14px 18px;margin-bottom:12px;
+  border:2px solid var(--border);background:var(--card);
+  transition:border-color .2s, background .2s;
+}
+.profit-preview.is-plus{background:var(--green-l);border-color:#86efac}
+.profit-preview.is-minus{background:var(--red-l);border-color:#fca5a5}
+.profit-preview-label{font-size:11px;font-weight:700;color:var(--t3);letter-spacing:0.06em;text-transform:uppercase}
+.profit-preview-val{font-family:'Nunito',sans-serif;font-size:26px;font-weight:800;letter-spacing:-0.5px;line-height:1}
 .profit-preview-val.plus{color:var(--green)}.profit-preview-val.minus{color:var(--red)}.profit-preview-val.zero{color:var(--t2)}
 .submit-btn{width:100%;padding:14px;background:var(--orange);color:#fff;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;border:none;border-radius:var(--r-md);cursor:pointer;transition:background .15s,transform .1s}
 .submit-btn:hover{background:#ea6c0a}.submit-btn:active{transform:scale(0.98)}.submit-btn:disabled{background:var(--border2);cursor:default;transform:none}
@@ -345,20 +359,22 @@ export default function App() {
     const [menuOpen, setMenuOpen] = useState(false);
     return (
       <div className={`rec-item ${profitColor(r.profit)} su`} style={{animationDelay:`${delay}s`}} onClick={()=>menuOpen&&setMenuOpen(false)}>
+        {/* 上段: 機種名（主役）＋収支 */}
         <div className="rec-header">
-          <div className="rec-date">{fmtDate(r.date)}</div>
+          <div className="rec-header-left">
+            <div className="rec-machine" title={r.machine}>{r.machine}</div>
+            <div className="rec-store" title={r.store}>{r.store}</div>
+          </div>
           <div className={`rec-profit ${profitColor(r.profit)}`}>{profitStr(r.profit)}</div>
         </div>
-        <div className="rec-body">
-          <div className="rec-left">
-            <div className="rec-machine" title={r.machine}>{r.machine}</div>
-            <div className="rec-store"   title={r.store}>{r.store}</div>
-            <div className="rec-amounts">
-              <div className="rec-amt">投資 <span>¥{r.invest.toLocaleString()}</span></div>
-              <div className="rec-amt">回収 <span>¥{r.collect.toLocaleString()}</span></div>
-            </div>
+        {/* 下段: 日付・投資/回収・メニュー */}
+        <div className="rec-footer">
+          <div className="rec-date">{fmtDate(r.date)}</div>
+          <div className="rec-amounts">
+            <div className="rec-amt">投資<span>¥{r.invest.toLocaleString()}</span></div>
+            <div className="rec-amt">回収<span>¥{r.collect.toLocaleString()}</span></div>
           </div>
-          <div className="rec-menu-wrap">
+          <div className="rec-menu-wrap" style={{marginLeft:"auto"}}>
             <button className="rec-menu-btn" onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
             {menuOpen && (
               <div className="rec-menu-dropdown">
@@ -368,7 +384,7 @@ export default function App() {
             )}
           </div>
         </div>
-        {r.memo && <div className="rec-memo">📝 {r.memo}</div>}
+        {r.memo && <div className="rec-memo">{r.memo}</div>}
       </div>
     );
   };
@@ -514,18 +530,22 @@ export default function App() {
               <div className="empty-card su"><div className="empty-ico">🎯</div><div className="empty-txt">機種データがありません</div><div className="empty-hint">収支を記録すると機種別の成績が表示されます</div></div>
             ) : (
               <div className="machine-table su">
-                <div className="machine-table-head">
-                  <div className="machine-table-hd">機種名</div>
-                  <div className="machine-table-hd">回数</div>
-                  <div className="machine-table-hd">累計収支</div>
-                </div>
-                {machineStats.map((m,i)=>(
-                  <div className="machine-row" key={i}>
-                    <div className="machine-name">{m.name}</div>
-                    <div className="machine-count">{m.count}回</div>
-                    <div className="machine-profit" style={{color:m.profit>0?"var(--green)":m.profit<0?"var(--red)":"var(--t2)"}}>{profitStr(m.profit)}</div>
-                  </div>
-                ))}
+                {(() => {
+                  const maxAbs = Math.max(...machineStats.map(m=>Math.abs(m.profit)), 1);
+                  return machineStats.map((m,i) => (
+                    <div className="machine-row" key={i}>
+                      <div className={`machine-rank${i<3?" top":""}`}>{i+1}</div>
+                      <div className="machine-info">
+                        <div className="machine-name">{m.name}</div>
+                        <div className="machine-meta">{m.count}回</div>
+                      </div>
+                      <div className="machine-bar-wrap">
+                        <div className={`machine-bar ${m.profit>=0?"plus":"minus"}`} style={{width:`${Math.abs(m.profit)/maxAbs*100}%`}}/>
+                      </div>
+                      <div className="machine-profit" style={{color:m.profit>0?"var(--green)":m.profit<0?"var(--red)":"var(--t2)"}}>{profitStr(m.profit)}</div>
+                    </div>
+                  ));
+                })()}
               </div>
             )}
           </div>
@@ -590,10 +610,10 @@ export default function App() {
                   <input className="form-input" type="number" placeholder="15000" value={form.collect} onChange={e=>setForm(p=>({...p,collect:e.target.value}))}/>
                 </div>
               </div>
-              <div className="profit-preview">
+              <div className={`profit-preview${(form.invest||form.collect)?previewProfit>0?" is-plus":previewProfit<0?" is-minus":""  :""}`}>
                 <div className="profit-preview-label">収支（自動計算）</div>
-                <div className={`profit-preview-val ${profitColor(previewProfit)}`}>
-                  {form.invest||form.collect ? profitStr(previewProfit) : "¥ —"}
+                <div className={`profit-preview-val ${form.invest||form.collect?profitColor(previewProfit):"zero"}`}>
+                  {form.invest||form.collect ? profitStr(previewProfit) : "—"}
                 </div>
               </div>
               <div className="form-full">
@@ -623,7 +643,7 @@ export default function App() {
             )}
             <div className="settings-section">
               <div className="settings-title">データのバックアップ</div>
-              <div className="settings-info">スマホの機種変更や別の端末でデータを引き継ぐ場合に使用します。</div>
+              <div className="settings-info">機種変更や端末移行時のデータバックアップ用です。</div>
               <div className="settings-card">
                 <div className="settings-row">
                   <div><div className="settings-row-label">データをエクスポート</div><div className="settings-row-sub">全 <strong style={{color:"var(--orange)"}}>{records.length}</strong> 件をJSONで保存</div></div>
