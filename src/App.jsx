@@ -59,13 +59,13 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .kpi{background:var(--card);border-radius:var(--r-md);padding:14px 16px;border:1px solid var(--border)}
 .kpi.hero{background:var(--orange-l);border-color:var(--orange-m);padding:18px 20px;border-radius:var(--r-lg)}
 .kpi-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:12px 14px;border:1px solid var(--border)}
-.kpi-label{font-size:11px;color:var(--t3);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:4px}
+.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:10px 10px;border:1px solid var(--border);overflow:hidden}
+.kpi-label{font-size:10px;color:var(--t3);font-weight:700;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:3px}
 .kpi-hero-label{font-size:12px;color:var(--orange);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px}
 /* hero value: bigger */
 .kpi-val{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.5px;line-height:1}
 .kpi-val.hero{font-size:34px;letter-spacing:-1px}
-.kpi-val.sub{font-size:18px;letter-spacing:-0.3px}
+.kpi-val.sub{font-size:15px;letter-spacing:-0.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .kpi-val.plus{color:var(--green)}.kpi-val.minus{color:var(--red)}.kpi-val.zero{color:var(--t2)}.kpi-val.orange{color:var(--orange)}
 .section{padding:14px 14px 0}
 .section-title{font-size:13px;font-weight:700;color:var(--t3);padding:14px 0 8px;letter-spacing:0.04em;text-transform:uppercase}
@@ -114,9 +114,10 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 /* bottom row: 日付 + 投資/回収 + menu */
 .rec-footer{display:flex;align-items:center;gap:8px;margin-top:7px}
 .rec-date{font-size:11px;color:var(--t3);font-weight:600;flex-shrink:0}
-.rec-amounts{display:flex;gap:8px;flex:1}
-.rec-amt{font-size:11px;color:var(--t3);font-weight:600}
-.rec-amt span{color:var(--t2);font-weight:700}
+.rec-amounts{display:flex;gap:6px;flex:1}
+.rec-amt{font-size:11px;font-weight:700;padding:2px 6px;border-radius:4px}
+.rec-amt.invest{background:#fef3ec;color:#c2540a}
+.rec-amt.collect{background:#f0fdf4;color:#166534}
 .rec-memo{font-size:11px;color:var(--t3);margin-top:6px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;max-height:1.5em;line-height:1.4}
 .rec-menu-wrap{position:relative;flex-shrink:0;margin-left:8px}
 .rec-menu-btn{background:none;border:none;cursor:pointer;color:var(--t3);font-size:18px;padding:8px 10px;border-radius:8px;line-height:1;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
@@ -148,15 +149,16 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .autocomplete-item:last-child{border-bottom:none}
 .autocomplete-item:hover{background:var(--orange-l);color:var(--orange)}
 .profit-preview{
-  display:flex;justify-content:space-between;align-items:center;
-  border-radius:var(--r-md);padding:14px 18px;margin-bottom:12px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border-radius:var(--r-md);padding:18px 16px;margin-bottom:12px;
   border:2px solid var(--border);background:var(--card);
-  transition:border-color .2s, background .2s;
+  transition:border-color .25s, background .25s;
+  text-align:center;min-height:80px;
 }
 .profit-preview.is-plus{background:var(--green-l);border-color:#86efac}
 .profit-preview.is-minus{background:var(--red-l);border-color:#fca5a5}
-.profit-preview-label{font-size:11px;font-weight:700;color:var(--t3);letter-spacing:0.06em;text-transform:uppercase}
-.profit-preview-val{font-family:'Nunito',sans-serif;font-size:26px;font-weight:800;letter-spacing:-0.5px;line-height:1}
+.profit-preview-label{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px}
+.profit-preview-val{font-family:'Nunito',sans-serif;font-size:36px;font-weight:800;letter-spacing:-1px;line-height:1}
 .profit-preview-val.plus{color:var(--green)}.profit-preview-val.minus{color:var(--red)}.profit-preview-val.zero{color:var(--t2)}
 .submit-btn{width:100%;padding:14px;background:var(--orange);color:#fff;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;border:none;border-radius:var(--r-md);cursor:pointer;transition:background .15s,transform .1s}
 .submit-btn:hover{background:#ea6c0a}.submit-btn:active{transform:scale(0.98)}.submit-btn:disabled{background:var(--border2);cursor:default;transform:none}
@@ -396,8 +398,21 @@ export default function App() {
       <style>{CSS}</style>
       <div className="app">
         <div className="header">
-          <div className="logo">スロ<span>ログ</span> 🎰</div>
-          <div className="logo-sub">今日も収支を記録しよう</div>
+          {tab === 0 ? (
+            <>
+              <div className="logo">スロ<span>ログ</span> 🎰</div>
+              <div className="logo-sub">今日も収支を記録しよう</div>
+            </>
+          ) : (
+            <>
+              <div className="logo" style={{fontSize:18}}>
+                {["","収支分析","実戦履歴","収支を記録","設定"][tab]}
+              </div>
+              <div className="logo-sub">
+                {["","日別グラフと機種別成績","過去の実戦記録","今日の収支を入力","データ管理とアプリ情報"][tab]}
+              </div>
+            </>
+          )}
         </div>
 
         {/* ═══ HOME ═══ */}
@@ -451,7 +466,7 @@ export default function App() {
                   {chartData.length>=2 && (
                     <div className="graph-card su">
                       <div className="graph-title">直近の収支推移</div>
-                      <ResponsiveContainer width="100%" height={140}>
+                      <ResponsiveContainer width="100%" height={110}>
                         <BarChart data={chartData} margin={{top:4,right:10,left:0,bottom:0}}>
                           <CartesianGrid stroke="#f0ece4" vertical={false}/>
                           <XAxis dataKey="date" tick={{fontSize:10,fill:"#a8a29e"}} tickLine={false} axisLine={false} interval="preserveStartEnd"/>
@@ -511,7 +526,7 @@ export default function App() {
             {chartData.length>=1 ? (
               <div className="graph-card su">
                 <div className="graph-title">日別収支</div>
-                <ResponsiveContainer width="100%" height={200}>
+                <ResponsiveContainer width="100%" height={155}>
                   <BarChart data={chartData} margin={{top:8,right:10,left:0,bottom:4}}>
                     <CartesianGrid stroke="#f0ece4" vertical={false}/>
                     <XAxis dataKey="date" tick={{fontSize:10,fill:"#a8a29e"}} tickLine={false} axisLine={false} interval="preserveStartEnd"/>
@@ -676,8 +691,8 @@ export default function App() {
               </div>
             </div>
             <div className="settings-section">
-              <div className="settings-title">危険な操作</div>
-              <div className="settings-card">
+              <div className="settings-title" style={{color:"var(--red)"}}>危険な操作</div>
+              <div className="settings-card" style={{border:"1px solid #fca5a5",background:"var(--red-l)"}}>
                 <div className="settings-row">
                   <div><div className="settings-row-label">データをすべて削除</div><div className="settings-row-sub">この操作は取り消せません</div></div>
                   <button className="settings-btn danger" onClick={()=>{if(window.confirm("すべてのデータを削除しますか？この操作は取り消せません。")){setRecords([]);setTab(0);}}}>削除</button>
