@@ -115,9 +115,10 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-footer{display:flex;align-items:center;gap:8px;margin-top:7px}
 .rec-date{font-size:11px;color:var(--t3);font-weight:600;flex-shrink:0}
 .rec-amounts{display:flex;gap:6px;flex:1}
-.rec-amt{font-size:11px;font-weight:700;padding:2px 6px;border-radius:4px}
+.rec-amt{font-size:11px;font-weight:700;padding:3px 8px;border-radius:5px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
 .rec-amt.invest{background:#fef3ec;color:#c2540a}
-.rec-amt.collect{background:#f0fdf4;color:#166534}
+.rec-amt.collect{background:#f0fdf4;color:#15803d}
+.rec-amt-icon{font-size:10px;opacity:0.7}
 .rec-memo{font-size:11px;color:var(--t3);margin-top:6px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;max-height:1.5em;line-height:1.4}
 .rec-menu-wrap{position:relative;flex-shrink:0;margin-left:8px}
 .rec-menu-btn{background:none;border:none;cursor:pointer;color:var(--t3);font-size:18px;padding:8px 10px;border-radius:8px;line-height:1;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
@@ -157,6 +158,9 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 }
 .profit-preview.is-plus{background:var(--green-l);border-color:#86efac}
 .profit-preview.is-minus{background:var(--red-l);border-color:#fca5a5}
+.profit-preview.is-zero{background:#f5f5f3;border-color:var(--border2)}
+.profit-preview-val.empty{color:var(--t3);font-size:28px;letter-spacing:0}
+.profit-preview-sub{font-size:12px;font-weight:700;margin-top:6px;opacity:0.75}
 .profit-preview-label{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px}
 .profit-preview-val{font-family:'Nunito',sans-serif;font-size:36px;font-weight:800;letter-spacing:-1px;line-height:1}
 .profit-preview-val.plus{color:var(--green)}.profit-preview-val.minus{color:var(--red)}.profit-preview-val.zero{color:var(--t2)}
@@ -292,6 +296,7 @@ export default function App() {
   const monthRecs    = useMemo(()=>records.filter(r=>r.date.startsWith(thisMonth())),[records]);
   const monthProfit  = useMemo(()=>monthRecs.reduce((s,r)=>s+r.profit,0),[monthRecs]);
   const winRate      = useMemo(()=>records.length?Math.round(records.filter(r=>r.profit>0).length/records.length*100):null,[records]);
+  const avgProfit    = useMemo(()=>records.length?Math.round(records.reduce((s,r)=>s+r.profit,0)/records.length/100)*100:0,[records]);
   const viewMonthRecs   = useMemo(()=>records.filter(r=>r.date.startsWith(viewMonth)),[records,viewMonth]);
   const viewMonthProfit = useMemo(()=>viewMonthRecs.reduce((s,r)=>s+r.profit,0),[viewMonthRecs]);
   const viewMonthWin    = useMemo(()=>viewMonthRecs.length?Math.round(viewMonthRecs.filter(r=>r.profit>0).length/viewMonthRecs.length*100):null,[viewMonthRecs]);
@@ -373,8 +378,8 @@ export default function App() {
         <div className="rec-footer">
           <div className="rec-date">{fmtDate(r.date)}</div>
           <div className="rec-amounts">
-            <div className="rec-amt">投資<span>¥{r.invest.toLocaleString()}</span></div>
-            <div className="rec-amt">回収<span>¥{r.collect.toLocaleString()}</span></div>
+            <div className="rec-amt invest"><span className="rec-amt-icon">↓</span>¥{r.invest.toLocaleString()}</div>
+            <div className="rec-amt collect"><span className="rec-amt-icon">↑</span>¥{r.collect.toLocaleString()}</div>
           </div>
           <div className="rec-menu-wrap" style={{marginLeft:"auto"}}>
             <button className="rec-menu-btn" onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
@@ -427,8 +432,8 @@ export default function App() {
               {/* Sub row: 総収支・勝率・実戦回数 */}
               <div className="kpi-sub-row">
                 <div className="kpi-sub">
-                  <div className="kpi-label">総収支</div>
-                  <div className={`kpi-val sub ${profitColor(totalProfit)}`}>{profitStr(totalProfit)}</div>
+                  <div className="kpi-label">平均収支</div>
+                  <div className={`kpi-val sub ${profitColor(avgProfit)}`}>{profitStr(avgProfit)}</div>
                 </div>
                 <div className="kpi-sub">
                   <div className="kpi-label">勝率</div>
@@ -538,7 +543,11 @@ export default function App() {
                 </ResponsiveContainer>
               </div>
             ) : (
-              <div className="empty-card su"><div className="empty-ico">📊</div><div className="empty-txt">この月の記録がありません</div><div className="empty-hint">◀ ▶ で他の月を確認できます</div></div>
+              <div className="empty-card su">
+                <div className="empty-ico">📊</div>
+                <div className="empty-txt">{records.length===0?"まだ分析データがありません":"この月の記録がありません"}</div>
+                <div className="empty-hint">{records.length===0?"収支を記録すると日別グラフと機種別成績が表示されます":"◀ ▶ で他の月を確認できます"}</div>
+              </div>
             )}
             <div className="section-title" style={{marginTop:4}}>機種別成績（全期間）</div>
             {machineStats.length===0 ? (
@@ -625,11 +634,16 @@ export default function App() {
                   <input className="form-input" type="number" placeholder="15000" value={form.collect} onChange={e=>setForm(p=>({...p,collect:e.target.value}))}/>
                 </div>
               </div>
-              <div className={`profit-preview${(form.invest||form.collect)?previewProfit>0?" is-plus":previewProfit<0?" is-minus":""  :""}`}>
+              <div className={`profit-preview${(form.invest||form.collect)?previewProfit>0?" is-plus":previewProfit<0?" is-minus":" is-zero":""}`}>
                 <div className="profit-preview-label">収支（自動計算）</div>
-                <div className={`profit-preview-val ${form.invest||form.collect?profitColor(previewProfit):"zero"}`}>
+                <div className={`profit-preview-val ${form.invest||form.collect?profitColor(previewProfit):"empty"}`}>
                   {form.invest||form.collect ? profitStr(previewProfit) : "—"}
                 </div>
+                {(form.invest||form.collect) && (
+                  <div className="profit-preview-sub">
+                    {previewProfit > 0 ? "✨ 今日はプラスです！" : previewProfit < 0 ? "💸 マイナスです" : "±0円 引き分け"}
+                  </div>
+                )}
               </div>
               <div className="form-full">
                 <label className="form-label">メモ（任意）</label>
@@ -687,6 +701,10 @@ export default function App() {
                 <div className="settings-row">
                   <div><div className="settings-row-label">開発者</div></div>
                   <div style={{fontSize:14,fontWeight:700,color:"var(--t2)"}}>TamaFactory</div>
+                </div>
+                <div className="settings-row">
+                  <div><div className="settings-row-label">最終更新</div></div>
+                  <div style={{fontSize:14,fontWeight:700,color:"var(--t2)"}}>2026/06/08</div>
                 </div>
               </div>
             </div>
