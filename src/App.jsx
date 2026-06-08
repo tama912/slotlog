@@ -182,7 +182,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 
 @keyframes slideUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .su{animation:slideUp .28s ease both}
-@media(max-width:390px){.form-row{grid-template-columns:1fr}.form-card{padding:16px}.form-title{font-size:15px;margin-bottom:14px}}
+.form-row{grid-template-columns:1fr}@media(min-width:768px){.form-row{grid-template-columns:1fr 1fr}}
 `;
 
 /* ── Chart Tooltip ── */
