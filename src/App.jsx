@@ -54,11 +54,18 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .logo{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;color:var(--t1);letter-spacing:-0.3px}
 .logo span{color:var(--orange)}
 .logo-sub{font-size:12px;color:var(--orange);font-weight:600;margin-top:2px}
-.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 14px 0}
+.kpi-grid{display:flex;flex-direction:column;gap:10px;padding:14px 14px 0}
+/* hero: 今月収支 — full width, large */
 .kpi{background:var(--card);border-radius:var(--r-md);padding:14px 16px;border:1px solid var(--border)}
-.kpi.accent{background:var(--orange-l);border-color:var(--orange-m)}
-.kpi-label{font-size:11px;color:var(--t3);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:5px}
+.kpi.hero{background:var(--orange-l);border-color:var(--orange-m);padding:18px 20px;border-radius:var(--r-lg)}
+.kpi-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:12px 14px;border:1px solid var(--border)}
+.kpi-label{font-size:11px;color:var(--t3);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:4px}
+.kpi-hero-label{font-size:12px;color:var(--orange);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px}
+/* hero value: bigger */
 .kpi-val{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.5px;line-height:1}
+.kpi-val.hero{font-size:34px;letter-spacing:-1px}
+.kpi-val.sub{font-size:18px;letter-spacing:-0.3px}
 .kpi-val.plus{color:var(--green)}.kpi-val.minus{color:var(--red)}.kpi-val.zero{color:var(--t2)}.kpi-val.orange{color:var(--orange)}
 .section{padding:14px 14px 0}
 .section-title{font-size:13px;font-weight:700;color:var(--t3);padding:14px 0 8px;letter-spacing:0.04em;text-transform:uppercase}
@@ -70,9 +77,11 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .graph-title{font-size:13px;font-weight:700;color:var(--t2);margin-bottom:12px;padding:0 10px}
 .ctip{background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-family:'Nunito',sans-serif;font-size:13px;box-shadow:0 4px 12px rgba(0,0,0,.1)}
 .ctip-date{color:var(--t3);font-size:11px;margin-bottom:2px}
-.sum-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.sum-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
 .sum-cell{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 16px}
-.sum-cell.accent{background:var(--orange-l);border-color:var(--orange-m)}
+.sum-cell.accent{background:var(--orange-l);border-color:var(--orange-m);padding:18px 20px;border-radius:var(--r-lg)}
+.sum-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.sum-sub{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 14px}
 .sum-label{font-size:11px;font-weight:700;color:var(--t3);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:5px}
 .sum-val{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.5px}
 .sum-val.plus{color:var(--green)}.sum-val.minus{color:var(--red)}.sum-val.zero{color:var(--t2)}.sum-val.orange{color:var(--orange)}
@@ -379,10 +388,26 @@ export default function App() {
         {tab===0 && (
           <>
             <div className="kpi-grid">
-              <div className="kpi accent"><div className="kpi-label">今月の収支</div><div className={`kpi-val ${profitColor(monthProfit)}`}>{profitStr(monthProfit)}</div></div>
-              <div className="kpi"><div className="kpi-label">総収支</div><div className={`kpi-val ${profitColor(totalProfit)}`}>{profitStr(totalProfit)}</div></div>
-              <div className="kpi"><div className="kpi-label">勝率</div><div className="kpi-val orange">{winRate!=null?`${winRate}%`:"0%"}</div></div>
-              <div className="kpi"><div className="kpi-label">実戦回数</div><div className="kpi-val orange">{records.length}<span style={{fontSize:14,marginLeft:2,fontWeight:700}}>回</span></div></div>
+              {/* Hero: 今月収支 */}
+              <div className="kpi hero">
+                <div className="kpi-hero-label">今月の収支</div>
+                <div className={`kpi-val hero ${profitColor(monthProfit)}`}>{profitStr(monthProfit)}</div>
+              </div>
+              {/* Sub row: 総収支・勝率・実戦回数 */}
+              <div className="kpi-sub-row">
+                <div className="kpi-sub">
+                  <div className="kpi-label">総収支</div>
+                  <div className={`kpi-val sub ${profitColor(totalProfit)}`}>{profitStr(totalProfit)}</div>
+                </div>
+                <div className="kpi-sub">
+                  <div className="kpi-label">勝率</div>
+                  <div className="kpi-val sub orange">{winRate!=null?`${winRate}%`:"0%"}</div>
+                </div>
+                <div className="kpi-sub">
+                  <div className="kpi-label">実戦</div>
+                  <div className="kpi-val sub orange">{records.length}<span style={{fontSize:12,marginLeft:1,fontWeight:700}}>回</span></div>
+                </div>
+              </div>
             </div>
             <div className="section">
               {records.length===0 ? (
@@ -446,10 +471,26 @@ export default function App() {
               <button className="month-nav-btn" disabled={!canGoNext} onClick={()=>setViewMonth(m=>addMonth(m,1))}>▶</button>
             </div>
             <div className="sum-grid su">
-              <div className="sum-cell accent"><div className="sum-label">今月の収支</div><div className={`sum-val ${profitColor(viewMonthProfit)}`}>{profitStr(viewMonthProfit)}</div></div>
-              <div className="sum-cell"><div className="sum-label">実戦回数</div><div className="sum-val orange">{viewMonthRecs.length}<span style={{fontSize:14,marginLeft:2,fontWeight:700}}>回</span></div></div>
-              <div className="sum-cell"><div className="sum-label">勝率</div><div className="sum-val orange">{viewMonthWin!=null?`${viewMonthWin}%`:"0%"}</div></div>
-              <div className="sum-cell"><div className="sum-label">総収支</div><div className={`sum-val ${profitColor(totalProfit)}`}>{profitStr(totalProfit)}</div></div>
+              {/* Hero */}
+              <div className="sum-cell accent">
+                <div className="kpi-hero-label">今月の収支</div>
+                <div className={`kpi-val hero ${profitColor(viewMonthProfit)}`}>{profitStr(viewMonthProfit)}</div>
+              </div>
+              {/* Sub row */}
+              <div className="sum-sub-row">
+                <div className="sum-sub">
+                  <div className="kpi-label">総収支</div>
+                  <div className={`kpi-val sub ${profitColor(totalProfit)}`}>{profitStr(totalProfit)}</div>
+                </div>
+                <div className="sum-sub">
+                  <div className="kpi-label">勝率</div>
+                  <div className="kpi-val sub orange">{viewMonthWin!=null?`${viewMonthWin}%`:"0%"}</div>
+                </div>
+                <div className="sum-sub">
+                  <div className="kpi-label">実戦</div>
+                  <div className="kpi-val sub orange">{viewMonthRecs.length}<span style={{fontSize:12,marginLeft:1,fontWeight:700}}>回</span></div>
+                </div>
+              </div>
             </div>
             {chartData.length>=1 ? (
               <div className="graph-card su">
