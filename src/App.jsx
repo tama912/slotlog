@@ -47,6 +47,7 @@ const CSS = `
   --r-sm:10px;--r-md:16px;--r-lg:22px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
+input,select,textarea{width:100%;max-width:100%;min-width:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .app{max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden;padding-bottom:88px}
 .header{background:var(--card);border-bottom:1px solid var(--border);padding:18px 20px 14px;position:sticky;top:0;z-index:50}
@@ -122,7 +123,6 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .form-input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:11px 13px;background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r-sm);color:var(--t1);font-family:'Nunito Sans',sans-serif;font-size:16px;outline:none;transition:border-color .15s;-moz-appearance:textfield}
 .form-input::-webkit-outer-spin-button,.form-input::-webkit-inner-spin-button{-webkit-appearance:none}
 .form-input:focus{border-color:var(--orange);background:#fff}
-input[type="date"].form-input{-webkit-appearance:none;appearance:none;width:100%;max-width:100%;min-width:0;box-sizing:border-box;display:block}
 .form-row>*,.form-full{width:100%;max-width:100%;min-width:0;box-sizing:border-box;overflow:hidden}
 .form-card,.form-full{width:100%;max-width:100%;box-sizing:border-box}
 .form-input::placeholder{color:var(--t3)}
@@ -528,7 +528,7 @@ export default function App() {
               <div className="form-row">
                 <div>
                   <label className="form-label">日付</label>
-                  <input className="form-input" type="date" value={form.date} onChange={e=>setForm(p=>({...p,date:e.target.value}))}/>
+                  <input className="form-input" type="text" inputMode="numeric" placeholder="例: 2026-06-08" value={form.date} onChange={e=>setForm(p=>({...p,date:e.target.value}))} maxLength={10} pattern="\d{4}-\d{2}-\d{2}"/>
                 </div>
                 <div>
                   <label className="form-label">店舗名</label>
