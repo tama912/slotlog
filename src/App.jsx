@@ -88,7 +88,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .sum-val.plus{color:var(--green)}.sum-val.minus{color:var(--red)}.sum-val.zero{color:var(--t2)}.sum-val.orange{color:var(--orange)}
 .machine-table{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:var(--sp-2)}
 /* ranking rows */
-.machine-row{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--border)}
+.machine-row{display:flex;align-items:center;gap:12px;padding:13px 18px;border-bottom:1px solid var(--border)}
 .machine-row:last-child{border-bottom:none}
 .machine-rank{font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:var(--t3);width:22px;flex-shrink:0;text-align:center;line-height:1}
 .machine-rank.top{color:var(--orange)}
@@ -96,17 +96,17 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .machine-name{font-size:14px;font-weight:700;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .machine-meta{font-size:11px;color:var(--t3);margin-top:1px}
 /* bar */
-.machine-bar-wrap{flex:1;max-width:80px;height:6px;background:var(--bg2);border-radius:3px;overflow:hidden}
+.machine-bar-wrap{display:none}
 .machine-bar{height:100%;border-radius:3px;transition:width .4s ease}
 .machine-bar.plus{background:var(--green)}.machine-bar.minus{background:var(--red)}
 .machine-row.first{padding:16px 18px;background:rgba(249,115,22,0.025)}
 .machine-row.first .machine-name{font-size:15px;font-weight:800}
 .machine-row.first .machine-rank{font-size:14px;color:var(--orange)}
 .machine-row.first .machine-profit{font-size:16px}
-.machine-profit{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;flex-shrink:0;text-align:right;min-width:72px}
+.machine-profit{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;flex-shrink:0;text-align:right;min-width:76px}
 
 /* record card */
-.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:16px 14px 14px 20px;margin-bottom:10px;position:relative}
+.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 14px 13px 18px;margin-bottom:9px;position:relative}
 .rec-item::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:0 2px 2px 0;background:var(--border)}
 .rec-item.plus::before{background:var(--green)}.rec-item.minus::before{background:var(--red)}
 /* top row: 機種名(主役) + 収支 */
@@ -118,7 +118,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-profit{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;letter-spacing:-1px;white-space:nowrap;flex-shrink:0;line-height:1}
 .rec-profit.plus{color:var(--green)}.rec-profit.minus{color:var(--red)}.rec-profit.zero{color:var(--t2)}
 /* bottom row: 日付 + 投資/回収 + menu */
-.rec-footer{display:flex;align-items:center;gap:6px;margin-top:10px;padding-top:9px;border-top:1px solid var(--border)}
+.rec-footer{display:flex;align-items:center;gap:6px;margin-top:9px;padding-top:8px;border-top:1px solid var(--border)}
 .rec-date{font-size:11px;color:var(--t3);font-weight:600;flex-shrink:0}
 .rec-amounts{display:flex;gap:6px;flex:1}
 .rec-amt{font-size:11px;font-weight:700;padding:3px 8px;border-radius:5px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
@@ -132,7 +132,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-badge.lose{background:var(--red-l);color:var(--red)}
 .rec-badge.draw{background:var(--bg2);color:var(--t3)}
 /* Hero copy under KPI */
-.hero-copy{font-size:11px;font-weight:600;color:var(--orange);margin-top:8px;opacity:0.65;letter-spacing:0.01em}
+.hero-copy{font-size:11px;font-weight:500;color:var(--t3);margin-top:8px}
 .rec-menu-wrap{position:relative;flex-shrink:0;margin-left:8px}
 .rec-menu-btn{background:none;border:none;cursor:pointer;color:var(--t3);font-size:18px;padding:8px 10px;border-radius:8px;line-height:1;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .rec-menu-btn:hover{background:var(--bg2);color:var(--t2)}
@@ -148,7 +148,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .form-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:20px;margin-bottom:var(--sp-2)}
 .form-title{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--t1);margin-bottom:var(--sp-2)}
 .form-row{display:grid;grid-template-columns:1fr;gap:var(--sp-2);margin-bottom:var(--sp-2);width:100%;box-sizing:border-box}
-.form-full{margin-bottom:14px}
+.form-full{margin-bottom:16px}
 .form-label{display:block;font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.07em;text-transform:uppercase;margin-bottom:7px}
 .form-group-sep{height:14px;background:none}
 .form-input-wrap{position:relative}
@@ -455,13 +455,13 @@ export default function App() {
                   <div className="kpi-label">平均収支</div>
                   <div className={`kpi-val sub ${profitColor(avgProfit)}`}>{profitStr(avgProfit)}</div>
                 </div>
-                <div className="kpi-sub" style={{borderColor:"var(--orange-m)",background:"rgba(249,115,22,0.04)"}}>
-                  <div className="kpi-label" style={{color:"var(--orange)"}}>勝率</div>
-                  <div className="kpi-val sub" style={{color:"var(--orange)",fontSize:20}}>{winRate!=null?`${winRate}%`:"0%"}</div>
+                <div className="kpi-sub">
+                  <div className="kpi-label">勝率</div>
+                  <div className="kpi-val sub orange">{winRate!=null?`${winRate}%`:"0%"}</div>
                 </div>
                 <div className="kpi-sub">
                   <div className="kpi-label">実戦</div>
-                  <div className="kpi-val sub orange" style={{fontSize:16}}>{records.length}<span style={{fontSize:11,marginLeft:1,fontWeight:700}}>回</span></div>
+                  <div className="kpi-val sub orange">{records.length}<span style={{fontSize:11,marginLeft:2,fontWeight:700}}>回</span></div>
                 </div>
               </div>
             </div>
@@ -491,7 +491,7 @@ export default function App() {
                   {chartData.length>=2 && (
                     <div className="graph-card su">
                       <div className="graph-title">直近の収支推移</div>
-                      <ResponsiveContainer width="100%" height={95}>
+                      <ResponsiveContainer width="100%" height={110}>
                         <BarChart data={chartData} margin={{top:4,right:10,left:0,bottom:0}}>
                           <CartesianGrid stroke="#f0ece4" vertical={false}/>
                           <XAxis dataKey="date" tick={{fontSize:10,fill:"#a8a29e"}} tickLine={false} axisLine={false} interval="preserveStartEnd"/>
@@ -556,7 +556,7 @@ export default function App() {
             {chartData.length>=1 ? (
               <div className="graph-card su">
                 <div className="graph-title">日別収支</div>
-                <ResponsiveContainer width="100%" height={130}>
+                <ResponsiveContainer width="100%" height={150}>
                   <BarChart data={chartData} margin={{top:8,right:10,left:0,bottom:4}}>
                     <CartesianGrid stroke="#f0ece4" vertical={false}/>
                     <XAxis dataKey="date" tick={{fontSize:10,fill:"#a8a29e"}} tickLine={false} axisLine={false} interval="preserveStartEnd"/>
@@ -614,7 +614,7 @@ export default function App() {
                 <div key={month}>
                   <div className="month-row">
                     <div className="month-label">{fmtMon(month)}</div>
-                    <div className={`sum-val ${profitColor(mp)}`} style={{fontSize:15,fontWeight:800,letterSpacing:"-0.3px"}}>{profitStr(mp)}</div>
+                    <div className={`sum-val ${profitColor(mp)}`} style={{fontSize:14,fontWeight:800,letterSpacing:"-0.3px",lineHeight:1}}>{profitStr(mp)}</div>
                   </div>
                   {visible.map((r,i)=><RecCard key={r.id} r={r} delay={i*0.03}/>)}
                   {recs.length > LIST_PAGE_SIZE && (
