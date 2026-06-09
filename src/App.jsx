@@ -69,11 +69,11 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .kpi-val.sub{font-size:17px;font-weight:800;letter-spacing:-0.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1}
 .kpi-val.plus{color:var(--green)}.kpi-val.minus{color:var(--red)}.kpi-val.zero{color:var(--t2)}.kpi-val.orange{color:var(--orange)}
 .section{padding:var(--sp-2) var(--sp-2) 0}
-.section-title{font-size:10px;font-weight:700;color:var(--t3);padding:18px 0 8px;letter-spacing:0.09em;text-transform:uppercase}
-.month-nav{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:10px 16px;margin-bottom:var(--sp-2)}
+.section-title{font-size:10px;font-weight:700;color:var(--t3);padding:16px 0 8px;letter-spacing:0.09em;text-transform:uppercase}
+.month-nav{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:11px 16px;margin-bottom:var(--sp-2)}
 .month-nav-btn{background:none;border:none;cursor:pointer;padding:10px 16px;font-size:18px;color:var(--t2);border-radius:8px;line-height:1;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .month-nav-btn:hover{background:var(--bg2)}.month-nav-btn:disabled{color:var(--border);cursor:default}
-.month-nav-label{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--t1)}
+.month-nav-label{font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:var(--t1);letter-spacing:-0.3px}
 .graph-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:16px 10px 12px;margin-bottom:var(--sp-2);overflow:hidden}
 .graph-title{font-size:10px;font-weight:700;color:var(--t3);margin-bottom:12px;padding:0 12px;letter-spacing:0.08em;text-transform:uppercase}
 .ctip{background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-family:'Nunito',sans-serif;font-size:13px;box-shadow:0 4px 12px rgba(0,0,0,.1)}
@@ -82,7 +82,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .sum-cell{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:16px 18px}
 .sum-cell.accent{background:var(--orange-l);border-color:var(--orange-m);padding:20px 22px 18px;border-radius:var(--r-lg)}
 .sum-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.sum-sub{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 12px 13px}
+.sum-sub{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:13px 12px}
 .sum-label{font-size:9px;font-weight:700;color:var(--t3);letter-spacing:0.09em;text-transform:uppercase;margin-bottom:10px}
 .sum-val{font-family:'Nunito',sans-serif;font-size:28px;font-weight:800;letter-spacing:-1px;line-height:1}
 .sum-val.hero{font-size:36px;letter-spacing:-1.5px}
@@ -107,20 +107,20 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .machine-profit{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;flex-shrink:0;text-align:right;min-width:68px}
 
 /* record card */
-.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 14px 13px 18px;margin-bottom:9px;position:relative}
+.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 14px 12px 18px;margin-bottom:8px;position:relative}
 .rec-item::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:0 2px 2px 0;background:var(--border)}
 .rec-item.plus::before{background:var(--green)}.rec-item.minus::before{background:var(--red)}
 /* top row: 機種名(主役) + 収支 */
 .rec-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;gap:8px}
 .rec-header-left{flex:1;min-width:0}
-.rec-machine{font-size:14px;font-weight:700;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;line-height:1.3;margin-bottom:1px}
+.rec-machine{font-size:15px;font-weight:800;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;line-height:1.3;margin-bottom:2px}
 .rec-store{font-size:11px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;font-weight:500}
 .rec-store-inline{font-size:11px;color:var(--t3);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:90px;flex-shrink:0}
 .rec-profit{font-family:'Nunito',sans-serif;font-size:20px;font-weight:800;letter-spacing:-0.8px;white-space:nowrap;flex-shrink:0;line-height:1}
 .rec-profit.plus{color:var(--green)}.rec-profit.minus{color:var(--red)}.rec-profit.zero{color:var(--t2)}
 /* bottom row: 日付 + 投資/回収 + menu */
-.rec-footer{display:flex;align-items:center;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
-.rec-date{font-size:11px;color:var(--t3);font-weight:600;flex-shrink:0}
+.rec-footer{display:flex;align-items:center;gap:6px;margin-top:7px;padding-top:7px;border-top:1px solid rgba(232,228,220,0.7)}
+.rec-date{font-size:11px;color:var(--t3);font-weight:500;flex-shrink:0;letter-spacing:0.01em}
 .rec-amounts{display:flex;gap:6px;flex:1}
 .rec-amt{font-size:11px;font-weight:700;padding:3px 8px;border-radius:5px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
 .rec-amt.invest{background:#fef3ec;color:#c2540a}
@@ -142,16 +142,16 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-menu-item:first-child{border-bottom:1px solid var(--border)}
 .rec-menu-item.edit{color:var(--t1)}.rec-menu-item.edit:hover{background:var(--orange-l);color:var(--orange)}
 .rec-menu-item.del{color:var(--red)}.rec-menu-item.del:hover{background:var(--red-l)}
-.month-row{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0 10px;border-bottom:1px solid var(--border);margin-bottom:10px}
+.month-row{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0 10px;border-bottom:1px solid rgba(232,228,220,0.8);margin-bottom:10px}
 .month-label{font-size:13px;font-weight:800;color:var(--t1);letter-spacing:-0.2px}
 
 /* form */
-.form-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:20px;margin-bottom:var(--sp-2)}
+.form-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:18px 18px 20px;margin-bottom:var(--sp-2)}
 .form-title{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--t1);margin-bottom:var(--sp-2)}
 .form-row{display:grid;grid-template-columns:1fr;gap:var(--sp-2);margin-bottom:var(--sp-2);width:100%;box-sizing:border-box}
 .form-full{margin-bottom:16px}
-.form-label{display:block;font-size:10px;font-weight:600;color:var(--t2);letter-spacing:0.07em;text-transform:uppercase;margin-bottom:6px}
-.form-group-sep{height:14px;background:none}
+.form-label{display:block;font-size:10px;font-weight:600;color:var(--t2);letter-spacing:0.07em;text-transform:uppercase;margin-bottom:5px}
+.form-group-sep{height:10px;background:none}
 .form-input-wrap{position:relative}
 .form-input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:11px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-md);color:var(--t1);font-family:'Nunito Sans',sans-serif;font-size:16px;outline:none;transition:border-color .15s, background .15s;-moz-appearance:textfield}
 .form-input::-webkit-outer-spin-button,.form-input::-webkit-inner-spin-button{-webkit-appearance:none}
@@ -166,7 +166,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .autocomplete-item:hover{background:var(--orange-l);color:var(--orange)}
 .profit-preview{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  border-radius:var(--r-md);padding:18px 16px;margin-bottom:12px;
+  border-radius:var(--r-md);padding:16px;margin-bottom:12px;
   border:2px solid var(--border);background:var(--card);
   transition:border-color .25s, background .25s;
   text-align:center;min-height:72px;
@@ -175,7 +175,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .profit-preview.is-minus{background:var(--red-l);border-color:#fca5a5}
 .profit-preview.is-zero{background:#f5f5f3;border-color:var(--border)}
 .profit-preview-val.empty{color:var(--t3);font-size:28px;letter-spacing:0}
-.profit-preview-sub{font-size:12px;font-weight:700;margin-top:6px;opacity:0.75}
+.profit-preview-sub{font-size:11px;font-weight:600;margin-top:5px;opacity:0.6;color:var(--t2)}
 .profit-preview-label{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px}
 .profit-preview-val{font-family:'Nunito',sans-serif;font-size:36px;font-weight:800;letter-spacing:-1px;line-height:1}
 .profit-preview-val.plus{color:var(--green)}.profit-preview-val.minus{color:var(--red)}.profit-preview-val.zero{color:var(--t2)}
@@ -187,7 +187,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .settings-section{margin-bottom:var(--sp-3)}
 .settings-title{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.09em;text-transform:uppercase;margin-bottom:var(--sp-1)}
 .settings-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
-.settings-row{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border);gap:var(--sp-1)}
+.settings-row{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--border);gap:var(--sp-1)}
 .settings-row:last-child{border-bottom:none}
 .settings-row-label{font-size:13px;font-weight:700;color:var(--t1)}
 .settings-row-sub{font-size:12px;color:var(--t3);margin-top:2px}
@@ -398,7 +398,7 @@ export default function App() {
       <div className={`rec-item ${profitColor(r.profit)} su`} style={{animationDelay:`${delay}s`,position:"relative"}} onClick={()=>menuOpen&&setMenuOpen(false)}>
         {/* ⋯ メニュー: 右上に絶対配置 */}
         <div style={{position:"absolute",top:8,right:8}}>
-          <button className="rec-menu-btn" style={{padding:"4px 8px",minWidth:32,minHeight:32}} onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
+          <button className="rec-menu-btn" onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
           {menuOpen && (
             <div className="rec-menu-dropdown">
               <button className="rec-menu-item edit" onClick={e=>{e.stopPropagation();setMenuOpen(false);startEdit(r);}}>✏️ 編集</button>
@@ -416,8 +416,8 @@ export default function App() {
         {/* 補助: 投資/回収 */}
         <div className="rec-footer">
           <div className="rec-amounts">
-            <div className="rec-amt invest"><span className="rec-amt-icon">↓</span>¥{r.invest.toLocaleString()}</div>
-            <div className="rec-amt collect"><span className="rec-amt-icon">↑</span>¥{r.collect.toLocaleString()}</div>
+            <div className="rec-amt invest">投資 ¥{r.invest.toLocaleString()}</div>
+            <div className="rec-amt collect">回収 ¥{r.collect.toLocaleString()}</div>
           </div>
         </div>
         {r.memo && <div className="rec-memo">{r.memo}</div>}
@@ -425,7 +425,7 @@ export default function App() {
     );
   };
 
-  const NAV = [{id:"home",label:"ホーム"},{id:"graph",label:"グラフ"},{id:"list",label:"記録"},{id:"add",label:"追加"},{id:"gear",label:"設定"}];
+  const NAV = [{id:"home",label:"ホーム"},{id:"graph",label:"分析"},{id:"list",label:"履歴"},{id:"add",label:"記録"},{id:"gear",label:"設定"}];
 
   return (
     <>
@@ -434,12 +434,12 @@ export default function App() {
         <div className="header">
           <div className="logo">
             {tab === 0
-              ? <>スロ<span>ログ</span> 🎰</>
-              : ["","収支分析","実戦履歴","収支を記録","設定"][tab]
+              ? <>スロ<span>ログ</span></>
+              : ["","分析","履歴","記録","設定"][tab]
             }
           </div>
           <div className="logo-sub">
-            {["今日も収支を記録しよう","日別グラフと機種別成績","過去の実戦記録","今日の収支を入力","データ管理とアプリ情報"][tab]}
+            {["今日も収支を記録しよう","日別グラフと機種別成績","過去の実戦記録","収支を入力して記録","データ管理とアプリ情報"][tab]}
           </div>
         </div>
 
@@ -449,19 +449,17 @@ export default function App() {
             <div className="kpi-grid">
               {/* Hero: 今月収支 */}
               <div className="kpi hero">
-                <div className="kpi-hero-label">
-                  今月の収支
-                  {monthRecs.length > 0 && (
-                    <span style={{marginLeft:8,opacity:0.7,fontWeight:500,letterSpacing:0,textTransform:"none",fontSize:11}}>
-                      {monthProfit > 0 ? "· 勝ち越し" : monthProfit < 0 ? "· 負け越し" : "· 引き分け"}
-                    </span>
-                  )}
-                </div>
+                <div className="kpi-hero-label">今月の収支</div>
                 <div className={`kpi-val hero ${profitColor(monthProfit)}`}>{profitStr(monthProfit)}</div>
+                {monthRecs.length > 0 && (
+                  <div style={{fontSize:11,color:"var(--orange)",opacity:0.75,marginTop:5,fontWeight:600}}>
+                    {monthProfit > 0 ? "勝ち越し" : monthProfit < 0 ? "負け越し" : "引き分け"}
+                  </div>
+                )}
                 {streak.count >= 2 && (
                   <div className="hero-copy">
                     {streak.type==="win"
-                      ? `🔥 ${streak.count}連勝中`
+                      ? `${streak.count}連勝中`
                       : `${streak.count}連敗中… 巻き返せ`
                     }
                   </div>
@@ -474,7 +472,7 @@ export default function App() {
               <div className="kpi-sub-row">
                 <div className="kpi-sub">
                   <div className="kpi-label">最高勝ち</div>
-                  <div className={`kpi-val sub ${profitColor(Math.max(0,...records.filter(r=>r.profit>0).map(r=>r.profit)))}`}>{records.filter(r=>r.profit>0).length?profitStr(Math.max(...records.filter(r=>r.profit>0).map(r=>r.profit))):profitStr(0)}</div>
+                  <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?profitStr(bestWin):"—"}</div>
                 </div>
                 <div className="kpi-sub">
                   <div className="kpi-label">勝率</div>
@@ -490,22 +488,11 @@ export default function App() {
               {records.length===0 ? (
                 /* ── 初回ガイド ── */
                 <div className="onboard-card su">
-                  <div className="onboard-title">🎰 スロログへようこそ！</div>
-                  <div className="onboard-steps">
-                    <div className="onboard-step">
-                      <div className="onboard-num">1</div>
-                      <div className="onboard-text"><strong>「追加」タブ</strong>をタップして、日付・店舗・機種・金額を入力</div>
-                    </div>
-                    <div className="onboard-step">
-                      <div className="onboard-num">2</div>
-                      <div className="onboard-text">投資・回収を入れると<strong>収支が自動計算</strong>されます</div>
-                    </div>
-                    <div className="onboard-step">
-                      <div className="onboard-num">3</div>
-                      <div className="onboard-text">記録が増えると<strong>グラフと機種別成績</strong>が表示されます</div>
-                    </div>
+                  <div className="onboard-title">スロログへようこそ</div>
+                  <div style={{fontSize:13,color:"var(--t2)",lineHeight:1.7,marginBottom:20}}>
+                    日付・機種・投資額・回収額を入力するだけで<br/>収支が自動計算されます。
                   </div>
-                  <button className="onboard-btn" onClick={()=>setTab(3)}>最初の収支を記録する →</button>
+                  <button className="onboard-btn" onClick={()=>setTab(3)}>最初の収支を記録する</button>
                 </div>
               ) : (
                 <>
@@ -558,7 +545,8 @@ export default function App() {
                   </div>
                 )}
               </div>
-              {/* Sub row */}
+              {/* Sub row — 全期間統計 */}
+              <div style={{fontSize:9,color:"var(--t3)",fontWeight:700,letterSpacing:"0.09em",textTransform:"uppercase",marginBottom:6}}>全期間</div>
               <div className="sum-sub-row">
                 <div className="sum-sub">
                   <div className="kpi-label">平均収支</div>
@@ -755,6 +743,7 @@ export default function App() {
                 </div>
               </div>
             )}
+
             <div className="settings-section">
               <div className="settings-title">データのバックアップ</div>
               <div className="settings-card">
