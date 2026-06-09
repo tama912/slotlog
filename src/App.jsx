@@ -133,7 +133,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-badge.lose{background:var(--red-l);color:var(--red)}
 .rec-badge.draw{background:var(--bg2);color:var(--t3)}
 /* Hero copy under KPI */
-.hero-copy{font-size:11px;font-weight:500;color:var(--t3);margin-top:8px}
+.hero-copy{font-size:11px;font-weight:600;color:var(--t3);margin-top:8px}
 .rec-menu-wrap{position:relative;flex-shrink:0;margin-left:8px}
 .rec-menu-btn{background:none;border:none;cursor:pointer;color:var(--t3);font-size:18px;padding:8px 10px;border-radius:8px;line-height:1;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .rec-menu-btn:hover{background:var(--bg2);color:var(--t2)}
@@ -312,6 +312,21 @@ export default function App() {
   const monthProfit  = useMemo(()=>monthRecs.reduce((s,r)=>s+r.profit,0),[monthRecs]);
   const winRate      = useMemo(()=>records.length?Math.round(records.filter(r=>r.profit>0).length/records.length*100):null,[records]);
   const avgProfit    = useMemo(()=>records.length?Math.round(records.reduce((s,r)=>s+r.profit,0)/records.length/100)*100:0,[records]);
+  // 連勝/連敗ストリーク（最新記録から遡る）
+  const streak = useMemo(()=>{
+    const s=[...records].sort((a,b)=>b.date.localeCompare(a.date));
+    if(!s.length) return {count:0,type:'none'};
+    const first=s[0].profit>0?'win':s[0].profit<0?'lose':'none';
+    if(first==='none') return {count:0,type:'none'};
+    let n=0;
+    for(const r of s){ if((r.profit>0?'win':'lose')===first) n++; else break; }
+    return {count:n,type:first};
+  },[records]);
+  // 自己ベスト（最高勝ち・最高負け）
+  const bestWin  = useMemo(()=>records.filter(r=>r.profit>0).reduce((m,r)=>r.profit>m?r.profit:m,0),[records]);
+  const bestLose = useMemo(()=>records.filter(r=>r.profit<0).reduce((m,r)=>r.profit<m?r.profit:m,0),[records]);
+  // 最高収支レコードのid（🏆表示用）
+  const bestRecId = useMemo(()=>records.filter(r=>r.profit>0).sort((a,b)=>b.profit-a.profit)[0]?.id||null,[records]);
   const viewMonthRecs   = useMemo(()=>records.filter(r=>r.date.startsWith(viewMonth)),[records,viewMonth]);
   const viewMonthProfit = useMemo(()=>viewMonthRecs.reduce((s,r)=>s+r.profit,0),[viewMonthRecs]);
   const viewMonthWin    = useMemo(()=>viewMonthRecs.length?Math.round(viewMonthRecs.filter(r=>r.profit>0).length/viewMonthRecs.length*100):null,[viewMonthRecs]);
@@ -395,7 +410,7 @@ export default function App() {
         <div className="rec-date" style={{marginBottom:5}}>{fmtDate(r.date)}</div>
         {/* 主役: 機種名 + 収支 */}
         <div className="rec-header" style={{marginBottom:0}}>
-          <div className="rec-machine" title={r.machine}>{r.machine}</div>
+          <div className="rec-machine" title={r.machine}>{r.machine}{r.id===bestRecId&&<span style={{fontSize:11,marginLeft:5,opacity:0.7}}>🏆</span>}</div>
           <div className={`rec-profit ${profitColor(r.profit)}`} style={{paddingRight:24}}>{profitStr(r.profit)}</div>
         </div>
         {/* 補助: 投資/回収 */}
@@ -434,17 +449,25 @@ export default function App() {
             <div className="kpi-grid">
               {/* Hero: 今月収支 */}
               <div className="kpi hero">
-                <div className="kpi-hero-label">今月の収支</div>
+                <div className="kpi-hero-label">
+                  今月の収支
+                  {monthRecs.length > 0 && (
+                    <span style={{marginLeft:8,opacity:0.7,fontWeight:500,letterSpacing:0,textTransform:"none",fontSize:11}}>
+                      {monthProfit > 0 ? "· 勝ち越し" : monthProfit < 0 ? "· 負け越し" : "· 引き分け"}
+                    </span>
+                  )}
+                </div>
                 <div className={`kpi-val hero ${profitColor(monthProfit)}`}>{profitStr(monthProfit)}</div>
-                {monthRecs.length > 0 && (
+                {streak.count >= 2 && (
                   <div className="hero-copy">
-                    {monthProfit > 0
-                      ? `${monthRecs.length}戦${monthRecs.filter(r=>r.profit>0).length}勝 — 今月は勝ち越し！`
-                      : monthProfit < 0
-                      ? `${monthRecs.length}戦${monthRecs.filter(r=>r.profit>0).length}勝 — 巻き返しのチャンス`
-                      : `${monthRecs.length}戦 — 引き分け`
+                    {streak.type==="win"
+                      ? `🔥 ${streak.count}連勝中`
+                      : `${streak.count}連敗中… 巻き返せ`
                     }
                   </div>
+                )}
+                {streak.count < 2 && monthRecs.length > 0 && (
+                  <div className="hero-copy">{monthRecs.length}戦{monthRecs.filter(r=>r.profit>0).length}勝{monthRecs.filter(r=>r.profit<0).length}敗</div>
                 )}
               </div>
               {/* Sub row: 総収支・勝率・実戦回数 */}
@@ -570,6 +593,21 @@ export default function App() {
                 <div className="empty-ico">📊</div>
                 <div className="empty-txt">{records.length===0?"まだ分析データがありません":"この月の記録がありません"}</div>
                 <div className="empty-hint">{records.length===0?"収支を記録すると日別グラフと機種別成績が表示されます":"◀ ▶ で他の月を確認できます"}</div>
+              </div>
+            )}
+            {/* 通算成績サマリー */}
+            {records.length > 0 && (
+              <div style={{
+                background:"var(--card)",border:"1px solid var(--border)",borderRadius:"var(--r-md)",
+                padding:"12px 16px",marginBottom:"var(--sp-2)",
+                display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:8,
+              }}>
+                <span style={{fontSize:12,fontWeight:700,color:"var(--t2)"}}>通算</span>
+                <div style={{display:"flex",gap:16,flexWrap:"wrap"}}>
+                  <span style={{fontSize:12,color:"var(--t2)"}}>{records.length}戦<span style={{marginLeft:4,fontWeight:800,color:"var(--green)"}}>{records.filter(r=>r.profit>0).length}勝</span><span style={{marginLeft:2,fontWeight:800,color:"var(--red)"}}>{records.filter(r=>r.profit<0).length}敗</span></span>
+                  <span style={{fontSize:12,color:"var(--t2)"}}>勝率 <span style={{fontWeight:800,color:"var(--orange)"}}>{winRate!=null?`${winRate}%`:"0%"}</span></span>
+                  {bestWin>0&&<span style={{fontSize:12,color:"var(--t2)"}}>最高 <span style={{fontWeight:800,color:"var(--green)"}}>{profitStr(bestWin)}</span></span>}
+                </div>
               </div>
             )}
             <div className="section-title" style={{marginTop:4}}>機種別成績（全期間）</div>
