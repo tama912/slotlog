@@ -561,16 +561,16 @@ export default function App() {
               {/* Sub row */}
               <div className="sum-sub-row">
                 <div className="sum-sub">
-                  <div className="kpi-label">総収支</div>
-                  <div className={`kpi-val sub ${profitColor(totalProfit)}`}>{profitStr(totalProfit)}</div>
+                  <div className="kpi-label">平均収支</div>
+                  <div className={`kpi-val sub ${profitColor(avgProfit)}`}>{records.length?profitStr(avgProfit):"—"}</div>
                 </div>
                 <div className="sum-sub">
-                  <div className="kpi-label">勝率</div>
-                  <div className="kpi-val sub orange">{viewMonthWin!=null?`${viewMonthWin}%`:"0%"}</div>
+                  <div className="kpi-label">最高勝ち</div>
+                  <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?profitStr(bestWin):"—"}</div>
                 </div>
                 <div className="sum-sub">
-                  <div className="kpi-label">実戦</div>
-                  <div className="kpi-val sub orange">{viewMonthRecs.length}<span style={{fontSize:12,marginLeft:1,fontWeight:700}}>回</span></div>
+                  <div className="kpi-label">最高負け</div>
+                  <div className={`kpi-val sub ${bestLose<0?"minus":"zero"}`}>{bestLose<0?profitStr(bestLose):"—"}</div>
                 </div>
               </div>
             </div>
@@ -732,6 +732,27 @@ export default function App() {
             {importMsg && (
               <div style={{background:importMsg.includes("失敗")?"var(--red-l)":"var(--green-l)",border:`1px solid ${importMsg.includes("失敗")?"#fca5a5":"#86efac"}`,borderRadius:"var(--r-md)",padding:"12px 16px",marginBottom:14,fontSize:13,fontWeight:700,color:importMsg.includes("失敗")?"var(--red)":"var(--green)"}}>
                 {importMsg}
+              </div>
+            )}
+            {/* 累計データ */}
+            {records.length > 0 && (
+              <div className="settings-section">
+                <div className="settings-title">累計データ</div>
+                <div className="settings-card">
+                  {[
+                    {label:"総実戦回数", val:`${records.length}回`},
+                    {label:"通算収支",   val:profitStr(totalProfit), color:totalProfit>0?"var(--green)":totalProfit<0?"var(--red)":"var(--t2)"},
+                    {label:"勝率",       val:`${winRate!=null?winRate:0}%`, color:"var(--orange)"},
+                    {label:"平均収支",   val:profitStr(avgProfit), color:avgProfit>0?"var(--green)":avgProfit<0?"var(--red)":"var(--t2)"},
+                    {label:"最高勝ち",   val:bestWin>0?profitStr(bestWin):"—", color:"var(--green)"},
+                    {label:"最高負け",   val:bestLose<0?profitStr(bestLose):"—", color:"var(--red)"},
+                  ].map(({label,val,color})=>(
+                    <div className="settings-row" key={label}>
+                      <div className="settings-row-label">{label}</div>
+                      <div style={{fontSize:15,fontWeight:800,color:color||"var(--t1)",fontFamily:"'Nunito',sans-serif",letterSpacing:"-0.3px"}}>{val}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
             <div className="settings-section">
