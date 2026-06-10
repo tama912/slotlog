@@ -417,13 +417,13 @@ export default function App() {
             <button className="rec-menu-item del"  onClick={e=>{e.stopPropagation();setMenuOpen(false);handleDelete(r.id);}}>🗑️ 削除</button>
           </div>
         )}
+        <div style={{display:"flex",alignItems:"center",gap:6,minWidth:0}}>
+          {r.id===bestRecId&&<span style={{fontSize:10,flexShrink:0,marginRight:3,lineHeight:1,opacity:0.8,verticalAlign:"middle"}}>🏆</span>}
+          <div className="rec-machine" style={{flex:1,minWidth:0}} title={r.machine}>{r.machine}</div>
+        </div>
 
-        {/* 主役: 機種名 + 収支 */}
+        {/* 主役: 収支 */}
         <div className="rec-header" style={{marginBottom:0}}>
-          <div style={{display:"flex",alignItems:"center",gap:6,minWidth:0}}>
-            {r.id===bestRecId&&<span style={{fontSize:10,flexShrink:0,marginRight:3,lineHeight:1,opacity:0.8,verticalAlign:"middle"}}>🏆</span>}
-            <div className="rec-machine" style={{flex:1,minWidth:0}} title={r.machine}>{r.machine}</div>
-          </div>
           <div style={{display:"flex",alignItems:"center",justifyContent:"center",alignSelf:"center",gap:0,flexShrink:0}}>
             <div className={`rec-profit ${profitColor(r.profit)}`}>{profitStr(r.profit)}</div>
           </div>
