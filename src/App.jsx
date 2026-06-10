@@ -235,11 +235,11 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;padding:8px 0;padding-bottom:calc(16px + env(safe-area-inset-bottom,6px))}
 .bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:6px 0;color:var(--t2);font-family:'Nunito',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.04em;transition:color .15s;-webkit-tap-highlight-color:transparent}
 .bnav-btn.on{color:var(--orange);font-weight:800}.bnav-btn svg{width:22px;height:22px;stroke-width:2}
-.bnav-btn.fab{color:var(--orange);background:none;border-radius:0;width:auto;height:auto;margin-top:0;box-shadow:none;padding:6px 0;gap:3px;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
-.fab-icon{width:48px;height:48px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(249,115,22,0.4);margin-top:-20px;flex-shrink:0}
-.fab-icon svg{width:22px;height:22px;stroke-width:2.5;stroke:#fff}
-.bnav-btn.fab .bnav-label{font-size:10px;font-weight:700;letter-spacing:0.04em;color:var(--orange);line-height:1}
-.bnav-btn.fab:hover .fab-icon{background:var(--orange-hover)}
+.bnav-btn.fab{color:var(--orange);background:none;border-radius:0;width:56px;height:auto;margin-top:0;box-shadow:none;padding:2px 0 4px;gap:0;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+.fab-dot{width:42px;height:42px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(249,115,22,0.4);margin-top:-22px;margin-bottom:2px}
+.fab-dot svg{width:22px;height:22px;stroke-width:2.5;stroke:#fff}
+.bnav-btn.fab .bnav-label{font-size:10px;font-weight:700;color:var(--orange);line-height:1}
+.bnav-btn.fab:hover .fab-dot{background:var(--orange-hover)}
 
 @keyframes slideUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .su{animation:slideUp .28s ease both}
@@ -822,7 +822,7 @@ export default function App() {
               className={`bnav-btn${tab===i?" on":""}${i===3?" fab":""}`}
               onClick={()=>setTab(i)}>
               {i===3
-                ? <><div className="fab-icon"><Icon id={n.id}/></div><span className="bnav-label">記録</span></>
+                ? <><div className="fab-dot"><Icon id={n.id}/></div><span className="bnav-label">記録</span></>
                 : <><Icon id={n.id}/>{n.label}</>
               }
             </button>
