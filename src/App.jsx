@@ -417,7 +417,11 @@ export default function App() {
         {/* 主役: 機種名 + 収支 */}
         <div className="rec-header" style={{marginBottom:0}}>
           <div className="rec-machine" title={r.machine}>{r.machine}{r.id===bestRecId&&<span style={{fontSize:11,marginLeft:5}}>🏆</span>}</div>
-          <div className={`rec-profit ${profitColor(r.profit)}`} style={{paddingRight:24}}>{profitStr(r.profit)}</div>
+          <div style={{display:"flex",flexDirection:"column",alignItems:"flex-end",paddingRight:24}}>
+            <div className={`rec-profit ${profitColor(r.profit)}`}>{profitStr(r.profit)}</div>
+            {r.profit>0&&r.id===bestRecId&&<div style={{fontSize:10,color:"var(--orange)",fontWeight:700,marginTop:2}}>自己ベスト</div>}
+            {r.profit>0&&r.invest>0&&(r.collect-r.invest)/r.invest>=1&&<div style={{fontSize:10,color:"var(--green)",fontWeight:700,marginTop:2}}>2倍超え</div>}
+          </div>
         </div>
         {/* 補助: 投資/回収 */}
         <div className="rec-footer">
@@ -457,14 +461,16 @@ export default function App() {
                 <div className={`kpi-val hero ${profitColor(monthProfit)}`}>{profitStr(monthProfit)}</div>
                 {monthRecs.length > 0 && (
                   <div style={{fontSize:11,color:"var(--orange)",opacity:0.75,marginTop:5,fontWeight:600}}>
-                    {monthProfit > 0 ? "勝ち越し" : monthProfit < 0 ? "負け越し" : "引き分け"}
+                    {monthProfit > 0
+                      ? monthProfit >= 10000 ? "今月絶好調 🎯" : "今月プラス継続中"
+                      : monthProfit < 0 ? "巻き返しのチャンス" : "今月は引き分け"}
                   </div>
                 )}
                 {streak.count >= 2 && (
                   <div className={`hero-copy ${streak.type==="win"?"win":"lose"}`}>
                     {streak.type==="win"
-                      ? `${streak.count}連勝中`
-                      : `${streak.count}連敗中… 巻き返せ`
+                      ? streak.count >= 3 ? `${streak.count}連勝中 🔥` : `${streak.count}連勝中`
+                      : `${streak.count}連敗中…`
                     }
                   </div>
                 )}
@@ -475,7 +481,7 @@ export default function App() {
               {/* Sub row: 総収支・勝率・実戦回数 */}
               <div className="kpi-sub-row">
                 <div className="kpi-sub">
-                  <div className="kpi-label">最高勝ち</div>
+                  <div className="kpi-label">今月最高勝ち</div>
                   <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?profitStr(bestWin):"—"}</div>
                 </div>
                 <div className="kpi-sub">
@@ -553,15 +559,15 @@ export default function App() {
               <div style={{fontSize:9,color:"var(--t3)",fontWeight:700,letterSpacing:"0.09em",textTransform:"uppercase",marginBottom:6}}>全期間</div>
               <div className="sum-sub-row">
                 <div className="sum-sub">
-                  <div className="kpi-label">平均収支</div>
+                  <div className="kpi-label">1回あたり</div>
                   <div className={`kpi-val sub ${profitColor(avgProfit)}`}>{records.length?profitStr(avgProfit):"—"}</div>
                 </div>
                 <div className="sum-sub">
-                  <div className="kpi-label">最高勝ち</div>
+                  <div className="kpi-label">今月最高勝ち</div>
                   <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?profitStr(bestWin):"—"}</div>
                 </div>
                 <div className="sum-sub">
-                  <div className="kpi-label">最高負け</div>
+                  <div className="kpi-label">最大負け</div>
                   <div className={`kpi-val sub ${bestLose<0?"minus":"zero"}`}>{bestLose<0?profitStr(bestLose):"—"}</div>
                 </div>
               </div>
@@ -591,14 +597,18 @@ export default function App() {
             {records.length > 0 && (
               <div style={{
                 background:"var(--card)",border:"1px solid var(--border)",borderRadius:"var(--r-md)",
-                padding:"12px 16px",marginBottom:"var(--sp-2)",
-                display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:8,
+                padding:"14px 16px",marginBottom:"var(--sp-2)",
               }}>
-                <span style={{fontSize:12,fontWeight:700,color:"var(--t2)"}}>通算</span>
-                <div style={{display:"flex",gap:16,flexWrap:"wrap"}}>
-                  <span style={{fontSize:12,color:"var(--t2)"}}>{records.length}戦<span style={{marginLeft:4,fontWeight:800,color:"var(--green)"}}>{records.filter(r=>r.profit>0).length}勝</span><span style={{marginLeft:2,fontWeight:800,color:"var(--red)"}}>{records.filter(r=>r.profit<0).length}敗</span></span>
-                  <span style={{fontSize:12,color:"var(--t2)"}}>勝率 <span style={{fontWeight:800,color:"var(--orange)"}}>{winRate!=null?`${winRate}%`:"0%"}</span></span>
-                  {bestWin>0&&<span style={{fontSize:12,color:"var(--t2)"}}>最高 <span style={{fontWeight:800,color:"var(--green)"}}>{profitStr(bestWin)}</span></span>}
+                <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:8,marginBottom:8}}>
+                  <span style={{fontSize:11,fontWeight:700,color:"var(--t3)",letterSpacing:"0.06em",textTransform:"uppercase"}}>通算成績</span>
+                  {winRate!=null&&<span style={{fontSize:11,fontWeight:700,color:winRate>=60?"var(--orange)":winRate>=50?"var(--t2)":"var(--t3)"}}>
+                    {winRate>=60?"勝ち越しペース":winRate>=50?"五分五分":"もう少し！"}
+                  </span>}
+                </div>
+                <div style={{display:"flex",gap:16,flexWrap:"wrap",alignItems:"baseline"}}>
+                  <span style={{fontSize:13,color:"var(--t2)"}}>{records.length}戦<span style={{marginLeft:4,fontWeight:800,color:"var(--green)"}}>{records.filter(r=>r.profit>0).length}勝</span><span style={{marginLeft:2,fontWeight:800,color:"var(--red)"}}>{records.filter(r=>r.profit<0).length}敗</span></span>
+                  <span style={{fontSize:13,color:"var(--t2)"}}>勝率 <span style={{fontWeight:800,color:"var(--orange)"}}>{winRate!=null?`${winRate}%`:"0%"}</span></span>
+                  {bestWin>0&&<span style={{fontSize:13,color:"var(--t2)"}}>最高 <span style={{fontWeight:800,color:"var(--green)"}}>{profitStr(bestWin)}</span></span>}
                 </div>
               </div>
             )}
@@ -729,7 +739,7 @@ export default function App() {
             {/* 累計データ */}
             {records.length > 0 && (
               <div className="settings-section">
-                <div className="settings-title">累計データ</div>
+                <div className="settings-title">あなたの記録</div>
                 <div className="settings-card">
                   {[
                     {label:"総実戦回数", val:`${records.length}回`},
@@ -768,7 +778,7 @@ export default function App() {
                 <div className="settings-row">
                   <div>
                     <div className="settings-row-label">スロログ 🎰</div>
-                    <div className="settings-row-sub">スロット収支をシンプルに記録</div>
+                    <div className="settings-row-sub">毎日の収支をシンプルに</div>
                   </div>
                   <div style={{fontSize:12,color:"var(--t3)",textAlign:"right",lineHeight:1.8}}>
                     <div>v1.0.0 · TamaFactory</div>
