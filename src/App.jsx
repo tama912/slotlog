@@ -419,11 +419,7 @@ export default function App() {
         {/* 主役: 機種名 + 収支 */}
         <div className="rec-header" style={{marginBottom:0}}>
           <div className="rec-machine" title={r.machine}>{r.machine}{r.id===bestRecId&&<span style={{fontSize:10,marginLeft:6,background:"var(--orange-l)",color:"var(--orange)",padding:"1px 5px",borderRadius:3,fontWeight:700,fontFamily:"'Nunito',sans-serif"}}>ベスト</span>}</div>
-          <div style={{display:"flex",flexDirection:"column",alignItems:"flex-end",paddingRight:24}}>
-            <div className={`rec-profit ${profitColor(r.profit)}`}>{profitStr(r.profit)}</div>
-            
-            {r.profit>0&&r.invest>0&&(r.collect-r.invest)/r.invest>=1&&<div style={{fontSize:10,color:"var(--green)",fontWeight:700,marginTop:2}}>2倍超え</div>}
-          </div>
+          <div className={`rec-profit ${profitColor(r.profit)}`} style={{paddingRight:28}}>{profitStr(r.profit)}</div>
         </div>
         {/* 補助: 投資/回収 */}
         <div className="rec-footer">
@@ -462,30 +458,14 @@ export default function App() {
                 <div className="kpi-hero-label">今月の収支</div>
                 <div className={`kpi-val hero ${profitColor(monthProfit)}`}>{profitStr(monthProfit)}</div>
                 {monthRecs.length > 0 && (
-                  <div style={{fontSize:11,color:"var(--orange)",opacity:0.75,marginTop:5,fontWeight:600}}>
-                    {monthProfit > 0
-                      ? monthProfit >= 10000 ? "今月プラス" : "今月プラス"
-                      : monthProfit < 0 ? "今月マイナス" : "±0円"}
+                  <div className="hero-copy" style={{marginTop:7}}>
+                    {monthRecs.length}戦{monthRecs.filter(r=>r.profit>0).length}勝{monthRecs.filter(r=>r.profit<0).length}敗
+                    {streak.count>=2&&` · ${streak.count}${streak.type==="win"?"連勝中":"連敗中"}`}
                   </div>
-                )}
-                {streak.count >= 2 && (
-                  <div className={`hero-copy ${streak.type==="win"?"win":"lose"}`}>
-                    {streak.type==="win"
-                      ? `${streak.count}連勝中`
-                      : `${streak.count}連敗中…`
-                    }
-                  </div>
-                )}
-                {streak.count < 2 && monthRecs.length > 0 && (
-                  <div className="hero-copy">{monthRecs.length}戦{monthRecs.filter(r=>r.profit>0).length}勝{monthRecs.filter(r=>r.profit<0).length}敗</div>
                 )}
               </div>
               {/* Sub row: 総収支・勝率・実戦回数 */}
               <div className="kpi-sub-row">
-                <div className="kpi-sub">
-                  <div className="kpi-label">最高勝ち</div>
-                  <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?profitStr(bestWin):"—"}</div>
-                </div>
                 <div className="kpi-sub">
                   <div className="kpi-label">勝率</div>
                   <div className="kpi-val sub orange">{winRate!=null?`${winRate}%`:"0%"}</div>
@@ -493,6 +473,10 @@ export default function App() {
                 <div className="kpi-sub">
                   <div className="kpi-label">実戦</div>
                   <div className="kpi-val sub orange">{records.length}<span style={{fontSize:11,marginLeft:2,fontWeight:700}}>回</span></div>
+                </div>
+                <div className="kpi-sub" style={{opacity:bestWin>0?1:0.5}}>
+                  <div className="kpi-label">最高勝ち</div>
+                  <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?profitStr(bestWin):"—"}</div>
                 </div>
               </div>
             </div>
@@ -669,9 +653,7 @@ export default function App() {
         {tab===3 && (
           <div className="section" style={{paddingTop:14}}>
             <div className="form-card su">
-              <div className="form-title">
-                {editId ? <>編集<span className="edit-badge">修正中</span></> : "🎰 収支を記録"}
-              </div>
+              {editId && <div className="form-title">編集<span className="edit-badge">修正中</span></div>}
               {/* Group 1: 日付 */}
               <div className="form-full">
                 <label className="form-label">日付</label>
@@ -790,7 +772,7 @@ export default function App() {
               <div className="settings-title" style={{color:"var(--red)"}}>危険な操作</div>
               <div className="settings-card" style={{border:"1px solid #fca5a5",background:"var(--red-l)"}}>
                 <div className="settings-row" style={{flexDirection:"column",alignItems:"flex-start",gap:12}}>
-                  <div><div className="settings-row-label">データをすべて削除</div><div className="settings-row-sub">全記録を削除します。復元できません。</div></div>
+                  <div><div className="settings-row-label">データをすべて削除</div><div className="settings-row-sub">{records.length}件の記録をすべて削除します。復元できません。</div></div>
                   <button className="settings-btn danger" style={{alignSelf:"flex-end"}} onClick={()=>{if(window.confirm("すべてのデータを削除しますか？この操作は取り消せません。")){setRecords([]);setTab(0);}}}>削除する</button>
                 </div>
               </div>
