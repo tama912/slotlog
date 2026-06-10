@@ -57,8 +57,8 @@ const CSS = `
 input,select,textarea{width:100%;max-width:100%;min-width:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .app{max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden;padding-bottom:88px}
-.header{background:#fff7ed;border-bottom:1px solid var(--orange-m);padding:10px var(--sp-2);position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:center}
-.header-logo{display:block;height:80px;width:auto;max-width:280px;object-fit:contain;margin:0 auto}
+.header{background:#fff7ed !important;border-bottom:1px solid var(--orange-m);padding:10px var(--sp-2);position:sticky;top:0;z-index:50;display:flex !important;align-items:center !important;justify-content:center !important;overflow:hidden}
+.header-logo{display:block !important;height:96px !important;width:auto !important;max-height:90% !important;max-width:320px !important;object-fit:contain !important;opacity:1 !important;visibility:visible !important;margin:0 auto !important}
 
 .kpi-grid{display:flex;flex-direction:column;gap:8px;padding:20px var(--sp-2) 0}
 /* hero: 今月収支 — full width, large */
