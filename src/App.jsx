@@ -410,6 +410,13 @@ export default function App() {
     const [menuOpen, setMenuOpen] = useState(false);
     return (
       <div className={`rec-item ${profitColor(r.profit)} su`} style={{animationDelay:`${delay}s`,position:"relative"}} onClick={()=>menuOpen&&setMenuOpen(false)}>
+        <button className="rec-menu-btn" style={{padding:"6px 4px",minWidth:"unset",position:"absolute",top:8,right:8}} onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
+        {menuOpen && (
+          <div className="rec-menu-dropdown" style={{position:"absolute",top:36,right:8}}>
+            <button className="rec-menu-item edit" onClick={e=>{e.stopPropagation();setMenuOpen(false);startEdit(r);}}>✏️ 編集</button>
+            <button className="rec-menu-item del"  onClick={e=>{e.stopPropagation();setMenuOpen(false);handleDelete(r.id);}}>🗑️ 削除</button>
+          </div>
+        )}
 
         {/* 主役: 機種名 + 収支 */}
         <div className="rec-header" style={{marginBottom:0}}>
@@ -419,13 +426,6 @@ export default function App() {
           </div>
           <div style={{display:"flex",alignItems:"center",justifyContent:"center",alignSelf:"center",gap:0,flexShrink:0}}>
             <div className={`rec-profit ${profitColor(r.profit)}`}>{profitStr(r.profit)}</div>
-            <button className="rec-menu-btn" style={{padding:"6px 4px",minWidth:"unset"}} onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
-            {menuOpen && (
-              <div className="rec-menu-dropdown">
-                <button className="rec-menu-item edit" onClick={e=>{e.stopPropagation();setMenuOpen(false);startEdit(r);}}>✏️ 編集</button>
-                <button className="rec-menu-item del"  onClick={e=>{e.stopPropagation();setMenuOpen(false);handleDelete(r.id);}}>🗑️ 削除</button>
-              </div>
-            )}
           </div>
         </div>
         {/* 補助: 日付 + 投資/回収 */}
