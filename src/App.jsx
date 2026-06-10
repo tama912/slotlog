@@ -144,7 +144,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .hero-copy.win{color:var(--orange);opacity:0.85}
 .hero-copy.lose{color:var(--t3)}
 .rec-menu-wrap{position:relative;flex-shrink:0;margin-left:8px}
-.rec-menu-btn{background:none;border:none;cursor:pointer;color:rgba(24,18,14,0.5);font-size:36px;padding:6px 8px;border-radius:16px;line-height:1;letter-spacing:-6em;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
+.rec-menu-btn{background:none;border:none;cursor:pointer;color:rgba(24,18,14,0.5);font-size:26px;padding:6px 8px;border-radius:16px;line-height:1;letter-spacing:-6em;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .rec-menu-btn:hover{background:var(--bg2);color:var(--t2)}
 .rec-menu-dropdown{position:absolute;right:0;top:100%;margin-top:4px;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.12);z-index:200;overflow:hidden;min-width:110px}
 .rec-menu-item{display:block;width:100%;text-align:left;padding:10px 14px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;background:none;border:none;cursor:pointer;transition:background .12s}
@@ -415,7 +415,7 @@ export default function App() {
           <div className="rec-machine" style={{flex:1,minWidth:0,display:"flex",alignItems:"center"}} title={r.machine}>
             <span>{r.machine}</span>
             {/* 主役: 収支 */}
-            <div className="rec-header" style={{marginBottom:0,marginRight:50,marginLeft:"auto"}}>
+            <div className="rec-header" style={{marginBottom:0,marginRight:22,marginLeft:"auto"}}>
               <div style={{display:"flex",alignItems:"center",gap:0,flexShrink:0}}>
                 <div className={`rec-profit ${profitColor(r.profit)}`}>{profitStr(r.profit)}</div>
                 <button className="rec-menu-btn" style={{padding:"6px 4px",minWidth:"unset"}} onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
