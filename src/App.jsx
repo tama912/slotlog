@@ -417,7 +417,7 @@ export default function App() {
             {r.id===bestRecId&&<span style={{fontSize:10,flexShrink:0,marginRight:3,lineHeight:1,opacity:0.8,verticalAlign:"middle"}}>🏆</span>}
             <div className="rec-machine" style={{flex:1,minWidth:0}} title={r.machine}>{r.machine}</div>
           </div>
-          <div style={{display:"flex",alignItems:"center",justifyContent:"center",alignSelf:"center",gap:4,flexShrink:0}}>
+          <div style={{display:"flex",alignItems:"center",justifyContent:"center",alignSelf:"center",gap:2,flexShrink:0}}>
             <div className={`rec-profit ${profitColor(r.profit)}`}>{profitStr(r.profit)}</div>
             <button className="rec-menu-btn" onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
             {menuOpen && (
