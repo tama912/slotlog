@@ -235,7 +235,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;padding:8px 0;padding-bottom:calc(16px + env(safe-area-inset-bottom,6px))}
 .bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:6px 0;color:var(--t2);font-family:'Nunito',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.04em;transition:color .15s;-webkit-tap-highlight-color:transparent}
 .bnav-btn.on{color:var(--orange);font-weight:800}.bnav-btn svg{width:22px;height:22px;stroke-width:2}
-.bnav-btn.fab{color:#fff;background:var(--orange);border-radius:50%;width:46px;height:46px;margin-top:-16px;box-shadow:0 3px 10px rgba(249,115,22,0.45);padding:0;gap:0;flex-direction:column;justify-content:center;flex-shrink:0}
+.bnav-btn.fab{color:#fff;background:var(--orange);border-radius:50%;width:46px;height:46px;margin-top:-16px;box-shadow:0 2px 8px rgba(249,115,22,0.35);padding:0;gap:0;flex-direction:column;justify-content:center;flex-shrink:0}
 .bnav-btn.fab svg{width:20px;height:20px;stroke-width:2.5}
 .bnav-btn.fab .bnav-label{font-size:9px;margin-top:2px;font-weight:700;letter-spacing:0.04em}
 .bnav-btn.fab:hover{background:var(--orange-hover)}
@@ -491,6 +491,7 @@ export default function App() {
                   </div>
                   <div className="kpi-label">勝率</div>
                   <div className="kpi-val sub orange">{winRate!=null?`${winRate}%`:"0%"}</div>
+                  {records.length>0&&<div style={{fontSize:10,color:"var(--t3)",marginTop:3,fontWeight:500}}>{records.filter(r=>r.profit>0).length}勝{records.filter(r=>r.profit<0).length}敗</div>}
                 </div>
                 <div className="kpi-sub">
                   <div className="kpi-icon-wrap" style={{background:"rgba(249,115,22,0.1)"}}>
