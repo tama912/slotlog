@@ -57,7 +57,7 @@ const CSS = `
 input,select,textarea{width:100%;max-width:100%;min-width:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .app{max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden;padding-bottom:88px}
-.header{background:#ffe8c8;border-bottom:1px solid var(--orange-m);padding:8px 16px;position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:center;min-height:76px;box-sizing:border-box}
+.header{background:#ffe8c8;border-bottom:1px solid var(--orange-m);padding:6px 16px;position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:center;min-height:64px;box-sizing:border-box}
 .header-logo{display:block;height:88px;width:auto;max-width:320px;object-fit:contain}
 
 .kpi-grid{display:flex;flex-direction:column;gap:8px;padding:20px var(--sp-2) 0}
@@ -65,8 +65,8 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .kpi{background:var(--card);border-radius:var(--r-md);padding:14px 16px;border:1px solid var(--border)}
 .kpi.hero{background:var(--orange-l);border-color:var(--orange-m);padding:20px 22px 18px;border-radius:var(--r-lg);box-shadow:var(--sh-hero)}
 .kpi-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:14px 12px 13px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
-.kpi-icon-wrap{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:8px;flex-shrink:0}
+.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:12px 10px 11px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
+.kpi-icon-wrap{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:6px;flex-shrink:0}
 .kpi-icon-wrap svg{width:14px;height:14px;stroke-width:2}
 .kpi-label{font-size:11px;color:var(--t3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px}
 .kpi-hero-label{font-size:11px;color:var(--orange);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:8px}
@@ -235,6 +235,11 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;padding:8px 0;padding-bottom:calc(16px + env(safe-area-inset-bottom,6px))}
 .bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:6px 0;color:var(--t3);font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.04em;transition:color .15s;-webkit-tap-highlight-color:transparent}
 .bnav-btn.on{color:var(--orange)}.bnav-btn svg{width:22px;height:22px;stroke-width:2}
+.bnav-btn.fab{color:#fff;background:var(--orange);border-radius:50%;width:52px;height:52px;margin-top:-18px;box-shadow:0 4px 12px rgba(249,115,22,0.45);padding:0;gap:0;flex-direction:column;justify-content:center;flex-shrink:0}
+.bnav-btn.fab svg{width:24px;height:24px;stroke-width:2.5}
+.bnav-btn.fab .bnav-label{font-size:9px;margin-top:2px;font-weight:700;letter-spacing:0.04em}
+.bnav-btn.fab:hover{background:var(--orange-hover)}
+.bnav-btn.on.fab{color:#fff;background:var(--orange)}
 
 @keyframes slideUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .su{animation:slideUp .28s ease both}
@@ -419,7 +424,7 @@ export default function App() {
         <div className="rec-header" style={{marginBottom:0}}>
           <div style={{display:"flex",alignItems:"center",gap:6,minWidth:0}}>
             <div className="rec-machine" style={{flex:1,minWidth:0}} title={r.machine}>{r.machine}</div>
-            {r.id===bestRecId&&<span style={{fontSize:9,flexShrink:0,background:"var(--orange-l)",color:"var(--orange)",padding:"2px 6px",borderRadius:3,fontWeight:700,fontFamily:"'Nunito',sans-serif",letterSpacing:"0.04em",whiteSpace:"nowrap"}}>BEST</span>}
+            {r.id===bestRecId&&<span style={{fontSize:10,flexShrink:0,color:"var(--orange)",marginLeft:4,lineHeight:1}} title="自己ベスト">🏆</span>}
           </div>
           <div className={`rec-profit ${profitColor(r.profit)}`} style={{paddingRight:28}}>{profitStr(r.profit)}</div>
         </div>
@@ -449,7 +454,7 @@ export default function App() {
                 alt="スロログ"
                 style={{
                   display:"block",
-                  height:"88px",
+                  height:"72px",
                   width:"auto",
                   maxWidth:"300px",
                   objectFit:"contain",
@@ -471,14 +476,10 @@ export default function App() {
                 <div className="kpi-hero-label">今月の収支</div>
                 <div className={`kpi-val hero ${profitColor(monthProfit)}`}>{profitStr(monthProfit)}</div>
                 {monthRecs.length > 0 && (
-                  <div style={{marginTop:8,display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"}}>
-                    <span style={{fontFamily:"'Nunito',sans-serif",fontSize:13,fontWeight:800,color:"var(--orange)"}}>
-                      {winRate!=null?`勝率${winRate}%`:"勝率—"}
-                    </span>
-                    <span className="hero-copy" style={{marginTop:0,fontSize:11,color:"var(--t3)"}}>
-                      {monthRecs.length}戦{monthRecs.filter(r=>r.profit>0).length}勝{monthRecs.filter(r=>r.profit<0).length}敗
-                      {streak.count>=2&&` · ${streak.count}${streak.type==="win"?"連勝中":"連敗中"}`}
-                    </span>
+                  <div className="hero-copy" style={{marginTop:7,color:"var(--t3)",fontSize:11}}>
+                    {monthRecs.length}戦{monthRecs.filter(r=>r.profit>0).length}勝{monthRecs.filter(r=>r.profit<0).length}敗
+                    {winRate!=null&&` · 勝率${winRate}%`}
+                    {streak.count>=2&&` · ${streak.count}${streak.type==="win"?"連勝中":"連敗中"}`}
                   </div>
                 )}
               </div>
@@ -816,8 +817,14 @@ export default function App() {
         {/* Bottom Nav */}
         <nav className="bnav">
           {NAV.map((n,i)=>(
-            <button key={i} className={`bnav-btn${tab===i?" on":""}`} onClick={()=>setTab(i)}>
-              <Icon id={n.id}/>{n.label}
+            <button key={i}
+              className={`bnav-btn${tab===i?" on":""}${i===3?" fab":""}`}
+              onClick={()=>setTab(i)}>
+              <Icon id={n.id}/>
+              {i===3
+                ? <span className="bnav-label">記録</span>
+                : n.label
+              }
             </button>
           ))}
         </nav>
