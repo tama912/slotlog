@@ -501,8 +501,8 @@ export default function App() {
                   <div className="kpi-val sub orange">{records.length}<span style={{fontSize:11,marginLeft:2,fontWeight:700}}>回</span></div>
                 </div>
                 <div className="kpi-sub" style={{opacity:bestWin>0?1:0.5}}>
-                  <div className="kpi-icon-wrap" style={{background:bestWin>0?"rgba(21,128,61,0.1)":"var(--bg2)"}}>
-                    <svg viewBox="0 0 24 24" fill="none" stroke={bestWin>0?"var(--green)":"var(--t3)"} strokeLinecap="round" strokeLinejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+                  <div className="kpi-icon-wrap" style={{background:"rgba(249,115,22,0.1)"}}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--orange)" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
                   </div>
                   <div className="kpi-label">最高勝ち</div>
                   <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?profitStr(bestWin):"—"}</div>
