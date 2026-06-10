@@ -410,7 +410,7 @@ export default function App() {
     const [menuOpen, setMenuOpen] = useState(false);
     return (
       <div className={`rec-item ${profitColor(r.profit)} su`} style={{animationDelay:`${delay}s`,position:"relative"}} onClick={()=>menuOpen&&setMenuOpen(false)}>
-        <button className="rec-menu-btn" style={{padding:"6px 4px",minWidth:"unset",position:"absolute",top:0,bottom:0,right:8,margin:"auto",height:"fit-content"}} onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
+        <button className="rec-menu-btn" style={{padding:"6px 4px",minWidth:"unset",position:"absolute",top:9,right:8,height:"fit-content"}} onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
         {menuOpen && (
           <div className="rec-menu-dropdown" style={{position:"absolute",top:36,right:8}}>
             <button className="rec-menu-item edit" onClick={e=>{e.stopPropagation();setMenuOpen(false);startEdit(r);}}>✏️ 編集</button>
