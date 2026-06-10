@@ -57,16 +57,17 @@ const CSS = `
 input,select,textarea{width:100%;max-width:100%;min-width:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .app{max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden;padding-bottom:88px}
-.header{background:var(--card);border-bottom:1px solid var(--border);padding:16px var(--sp-2) 14px;position:sticky;top:0;z-index:50}
-.logo{font-family:'Nunito',sans-serif;font-size:20px;font-weight:800;color:var(--t1);letter-spacing:-0.4px;line-height:1.2}
-.logo span{color:var(--orange)}
-.logo-sub{font-size:11px;color:var(--t2);font-weight:500;margin-top:3px;letter-spacing:0}
+.header{background:#fff7ed;border-bottom:1px solid var(--orange-m);padding:10px var(--sp-2);position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:center}
+.logo-img{height:48px;width:auto;object-fit:contain;display:block}
+
 .kpi-grid{display:flex;flex-direction:column;gap:8px;padding:20px var(--sp-2) 0}
 /* hero: 今月収支 — full width, large */
 .kpi{background:var(--card);border-radius:var(--r-md);padding:14px 16px;border:1px solid var(--border)}
 .kpi.hero{background:var(--orange-l);border-color:var(--orange-m);padding:20px 22px 18px;border-radius:var(--r-lg);box-shadow:var(--sh-hero)}
 .kpi-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .kpi-sub{background:var(--card);border-radius:var(--r-md);padding:14px 12px 13px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
+.kpi-icon-wrap{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:8px;flex-shrink:0}
+.kpi-icon-wrap svg{width:14px;height:14px;stroke-width:2}
 .kpi-label{font-size:11px;color:var(--t3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px}
 .kpi-hero-label{font-size:11px;color:var(--orange);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:8px}
 /* hero value: bigger */
@@ -106,7 +107,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .machine-bar-wrap{display:none}
 .machine-bar{height:100%;border-radius:3px;transition:width .4s ease}
 .machine-bar.plus{background:var(--green)}.machine-bar.minus{background:var(--red)}
-.machine-row.first{padding:12px 18px;background:rgba(249,115,22,0.04)}
+.machine-row.first{padding:13px 18px;background:rgba(249,115,22,0.05);border-left:3px solid var(--orange)}
 .machine-row.first .machine-name{font-size:15px;font-weight:800}
 .machine-row.first .machine-rank{font-size:14px;color:var(--orange)}
 .machine-row.first .machine-profit{font-size:15px}
@@ -185,7 +186,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .profit-preview-val.empty{color:var(--t3);font-size:24px;letter-spacing:0}
 
 .profit-preview-label{font-size:11px;font-weight:600;color:var(--t3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
-.profit-preview-val{font-family:'Nunito',sans-serif;font-size:36px;font-weight:800;letter-spacing:-1px;line-height:1}
+.profit-preview-val{font-family:'Nunito',sans-serif;font-size:38px;font-weight:800;letter-spacing:-1.5px;line-height:1}
 .profit-preview-val.plus{color:var(--green)}.profit-preview-val.minus{color:var(--red)}.profit-preview-val.zero{color:var(--t2)}
 .submit-btn{width:100%;padding:14px;background:var(--orange);color:#fff;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;border:none;border-radius:var(--r-md);cursor:pointer;transition:background .15s,transform .1s}
 .submit-btn:hover{background:var(--orange-hover)}.submit-btn:active{transform:scale(0.98)}.submit-btn:disabled{background:var(--border);cursor:default;transform:none}
@@ -203,7 +204,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .settings-btn:hover{background:var(--orange-hover)}
 .settings-btn.secondary{background:var(--bg2);color:var(--t2);border:1px solid var(--border)}
 .settings-btn.secondary:hover{background:var(--border)}
-.settings-btn.danger{background:transparent;color:var(--red);border:1.5px solid rgba(220,38,38,0.5);font-weight:700;letter-spacing:0.01em}
+.settings-btn.danger{background:var(--red-l);color:var(--red);border:1.5px solid rgba(220,38,38,0.4);font-weight:700;letter-spacing:0.01em}
 .settings-btn.danger:hover{background:var(--red-l)}
 .settings-info{font-size:13px;color:var(--t2);background:var(--bg2);border-radius:var(--r-md);padding:12px 16px;margin-bottom:12px;line-height:1.6}
 
@@ -416,7 +417,10 @@ export default function App() {
         </div>
         {/* 主役: 機種名 + 収支 */}
         <div className="rec-header" style={{marginBottom:0}}>
-          <div className="rec-machine" title={r.machine}>{r.machine}{r.id===bestRecId&&<span style={{fontSize:10,marginLeft:6,background:"var(--orange-l)",color:"var(--orange)",padding:"1px 5px",borderRadius:3,fontWeight:700,fontFamily:"'Nunito',sans-serif"}}>ベスト</span>}</div>
+          <div style={{display:"flex",alignItems:"center",gap:6,minWidth:0}}>
+            <div className="rec-machine" style={{flex:1,minWidth:0}} title={r.machine}>{r.machine}</div>
+            {r.id===bestRecId&&<span style={{fontSize:9,flexShrink:0,background:"var(--orange-l)",color:"var(--orange)",padding:"2px 6px",borderRadius:3,fontWeight:700,fontFamily:"'Nunito',sans-serif",letterSpacing:"0.04em",whiteSpace:"nowrap"}}>BEST</span>}
+          </div>
           <div className={`rec-profit ${profitColor(r.profit)}`} style={{paddingRight:28}}>{profitStr(r.profit)}</div>
         </div>
         {/* 補助: 日付 + 投資/回収 */}
@@ -439,13 +443,12 @@ export default function App() {
       <style>{CSS}</style>
       <div className="app">
         <div className="header">
-          <div className="logo">
-            {tab === 0
-              ? <>スロ<span>ログ</span></>
-              : ["","分析","履歴","記録","設定"][tab]
-            }
-          </div>
-          {tab===0&&<div className="logo-sub">今日も収支を記録しよう</div>}
+          {tab === 0
+            ? <img src="/logo.png" alt="スロログ" className="logo-img"/>
+            : <div style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:800,color:"var(--t1)",letterSpacing:"-0.3px"}}>
+                {["","分析","履歴","記録","設定"][tab]}
+              </div>
+          }
         </div>
 
         {/* ═══ HOME ═══ */}
@@ -457,23 +460,37 @@ export default function App() {
                 <div className="kpi-hero-label">今月の収支</div>
                 <div className={`kpi-val hero ${profitColor(monthProfit)}`}>{profitStr(monthProfit)}</div>
                 {monthRecs.length > 0 && (
-                  <div className="hero-copy" style={{marginTop:7}}>
-                    {monthRecs.length}戦{monthRecs.filter(r=>r.profit>0).length}勝{monthRecs.filter(r=>r.profit<0).length}敗
-                    {streak.count>=2&&` · ${streak.count}${streak.type==="win"?"連勝中":"連敗中"}`}
+                  <div style={{marginTop:8,display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"}}>
+                    <span style={{fontFamily:"'Nunito',sans-serif",fontSize:13,fontWeight:800,color:"var(--orange)"}}>
+                      {winRate!=null?`勝率${winRate}%`:"勝率—"}
+                    </span>
+                    <span className="hero-copy" style={{marginTop:0,fontSize:11,color:"var(--t3)"}}>
+                      {monthRecs.length}戦{monthRecs.filter(r=>r.profit>0).length}勝{monthRecs.filter(r=>r.profit<0).length}敗
+                      {streak.count>=2&&` · ${streak.count}${streak.type==="win"?"連勝中":"連敗中"}`}
+                    </span>
                   </div>
                 )}
               </div>
               {/* Sub row: 総収支・勝率・実戦回数 */}
               <div className="kpi-sub-row">
                 <div className="kpi-sub">
+                  <div className="kpi-icon-wrap" style={{background:"rgba(249,115,22,0.1)"}}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--orange)" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                  </div>
                   <div className="kpi-label">勝率</div>
                   <div className="kpi-val sub orange">{winRate!=null?`${winRate}%`:"0%"}</div>
                 </div>
                 <div className="kpi-sub">
+                  <div className="kpi-icon-wrap" style={{background:"rgba(249,115,22,0.1)"}}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--orange)" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
+                  </div>
                   <div className="kpi-label">実戦</div>
                   <div className="kpi-val sub orange">{records.length}<span style={{fontSize:11,marginLeft:2,fontWeight:700}}>回</span></div>
                 </div>
                 <div className="kpi-sub" style={{opacity:bestWin>0?1:0.5}}>
+                  <div className="kpi-icon-wrap" style={{background:bestWin>0?"rgba(21,128,61,0.1)":"var(--bg2)"}}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke={bestWin>0?"var(--green)":"var(--t3)"} strokeLinecap="round" strokeLinejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+                  </div>
                   <div className="kpi-label">最高勝ち</div>
                   <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?profitStr(bestWin):"—"}</div>
                 </div>
@@ -672,12 +689,18 @@ export default function App() {
               {/* Group 3: 投資・回収 */}
               <div className="form-row">
                 <div>
-                  <label className="form-label">投資金額 (円)</label>
-                  <input className="form-input" type="number" placeholder="10000" value={form.invest} onChange={e=>setForm(p=>({...p,invest:e.target.value}))}/>
+                  <label className="form-label">投資金額</label>
+                  <div style={{position:"relative"}}>
+                    <span style={{position:"absolute",left:13,top:"50%",transform:"translateY(-50%)",fontSize:15,color:"var(--t3)",fontWeight:600,pointerEvents:"none"}}>¥</span>
+                    <input className="form-input" type="number" placeholder="10000" value={form.invest} style={{paddingLeft:28}} onChange={e=>setForm(p=>({...p,invest:e.target.value}))}/>
+                  </div>
                 </div>
                 <div>
-                  <label className="form-label">回収金額 (円)</label>
-                  <input className="form-input" type="number" placeholder="15000" value={form.collect} onChange={e=>setForm(p=>({...p,collect:e.target.value}))}/>
+                  <label className="form-label">回収金額</label>
+                  <div style={{position:"relative"}}>
+                    <span style={{position:"absolute",left:13,top:"50%",transform:"translateY(-50%)",fontSize:15,color:"var(--t3)",fontWeight:600,pointerEvents:"none"}}>¥</span>
+                    <input className="form-input" type="number" placeholder="15000" value={form.collect} style={{paddingLeft:28}} onChange={e=>setForm(p=>({...p,collect:e.target.value}))}/>
+                  </div>
                 </div>
               </div>
               <div className={`profit-preview${(form.invest||form.collect)?previewProfit>0?" is-plus":previewProfit<0?" is-minus":" is-zero":""}`}>
