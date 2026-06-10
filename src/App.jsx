@@ -58,7 +58,7 @@ input,select,textarea{width:100%;max-width:100%;min-width:0;box-sizing:border-bo
 body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .app{max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden;padding-bottom:88px}
 .header{background:#fff7ed;border-bottom:1px solid var(--orange-m);padding:10px var(--sp-2);position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:center}
-.header-logo{display:block;height:52px;width:auto;max-width:200px;object-fit:contain;object-position:center;opacity:1;visibility:visible;margin:0 auto}
+.header-logo{display:block;height:80px;width:auto;max-width:280px;object-fit:contain;margin:0 auto}
 
 .kpi-grid{display:flex;flex-direction:column;gap:8px;padding:20px var(--sp-2) 0}
 /* hero: 今月収支 — full width, large */
