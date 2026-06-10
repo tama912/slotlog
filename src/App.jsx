@@ -423,8 +423,8 @@ export default function App() {
         {/* 主役: 機種名 + 収支 */}
         <div className="rec-header" style={{marginBottom:0}}>
           <div style={{display:"flex",alignItems:"center",gap:6,minWidth:0}}>
+            {r.id===bestRecId&&<span style={{fontSize:10,flexShrink:0,marginRight:3,lineHeight:1,opacity:0.8,verticalAlign:"middle"}}>🏆</span>}
             <div className="rec-machine" style={{flex:1,minWidth:0}} title={r.machine}>{r.machine}</div>
-            {r.id===bestRecId&&<span style={{fontSize:10,flexShrink:0,marginLeft:3,lineHeight:1,opacity:0.8,verticalAlign:"middle"}}>🏆</span>}
           </div>
           <div className={`rec-profit ${profitColor(r.profit)}`} style={{paddingRight:28}}>{profitStr(r.profit)}</div>
         </div>
