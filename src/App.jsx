@@ -445,7 +445,7 @@ export default function App() {
         <div className="header">
           {tab === 0
             ? <img
-                src="/logo.png?v=3"
+                src="/logo.png?v=4"
                 alt="スロログ"
                 style={{
                   display:"block",
