@@ -76,7 +76,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .kpi-val.sub{font-size:17px;font-weight:800;letter-spacing:-0.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1}
 .kpi-val.plus{color:var(--green)}.kpi-val.minus{color:var(--red)}.kpi-val.zero{color:var(--t2)}.kpi-val.orange{color:var(--orange)}
 .section{padding:var(--sp-2) var(--sp-2) 0}
-.section-title{font-size:11px;font-weight:600;color:#8a837a;padding:16px 0 10px;letter-spacing:0.06em;text-transform:uppercase}
+.section-title{font-size:11px;font-weight:700;color:#6e6760;padding:16px 0 10px;letter-spacing:0.06em;text-transform:uppercase}
 .month-nav{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 16px;margin-bottom:var(--sp-2)}
 .month-nav-btn{background:none;border:none;cursor:pointer;padding:10px 16px;font-size:18px;color:var(--t2);border-radius:8px;line-height:1;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .month-nav-btn:hover{background:var(--bg2)}.month-nav-btn:disabled{color:var(--border);cursor:default}
@@ -133,7 +133,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-amt.invest{background:var(--invest-bg);color:var(--invest-fg)}
 .rec-amt.collect{background:#dcfce7;color:var(--collect-fg);font-weight:800}
 .rec-amt-icon{font-size:10px;opacity:0.5}
-.rec-memo{font-size:11px;color:var(--t3);margin-top:6px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;max-height:1.5em;line-height:1.4}
+.rec-memo{font-size:11px;color:var(--t2);opacity:0.75;margin-top:6px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;max-height:1.5em;line-height:1.4}
 /* Win/Lose badge */
 .rec-badge{font-family:'Nunito',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.06em;padding:2px 6px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:4px}
 .rec-badge.win{background:var(--green-l);color:var(--green)}
