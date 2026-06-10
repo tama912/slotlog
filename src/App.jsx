@@ -65,10 +65,10 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 /* hero: 今月収支 — full width, large */
 .kpi{background:var(--card);border-radius:var(--r-md);padding:14px 16px;border:1px solid var(--border)}
 .kpi.hero{background:var(--orange-l);border-color:var(--orange-m);padding:20px 22px 18px;border-radius:var(--r-lg);box-shadow:var(--sh-hero)}
-.kpi-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:12px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
-.kpi-label{font-size:11px;color:var(--t3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
-.kpi-hero-label{font-size:11px;color:var(--orange);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px}
+.kpi-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:14px 12px 13px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
+.kpi-label{font-size:11px;color:var(--t3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px}
+.kpi-hero-label{font-size:11px;color:var(--orange);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:8px}
 /* hero value: bigger */
 .kpi-val{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.5px;line-height:1}
 .kpi-val.hero{font-size:36px;font-weight:800;letter-spacing:-1.5px;line-height:1}
@@ -87,10 +87,10 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .sum-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:var(--sp-2)}
 .sum-cell{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:16px 18px}
 .sum-cell.accent{background:var(--orange-l);border-color:var(--orange-m);padding:20px 22px 18px;border-radius:var(--r-lg)}
-.sum-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.sum-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .sum-sub{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:12px;box-shadow:var(--sh)}
 .sum-label{font-size:11px;font-weight:600;color:var(--t3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px}
-.sum-val{font-family:'Nunito',sans-serif;font-size:28px;font-weight:800;letter-spacing:-1px;line-height:1}
+.sum-val{font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;letter-spacing:-0.5px;line-height:1}
 .sum-val.hero{font-size:36px;letter-spacing:-1.5px}
 .sum-val.plus{color:var(--green)}.sum-val.minus{color:var(--red)}.sum-val.zero{color:var(--t2)}.sum-val.orange{color:var(--orange)}
 .machine-table{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:var(--sp-2);box-shadow:var(--sh)}
@@ -106,7 +106,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .machine-bar-wrap{display:none}
 .machine-bar{height:100%;border-radius:3px;transition:width .4s ease}
 .machine-bar.plus{background:var(--green)}.machine-bar.minus{background:var(--red)}
-.machine-row.first{padding:12px 18px;background:rgba(249,115,22,0.02)}
+.machine-row.first{padding:12px 18px;background:rgba(249,115,22,0.04)}
 .machine-row.first .machine-name{font-size:15px;font-weight:800}
 .machine-row.first .machine-rank{font-size:14px;color:var(--orange)}
 .machine-row.first .machine-profit{font-size:15px}
@@ -114,7 +114,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 
 /* record card */
 .rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 14px 14px 18px;margin-bottom:8px;position:relative;box-shadow:var(--sh)}
-.rec-item::before{content:'';position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:0 2px 2px 0;background:var(--border)}
+.rec-item::before{content:'';position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:0 2px 2px 0;background:var(--border)}
 .rec-item.plus::before{background:var(--green)}.rec-item.minus::before{background:var(--red)}
 /* top row: 機種名(主役) + 収支 */
 .rec-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;gap:8px}
@@ -157,7 +157,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .form-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:18px 18px 20px;margin-bottom:var(--sp-2);box-shadow:var(--sh)}
 .form-title{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--t1);margin-bottom:var(--sp-2)}
 .form-row{display:grid;grid-template-columns:1fr;gap:var(--sp-2);margin-bottom:var(--sp-2);width:100%;box-sizing:border-box}
-.form-full{margin-bottom:13px}
+.form-full{margin-bottom:12px}
 .form-label{display:block;font-size:11px;font-weight:600;color:var(--t2);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:6px}
 .form-group-sep{height:8px;background:none}
 .form-input-wrap{position:relative}
@@ -183,7 +183,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .profit-preview.is-minus{background:var(--red-l);border-color:var(--red-border)}
 .profit-preview.is-zero{background:var(--bg2);border-color:var(--border)}
 .profit-preview-val.empty{color:var(--t3);font-size:24px;letter-spacing:0}
-.profit-preview-sub{font-size:11px;font-weight:600;margin-top:5px;opacity:0.6;color:var(--t2)}
+
 .profit-preview-label{font-size:11px;font-weight:600;color:var(--t3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
 .profit-preview-val{font-family:'Nunito',sans-serif;font-size:36px;font-weight:800;letter-spacing:-1px;line-height:1}
 .profit-preview-val.plus{color:var(--green)}.profit-preview-val.minus{color:var(--red)}.profit-preview-val.zero{color:var(--t2)}
@@ -200,7 +200,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .settings-row-label{font-size:14px;font-weight:700;color:var(--t1)}
 .settings-row-sub{font-size:12px;color:var(--t3);margin-top:3px;line-height:1.5}
 .settings-btn{background:var(--orange);color:#fff;border:none;border-radius:10px;padding:9px 16px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .15s;min-height:44px}
-.settings-btn:hover{background:#ea6c0a}
+.settings-btn:hover{background:var(--orange-hover)}
 .settings-btn.secondary{background:var(--bg2);color:var(--t2);border:1px solid var(--border)}
 .settings-btn.secondary:hover{background:var(--border)}
 .settings-btn.danger{background:transparent;color:var(--red);border:1.5px solid rgba(220,38,38,0.5);font-weight:700;letter-spacing:0.01em}
@@ -208,7 +208,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .settings-info{font-size:13px;color:var(--t2);background:var(--bg2);border-radius:var(--r-md);padding:12px 16px;margin-bottom:12px;line-height:1.6}
 
 /* undo toast */
-.undo-toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%);background:#1c1917;color:#fff;border-radius:100px;padding:10px 20px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;gap:12px;box-shadow:0 4px 20px rgba(0,0,0,.3);z-index:300;white-space:nowrap;animation:toastIn .25s ease}
+.undo-toast{position:fixed;bottom:calc(var(--sp-2) + 64px);left:50%;transform:translateX(-50%);background:#1c1917;color:#fff;border-radius:100px;padding:10px 20px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;gap:12px;box-shadow:0 4px 20px rgba(0,0,0,.3);z-index:300;white-space:nowrap;animation:toastIn .25s ease}
 .undo-btn{background:var(--orange);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer}
 @keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(8px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 
@@ -223,11 +223,11 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .onboard-btn{width:100%;padding:12px;background:var(--orange);color:#fff;border:none;border-radius:var(--r-md);font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer}
 
 /* show-more */
-.show-more-btn{width:100%;padding:12px;background:none;border:1px solid var(--border);border-radius:var(--r-md);font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:var(--t2);cursor:pointer;margin-bottom:9px;transition:background .12s;min-height:44px}
+.show-more-btn{width:100%;padding:12px;background:none;border:1px solid var(--border);border-radius:var(--r-md);font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:var(--t2);cursor:pointer;margin-bottom:8px;transition:background .12s;min-height:44px}
 .show-more-btn:hover{background:var(--bg2)}
 
 /* empty */
-.empty-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp-4) var(--sp-2);text-align:center}
+.empty-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp-3) var(--sp-2);text-align:center}
 .empty-ico{font-size:32px;margin-bottom:8px}.empty-txt{font-size:14px;color:var(--t2);font-weight:600}.empty-hint{font-size:12px;color:var(--t3);margin-top:4px}
 
 /* bnav */
@@ -258,8 +258,8 @@ const Icon = ({ id }) => {
   const d = {
     home: <><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></>,
     graph:<><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></>,
-    list: <><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></>,
-    add:  <><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></>,
+    list: <><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></>,
+    add:  <><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></>,
     gear: <><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></>,
   };
   return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">{d[id]}</svg>;
@@ -414,15 +414,14 @@ export default function App() {
             </div>
           )}
         </div>
-        {/* 日付: 最上部 */}
-        <div className="rec-date" style={{marginBottom:5}}>{fmtDate(r.date)}</div>
         {/* 主役: 機種名 + 収支 */}
         <div className="rec-header" style={{marginBottom:0}}>
           <div className="rec-machine" title={r.machine}>{r.machine}{r.id===bestRecId&&<span style={{fontSize:10,marginLeft:6,background:"var(--orange-l)",color:"var(--orange)",padding:"1px 5px",borderRadius:3,fontWeight:700,fontFamily:"'Nunito',sans-serif"}}>ベスト</span>}</div>
           <div className={`rec-profit ${profitColor(r.profit)}`} style={{paddingRight:28}}>{profitStr(r.profit)}</div>
         </div>
-        {/* 補助: 投資/回収 */}
+        {/* 補助: 日付 + 投資/回収 */}
         <div className="rec-footer">
+          <div className="rec-date">{fmtDate(r.date)}</div>
           <div className="rec-amounts">
             <div className="rec-amt invest">投資 ¥{r.invest.toLocaleString()}</div>
             <div className="rec-amt collect">回収 ¥{r.collect.toLocaleString()}</div>
