@@ -58,7 +58,7 @@ input,select,textarea{width:100%;max-width:100%;min-width:0;box-sizing:border-bo
 body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .app{max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden;padding-bottom:88px}
 .header{background:#fff7ed;border-bottom:1px solid var(--orange-m);padding:10px var(--sp-2);position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:center}
-.logo-img{height:48px;width:auto;object-fit:contain;display:block}
+.header-logo{display:block;height:52px;width:auto;max-width:200px;object-fit:contain;object-position:center;opacity:1;visibility:visible;margin:0 auto}
 
 .kpi-grid{display:flex;flex-direction:column;gap:8px;padding:20px var(--sp-2) 0}
 /* hero: 今月収支 — full width, large */
@@ -444,7 +444,7 @@ export default function App() {
       <div className="app">
         <div className="header">
           {tab === 0
-            ? <img src="/logo.png" alt="スロログ" className="logo-img"/>
+            ? <img src="/logo.png" alt="スロログ" className="header-logo"/>
             : <div style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:800,color:"var(--t1)",letterSpacing:"-0.3px"}}>
                 {["","分析","履歴","記録","設定"][tab]}
               </div>
