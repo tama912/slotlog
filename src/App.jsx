@@ -118,12 +118,12 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-item::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:3px;border-radius:0 2px 2px 0;background:var(--border)}
 .rec-item.plus::before{background:var(--green)}.rec-item.minus::before{background:var(--red)}
 /* top row: 機種名(主役) + 収支 */
-.rec-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px;gap:8px}
+.rec-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;gap:8px}
 .rec-header-left{flex:1;min-width:0}
 .rec-machine{font-size:15px;font-weight:700;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;line-height:1.3;margin-bottom:2px}
 .rec-store{font-size:11px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;font-weight:500}
 .rec-store-inline{font-size:11px;color:var(--t3);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:90px;flex-shrink:0}
-.rec-profit{font-family:'Nunito',sans-serif;font-size:21px;font-weight:800;letter-spacing:-1px;white-space:nowrap;flex-shrink:0;line-height:-3}
+.rec-profit{font-family:'Nunito',sans-serif;font-size:21px;font-weight:800;letter-spacing:-1px;white-space:nowrap;flex-shrink:0;line-height:1}
 .rec-profit.plus{color:var(--green)}.rec-profit.minus{color:var(--red)}.rec-profit.zero{color:var(--t2)}
 /* bottom row: 日付 + 投資/回収 + menu */
 .rec-footer{display:flex;align-items:center;gap:6px;margin-top:5px;padding-top:5px;border-top:1px solid rgba(0,0,0,0.07)}
