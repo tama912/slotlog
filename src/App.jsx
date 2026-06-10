@@ -415,7 +415,7 @@ export default function App() {
           <div className="rec-machine" style={{flex:1,minWidth:0,display:"flex",alignItems:"center"}} title={r.machine}>
             <span>{r.machine}</span>
             {/* 主役: 収支 */}
-            <div className="rec-header" style={{marginBottom:0,marginRight:22,marginLeft:"auto"}}>
+            <div className="rec-header" style={{marginBottom:0,marginRight:30,marginLeft:"auto"}}>
               <div style={{display:"flex",alignItems:"center",gap:0,flexShrink:0}}>
                 <div className={`rec-profit ${profitColor(r.profit)}`}>{profitStr(r.profit)}</div>
                 <button className="rec-menu-btn" style={{padding:"6px 4px",minWidth:"unset"}} onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
