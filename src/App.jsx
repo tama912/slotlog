@@ -60,7 +60,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .header{background:#ffe8c8;border-bottom:1px solid var(--orange-m);padding:6px 16px;position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:center;min-height:64px;box-sizing:border-box}
 .header-logo{display:block;height:88px;width:auto;max-width:320px;object-fit:contain}
 
-.kpi-grid{display:flex;flex-direction:column;gap:8px;padding:12px var(--sp-2) 0}
+.kpi-grid{display:flex;flex-direction:column;gap:8px;padding:10px var(--sp-2) 0}
 /* hero: 今月収支 — full width, large */
 .kpi{background:var(--card);border-radius:var(--r-md);padding:14px 16px;border:1px solid var(--border)}
 .kpi.hero{background:var(--orange-l);border-color:var(--orange-m);padding:20px 22px 18px;border-radius:var(--r-lg);box-shadow:var(--sh-hero)}
@@ -76,7 +76,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .kpi-val.sub{font-size:17px;font-weight:800;letter-spacing:-0.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1}
 .kpi-val.plus{color:var(--green)}.kpi-val.minus{color:var(--red)}.kpi-val.zero{color:var(--t2)}.kpi-val.orange{color:var(--orange)}
 .section{padding:var(--sp-2) var(--sp-2) 0}
-.section-title{font-size:11px;font-weight:600;color:var(--t3);padding:16px 0 10px;letter-spacing:0.06em;text-transform:uppercase}
+.section-title{font-size:11px;font-weight:600;color:#8a837a;padding:16px 0 10px;letter-spacing:0.06em;text-transform:uppercase}
 .month-nav{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 16px;margin-bottom:var(--sp-2)}
 .month-nav-btn{background:none;border:none;cursor:pointer;padding:10px 16px;font-size:18px;color:var(--t2);border-radius:8px;line-height:1;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .month-nav-btn:hover{background:var(--bg2)}.month-nav-btn:disabled{color:var(--border);cursor:default}
@@ -131,7 +131,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-amounts{display:flex;gap:6px;flex:1}
 .rec-amt{font-size:11px;font-weight:700;padding:3px 8px;border-radius:5px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
 .rec-amt.invest{background:var(--invest-bg);color:var(--invest-fg)}
-.rec-amt.collect{background:var(--collect-bg);color:var(--collect-fg)}
+.rec-amt.collect{background:#dcfce7;color:var(--collect-fg);font-weight:800}
 .rec-amt-icon{font-size:10px;opacity:0.5}
 .rec-memo{font-size:11px;color:var(--t3);margin-top:6px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;max-height:1.5em;line-height:1.4}
 /* Win/Lose badge */
@@ -424,7 +424,7 @@ export default function App() {
         <div className="rec-header" style={{marginBottom:0}}>
           <div style={{display:"flex",alignItems:"center",gap:6,minWidth:0}}>
             <div className="rec-machine" style={{flex:1,minWidth:0}} title={r.machine}>{r.machine}</div>
-            {r.id===bestRecId&&<span style={{fontSize:9,flexShrink:0,background:"var(--orange-l)",color:"var(--orange)",padding:"1px 5px",borderRadius:3,fontWeight:700,letterSpacing:"0.05em",marginLeft:5,lineHeight:"16px",fontFamily:"'Nunito',sans-serif",whiteSpace:"nowrap"}}>ベスト</span>}
+            {r.id===bestRecId&&<span style={{fontSize:12,flexShrink:0,marginLeft:4,lineHeight:1,opacity:0.85}}>🏆</span>}
           </div>
           <div className={`rec-profit ${profitColor(r.profit)}`} style={{paddingRight:28}}>{profitStr(r.profit)}</div>
         </div>
@@ -454,7 +454,7 @@ export default function App() {
                 alt="スロログ"
                 style={{
                   display:"block",
-                  height:"72px",
+                  height:"62px",
                   width:"auto",
                   maxWidth:"300px",
                   objectFit:"contain",
@@ -478,7 +478,7 @@ export default function App() {
                 {monthRecs.length > 0 && (
                   <div style={{marginTop:7,fontSize:11,color:"var(--t3)",lineHeight:1.5}}>
                     {monthRecs.length}戦{monthRecs.filter(r=>r.profit>0).length}勝{monthRecs.filter(r=>r.profit<0).length}敗
-                    {winRate!=null&&<> · <span style={{fontWeight:700}}>{winRate}%</span></>}
+                    {winRate!=null&&<> · 勝率<span style={{fontWeight:700}}>{winRate}%</span></>}
                     {streak.count>=2&&` · ${streak.count}${streak.type==="win"?"連勝中":"連敗中"}`}
                   </div>
                 )}
