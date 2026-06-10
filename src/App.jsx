@@ -60,15 +60,15 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .header{background:#ffe8c8;border-bottom:1px solid var(--orange-m);padding:6px 16px;position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:center;min-height:64px;box-sizing:border-box}
 .header-logo{display:block;height:88px;width:auto;max-width:320px;object-fit:contain}
 
-.kpi-grid{display:flex;flex-direction:column;gap:8px;padding:20px var(--sp-2) 0}
+.kpi-grid{display:flex;flex-direction:column;gap:8px;padding:16px var(--sp-2) 0}
 /* hero: 今月収支 — full width, large */
 .kpi{background:var(--card);border-radius:var(--r-md);padding:14px 16px;border:1px solid var(--border)}
 .kpi.hero{background:var(--orange-l);border-color:var(--orange-m);padding:20px 22px 18px;border-radius:var(--r-lg);box-shadow:var(--sh-hero)}
 .kpi-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:12px 10px 11px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
-.kpi-icon-wrap{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:6px;flex-shrink:0}
+.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:11px 10px 10px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
+.kpi-icon-wrap{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:4px;flex-shrink:0}
 .kpi-icon-wrap svg{width:14px;height:14px;stroke-width:2}
-.kpi-label{font-size:11px;color:var(--t3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px}
+.kpi-label{font-size:11px;color:var(--t3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:5px}
 .kpi-hero-label{font-size:11px;color:var(--orange);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:8px}
 /* hero value: bigger */
 .kpi-val{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.5px;line-height:1}
@@ -114,11 +114,11 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .machine-profit{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;flex-shrink:0;text-align:right;min-width:68px}
 
 /* record card */
-.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 14px 14px 18px;margin-bottom:8px;position:relative;box-shadow:var(--sh)}
+.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 14px 12px 18px;margin-bottom:7px;position:relative;box-shadow:var(--sh)}
 .rec-item::before{content:'';position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:0 2px 2px 0;background:var(--border)}
 .rec-item.plus::before{background:var(--green)}.rec-item.minus::before{background:var(--red)}
 /* top row: 機種名(主役) + 収支 */
-.rec-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;gap:8px}
+.rec-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;gap:8px}
 .rec-header-left{flex:1;min-width:0}
 .rec-machine{font-size:15px;font-weight:700;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;line-height:1.3;margin-bottom:2px}
 .rec-store{font-size:11px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;font-weight:500}
@@ -126,7 +126,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-profit{font-family:'Nunito',sans-serif;font-size:21px;font-weight:800;letter-spacing:-1px;white-space:nowrap;flex-shrink:0;line-height:1}
 .rec-profit.plus{color:var(--green)}.rec-profit.minus{color:var(--red)}.rec-profit.zero{color:var(--t2)}
 /* bottom row: 日付 + 投資/回収 + menu */
-.rec-footer{display:flex;align-items:center;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid rgba(232,228,220,0.7)}
+.rec-footer{display:flex;align-items:center;gap:6px;margin-top:7px;padding-top:7px;border-top:1px solid rgba(0,0,0,0.07)}
 .rec-date{font-size:11px;color:var(--t3);font-weight:500;flex-shrink:0;letter-spacing:0.01em}
 .rec-amounts{display:flex;gap:6px;flex:1}
 .rec-amt{font-size:11px;font-weight:700;padding:3px 8px;border-radius:5px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
@@ -235,7 +235,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;padding:8px 0;padding-bottom:calc(16px + env(safe-area-inset-bottom,6px))}
 .bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:6px 0;color:var(--t3);font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.04em;transition:color .15s;-webkit-tap-highlight-color:transparent}
 .bnav-btn.on{color:var(--orange)}.bnav-btn svg{width:22px;height:22px;stroke-width:2}
-.bnav-btn.fab{color:#fff;background:var(--orange);border-radius:50%;width:52px;height:52px;margin-top:-18px;box-shadow:0 4px 12px rgba(249,115,22,0.45);padding:0;gap:0;flex-direction:column;justify-content:center;flex-shrink:0}
+.bnav-btn.fab{color:#fff;background:var(--orange);border-radius:50%;width:52px;height:52px;margin-top:-20px;box-shadow:0 4px 14px rgba(249,115,22,0.5);padding:0;gap:0;flex-direction:column;justify-content:center;flex-shrink:0}
 .bnav-btn.fab svg{width:24px;height:24px;stroke-width:2.5}
 .bnav-btn.fab .bnav-label{font-size:9px;margin-top:2px;font-weight:700;letter-spacing:0.04em}
 .bnav-btn.fab:hover{background:var(--orange-hover)}
@@ -424,7 +424,7 @@ export default function App() {
         <div className="rec-header" style={{marginBottom:0}}>
           <div style={{display:"flex",alignItems:"center",gap:6,minWidth:0}}>
             <div className="rec-machine" style={{flex:1,minWidth:0}} title={r.machine}>{r.machine}</div>
-            {r.id===bestRecId&&<span style={{fontSize:10,flexShrink:0,color:"var(--orange)",marginLeft:4,lineHeight:1}} title="自己ベスト">🏆</span>}
+            {r.id===bestRecId&&<span style={{fontSize:9,flexShrink:0,background:"var(--orange-l)",color:"var(--orange)",padding:"1px 5px",borderRadius:3,fontWeight:700,letterSpacing:"0.05em",marginLeft:5,lineHeight:"16px",fontFamily:"'Nunito',sans-serif",whiteSpace:"nowrap"}}>BEST</span>}
           </div>
           <div className={`rec-profit ${profitColor(r.profit)}`} style={{paddingRight:28}}>{profitStr(r.profit)}</div>
         </div>
@@ -476,9 +476,9 @@ export default function App() {
                 <div className="kpi-hero-label">今月の収支</div>
                 <div className={`kpi-val hero ${profitColor(monthProfit)}`}>{profitStr(monthProfit)}</div>
                 {monthRecs.length > 0 && (
-                  <div className="hero-copy" style={{marginTop:7,color:"var(--t3)",fontSize:11}}>
+                  <div style={{marginTop:7,fontSize:11,color:"var(--t3)",lineHeight:1.5}}>
                     {monthRecs.length}戦{monthRecs.filter(r=>r.profit>0).length}勝{monthRecs.filter(r=>r.profit<0).length}敗
-                    {winRate!=null&&` · 勝率${winRate}%`}
+                    {winRate!=null&&<> · <span style={{fontWeight:700}}>{winRate}%</span></>}
                     {streak.count>=2&&` · ${streak.count}${streak.type==="win"?"連勝中":"連敗中"}`}
                   </div>
                 )}
