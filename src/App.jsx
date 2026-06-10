@@ -57,7 +57,7 @@ const CSS = `
 input,select,textarea{width:100%;max-width:100%;min-width:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .app{max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden;padding-bottom:88px}
-.header{background:#ffe8c8;border-bottom:1px solid var(--orange-m);padding:6px 16px;position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:center;min-height:64px;box-sizing:border-box}
+.header{background:#ffd9a0;border-bottom:1px solid var(--orange-m);padding:6px 16px;position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:center;min-height:64px;box-sizing:border-box}
 .header-logo{display:block;height:88px;width:auto;max-width:320px;object-fit:contain}
 
 .kpi-grid{display:flex;flex-direction:column;gap:8px;padding:10px var(--sp-2) 0}
