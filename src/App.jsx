@@ -50,21 +50,23 @@ const CSS = `
   --green:#15803d;--green-l:#f0fdf4;
   --red:#dc2626;--red-l:#fef2f2;
   --r-md:12px;--r-lg:18px;
+  --sh:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);
+  --sh-hero:0 2px 8px rgba(249,115,22,0.12),0 1px 3px rgba(0,0,0,0.05);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 input,select,textarea{width:100%;max-width:100%;min-width:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .app{max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden;padding-bottom:88px}
 .header{background:var(--card);border-bottom:1px solid var(--border);padding:16px var(--sp-2) 14px;position:sticky;top:0;z-index:50}
-.logo{font-family:'Nunito',sans-serif;font-size:20px;font-weight:800;color:var(--t1);letter-spacing:-0.3px;line-height:1.2}
+.logo{font-family:'Nunito',sans-serif;font-size:20px;font-weight:800;color:var(--t1);letter-spacing:-0.4px;line-height:1.2}
 .logo span{color:var(--orange)}
-.logo-sub{font-size:11px;color:var(--t3);font-weight:500;margin-top:3px;letter-spacing:0.01em}
-.kpi-grid{display:flex;flex-direction:column;gap:10px;padding:20px var(--sp-2) 0}
+.logo-sub{font-size:11px;color:var(--t2);font-weight:500;margin-top:3px;letter-spacing:0}
+.kpi-grid{display:flex;flex-direction:column;gap:8px;padding:20px var(--sp-2) 0}
 /* hero: 今月収支 — full width, large */
 .kpi{background:var(--card);border-radius:var(--r-md);padding:14px 16px;border:1px solid var(--border)}
-.kpi.hero{background:var(--orange-l);border-color:var(--orange-m);padding:20px 22px 18px;border-radius:var(--r-lg)}
-.kpi-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:12px;border:1px solid var(--border);overflow:hidden}
+.kpi.hero{background:var(--orange-l);border-color:var(--orange-m);padding:20px 22px 18px;border-radius:var(--r-lg);box-shadow:var(--sh-hero)}
+.kpi-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:12px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
 .kpi-label{font-size:11px;color:var(--t3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
 .kpi-hero-label{font-size:11px;color:var(--orange);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px}
 /* hero value: bigger */
@@ -73,25 +75,25 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .kpi-val.sub{font-size:17px;font-weight:800;letter-spacing:-0.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1}
 .kpi-val.plus{color:var(--green)}.kpi-val.minus{color:var(--red)}.kpi-val.zero{color:var(--t2)}.kpi-val.orange{color:var(--orange)}
 .section{padding:var(--sp-2) var(--sp-2) 0}
-.section-title{font-size:11px;font-weight:600;color:var(--t3);padding:16px 0 8px;letter-spacing:0.06em;text-transform:uppercase}
+.section-title{font-size:11px;font-weight:600;color:var(--t3);padding:16px 0 10px;letter-spacing:0.06em;text-transform:uppercase}
 .month-nav{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 16px;margin-bottom:var(--sp-2)}
 .month-nav-btn{background:none;border:none;cursor:pointer;padding:10px 16px;font-size:18px;color:var(--t2);border-radius:8px;line-height:1;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .month-nav-btn:hover{background:var(--bg2)}.month-nav-btn:disabled{color:var(--border);cursor:default}
 .month-nav-label{font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:var(--t1);letter-spacing:-0.3px}
-.graph-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:16px 14px 14px;margin-bottom:var(--sp-2);overflow:hidden}
+.graph-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:16px 14px 14px;margin-bottom:var(--sp-2);overflow:hidden;box-shadow:var(--sh)}
 .graph-title{font-size:11px;font-weight:600;color:var(--t3);margin-bottom:12px;padding:0 12px;letter-spacing:0.06em;text-transform:uppercase}
-.ctip{background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-family:'Nunito',sans-serif;font-size:13px;box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.ctip{background:#fff;border:1px solid var(--border);border-radius:var(--r-md);padding:8px 12px;font-family:'Nunito',sans-serif;font-size:13px;box-shadow:var(--sh)}
 .ctip-date{color:var(--t3);font-size:11px;margin-bottom:2px}
 .sum-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:var(--sp-2)}
 .sum-cell{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:16px 18px}
 .sum-cell.accent{background:var(--orange-l);border-color:var(--orange-m);padding:20px 22px 18px;border-radius:var(--r-lg)}
-.sum-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.sum-sub{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:12px}
+.sum-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.sum-sub{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:12px;box-shadow:var(--sh)}
 .sum-label{font-size:11px;font-weight:600;color:var(--t3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px}
 .sum-val{font-family:'Nunito',sans-serif;font-size:28px;font-weight:800;letter-spacing:-1px;line-height:1}
 .sum-val.hero{font-size:36px;letter-spacing:-1.5px}
 .sum-val.plus{color:var(--green)}.sum-val.minus{color:var(--red)}.sum-val.zero{color:var(--t2)}.sum-val.orange{color:var(--orange)}
-.machine-table{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:var(--sp-2)}
+.machine-table{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:var(--sp-2);box-shadow:var(--sh)}
 /* ranking rows */
 .machine-row{display:flex;align-items:center;gap:10px;padding:12px 18px;border-bottom:1px solid var(--border)}
 .machine-row:last-child{border-bottom:none}
@@ -111,7 +113,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .machine-profit{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;flex-shrink:0;text-align:right;min-width:68px}
 
 /* record card */
-.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 14px 14px 18px;margin-bottom:8px;position:relative}
+.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 14px 14px 18px;margin-bottom:8px;position:relative;box-shadow:var(--sh)}
 .rec-item::before{content:'';position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:0 2px 2px 0;background:var(--border)}
 .rec-item.plus::before{background:var(--green)}.rec-item.minus::before{background:var(--red)}
 /* top row: 機種名(主役) + 収支 */
@@ -120,7 +122,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-machine{font-size:15px;font-weight:700;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;line-height:1.3;margin-bottom:2px}
 .rec-store{font-size:11px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;font-weight:500}
 .rec-store-inline{font-size:11px;color:var(--t3);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:90px;flex-shrink:0}
-.rec-profit{font-family:'Nunito',sans-serif;font-size:20px;font-weight:800;letter-spacing:-0.8px;white-space:nowrap;flex-shrink:0;line-height:1}
+.rec-profit{font-family:'Nunito',sans-serif;font-size:21px;font-weight:800;letter-spacing:-1px;white-space:nowrap;flex-shrink:0;line-height:1}
 .rec-profit.plus{color:var(--green)}.rec-profit.minus{color:var(--red)}.rec-profit.zero{color:var(--t2)}
 /* bottom row: 日付 + 投資/回収 + menu */
 .rec-footer{display:flex;align-items:center;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid rgba(232,228,220,0.7)}
@@ -137,8 +139,8 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-badge.lose{background:var(--red-l);color:var(--red)}
 .rec-badge.draw{background:var(--bg2);color:var(--t3)}
 /* Hero copy under KPI */
-.hero-copy{font-size:11px;font-weight:600;color:var(--t3);margin-top:8px}
-.hero-copy.win{color:var(--orange)}
+.hero-copy{font-size:11px;font-weight:500;color:var(--t3);margin-top:6px;opacity:0.85}
+.hero-copy.win{color:var(--orange);opacity:0.85}
 .hero-copy.lose{color:var(--t3)}
 .rec-menu-wrap{position:relative;flex-shrink:0;margin-left:8px}
 .rec-menu-btn{background:none;border:none;cursor:pointer;color:var(--t3);font-size:18px;padding:8px 10px;border-radius:8px;line-height:1;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
@@ -148,18 +150,18 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-menu-item:first-child{border-bottom:1px solid var(--border)}
 .rec-menu-item.edit{color:var(--t1)}.rec-menu-item.edit:hover{background:var(--orange-l);color:var(--orange)}
 .rec-menu-item.del{color:var(--red)}.rec-menu-item.del:hover{background:var(--red-l)}
-.month-row{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0 10px;border-bottom:1px solid rgba(232,228,220,0.8);margin-bottom:10px}
-.month-label{font-size:13px;font-weight:800;color:var(--t1);letter-spacing:-0.2px}
+.month-row{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0 10px;border-bottom:1px solid rgba(0,0,0,0.07);margin-bottom:10px}
+.month-label{font-size:14px;font-weight:800;color:var(--t1);letter-spacing:-0.3px}
 
 /* form */
-.form-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:18px 18px 20px;margin-bottom:var(--sp-2)}
+.form-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:18px 18px 20px;margin-bottom:var(--sp-2);box-shadow:var(--sh)}
 .form-title{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--t1);margin-bottom:var(--sp-2)}
 .form-row{display:grid;grid-template-columns:1fr;gap:var(--sp-2);margin-bottom:var(--sp-2);width:100%;box-sizing:border-box}
-.form-full{margin-bottom:16px}
+.form-full{margin-bottom:13px}
 .form-label{display:block;font-size:11px;font-weight:600;color:var(--t2);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:6px}
 .form-group-sep{height:8px;background:none}
 .form-input-wrap{position:relative}
-.form-input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:11px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-md);color:var(--t1);font-family:'Nunito Sans',sans-serif;font-size:16px;outline:none;transition:border-color .15s, background .15s;-moz-appearance:textfield}
+.form-input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-md);color:var(--t1);font-family:'Nunito Sans',sans-serif;font-size:16px;outline:none;transition:border-color .15s, background .15s;-moz-appearance:textfield}
 .form-input::-webkit-outer-spin-button,.form-input::-webkit-inner-spin-button{-webkit-appearance:none}
 .form-input:focus{border-color:var(--orange);background:#fff;border-width:1.5px}
 .form-row>*,.form-full{width:100%;max-width:100%;min-width:0;box-sizing:border-box;overflow:hidden}
@@ -172,15 +174,15 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .autocomplete-item:hover{background:var(--orange-l);color:var(--orange)}
 .profit-preview{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  border-radius:var(--r-md);padding:16px;margin-bottom:12px;
+  border-radius:var(--r-md);padding:14px;margin-bottom:10px;
   border:2px solid var(--border);background:var(--card);
   transition:border-color .25s, background .25s;
-  text-align:center;min-height:72px;
+  text-align:center;min-height:64px;
 }
 .profit-preview.is-plus{background:var(--green-l);border-color:var(--green-border)}
 .profit-preview.is-minus{background:var(--red-l);border-color:var(--red-border)}
 .profit-preview.is-zero{background:var(--bg2);border-color:var(--border)}
-.profit-preview-val.empty{color:var(--t3);font-size:28px;letter-spacing:0}
+.profit-preview-val.empty{color:var(--t3);font-size:24px;letter-spacing:0}
 .profit-preview-sub{font-size:11px;font-weight:600;margin-top:5px;opacity:0.6;color:var(--t2)}
 .profit-preview-label{font-size:11px;font-weight:600;color:var(--t3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
 .profit-preview-val{font-family:'Nunito',sans-serif;font-size:36px;font-weight:800;letter-spacing:-1px;line-height:1}
@@ -192,11 +194,11 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 /* settings */
 .settings-section{margin-bottom:var(--sp-3)}
 .settings-title{font-size:11px;font-weight:600;color:var(--t3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:var(--sp-1)}
-.settings-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.settings-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh)}
 .settings-row{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--border);gap:var(--sp-1)}
 .settings-row:last-child{border-bottom:none}
-.settings-row-label{font-size:13px;font-weight:700;color:var(--t1)}
-.settings-row-sub{font-size:12px;color:var(--t3);margin-top:2px}
+.settings-row-label{font-size:14px;font-weight:700;color:var(--t1)}
+.settings-row-sub{font-size:12px;color:var(--t3);margin-top:3px;line-height:1.5}
 .settings-btn{background:var(--orange);color:#fff;border:none;border-radius:10px;padding:9px 16px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .15s;min-height:44px}
 .settings-btn:hover{background:#ea6c0a}
 .settings-btn.secondary{background:var(--bg2);color:var(--t2);border:1px solid var(--border)}
@@ -416,10 +418,10 @@ export default function App() {
         <div className="rec-date" style={{marginBottom:5}}>{fmtDate(r.date)}</div>
         {/* 主役: 機種名 + 収支 */}
         <div className="rec-header" style={{marginBottom:0}}>
-          <div className="rec-machine" title={r.machine}>{r.machine}{r.id===bestRecId&&<span style={{fontSize:11,marginLeft:5}}>🏆</span>}</div>
+          <div className="rec-machine" title={r.machine}>{r.machine}{r.id===bestRecId&&<span style={{fontSize:10,marginLeft:6,background:"var(--orange-l)",color:"var(--orange)",padding:"1px 5px",borderRadius:3,fontWeight:700,fontFamily:"'Nunito',sans-serif"}}>ベスト</span>}</div>
           <div style={{display:"flex",flexDirection:"column",alignItems:"flex-end",paddingRight:24}}>
             <div className={`rec-profit ${profitColor(r.profit)}`}>{profitStr(r.profit)}</div>
-            {r.profit>0&&r.id===bestRecId&&<div style={{fontSize:10,color:"var(--orange)",fontWeight:700,marginTop:2}}>自己ベスト</div>}
+            
             {r.profit>0&&r.invest>0&&(r.collect-r.invest)/r.invest>=1&&<div style={{fontSize:10,color:"var(--green)",fontWeight:700,marginTop:2}}>2倍超え</div>}
           </div>
         </div>
@@ -462,14 +464,14 @@ export default function App() {
                 {monthRecs.length > 0 && (
                   <div style={{fontSize:11,color:"var(--orange)",opacity:0.75,marginTop:5,fontWeight:600}}>
                     {monthProfit > 0
-                      ? monthProfit >= 10000 ? "今月絶好調 🎯" : "今月プラス継続中"
-                      : monthProfit < 0 ? "巻き返しのチャンス" : "今月は引き分け"}
+                      ? monthProfit >= 10000 ? "今月プラス" : "今月プラス"
+                      : monthProfit < 0 ? "今月マイナス" : "±0円"}
                   </div>
                 )}
                 {streak.count >= 2 && (
                   <div className={`hero-copy ${streak.type==="win"?"win":"lose"}`}>
                     {streak.type==="win"
-                      ? streak.count >= 3 ? `${streak.count}連勝中 🔥` : `${streak.count}連勝中`
+                      ? `${streak.count}連勝中`
                       : `${streak.count}連敗中…`
                     }
                   </div>
@@ -481,7 +483,7 @@ export default function App() {
               {/* Sub row: 総収支・勝率・実戦回数 */}
               <div className="kpi-sub-row">
                 <div className="kpi-sub">
-                  <div className="kpi-label">今月最高勝ち</div>
+                  <div className="kpi-label">最高勝ち</div>
                   <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?profitStr(bestWin):"—"}</div>
                 </div>
                 <div className="kpi-sub">
@@ -509,7 +511,7 @@ export default function App() {
                   {chartData.length>=2 && (
                     <div className="graph-card su">
                       <div className="graph-title">直近の収支推移</div>
-                      <ResponsiveContainer width="100%" height={110}>
+                      <ResponsiveContainer width="100%" height={100}>
                         <BarChart data={chartData} margin={{top:4,right:10,left:0,bottom:0}}>
                           <CartesianGrid stroke="#f0ece4" vertical={false}/>
                           <XAxis dataKey="date" tick={{fontSize:10,fill:"#a8a29e"}} tickLine={false} axisLine={false} interval="preserveStartEnd"/>
@@ -563,7 +565,7 @@ export default function App() {
                   <div className={`kpi-val sub ${profitColor(avgProfit)}`}>{records.length?profitStr(avgProfit):"—"}</div>
                 </div>
                 <div className="sum-sub">
-                  <div className="kpi-label">今月最高勝ち</div>
+                  <div className="kpi-label">最高勝ち</div>
                   <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?profitStr(bestWin):"—"}</div>
                 </div>
                 <div className="sum-sub">
@@ -575,7 +577,7 @@ export default function App() {
             {chartData.length>=1 ? (
               <div className="graph-card su">
                 <div className="graph-title">日別収支</div>
-                <ResponsiveContainer width="100%" height={130}>
+                <ResponsiveContainer width="100%" height={120}>
                   <BarChart data={chartData} margin={{top:8,right:10,left:0,bottom:4}}>
                     <CartesianGrid stroke="#f0ece4" vertical={false}/>
                     <XAxis dataKey="date" tick={{fontSize:10,fill:"#a8a29e"}} tickLine={false} axisLine={false} interval="preserveStartEnd"/>
@@ -599,11 +601,8 @@ export default function App() {
                 background:"var(--card)",border:"1px solid var(--border)",borderRadius:"var(--r-md)",
                 padding:"14px 16px",marginBottom:"var(--sp-2)",
               }}>
-                <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:8,marginBottom:8}}>
-                  <span style={{fontSize:11,fontWeight:700,color:"var(--t3)",letterSpacing:"0.06em",textTransform:"uppercase"}}>通算成績</span>
-                  {winRate!=null&&<span style={{fontSize:11,fontWeight:700,color:winRate>=60?"var(--orange)":winRate>=50?"var(--t2)":"var(--t3)"}}>
-                    {winRate>=60?"勝ち越しペース":winRate>=50?"五分五分":"もう少し！"}
-                  </span>}
+                <div style={{marginBottom:8}}>
+                  <span style={{fontSize:11,fontWeight:600,color:"var(--t3)",letterSpacing:"0.06em",textTransform:"uppercase"}}>通算成績</span>
                 </div>
                 <div style={{display:"flex",gap:16,flexWrap:"wrap",alignItems:"baseline"}}>
                   <span style={{fontSize:13,color:"var(--t2)"}}>{records.length}戦<span style={{marginLeft:4,fontWeight:800,color:"var(--green)"}}>{records.filter(r=>r.profit>0).length}勝</span><span style={{marginLeft:2,fontWeight:800,color:"var(--red)"}}>{records.filter(r=>r.profit<0).length}敗</span></span>
@@ -791,7 +790,7 @@ export default function App() {
               <div className="settings-title" style={{color:"var(--red)"}}>危険な操作</div>
               <div className="settings-card" style={{border:"1px solid #fca5a5",background:"var(--red-l)"}}>
                 <div className="settings-row" style={{flexDirection:"column",alignItems:"flex-start",gap:12}}>
-                  <div><div className="settings-row-label">データをすべて削除</div><div className="settings-row-sub">すべての実戦記録が失われます。この操作は取り消せません。</div></div>
+                  <div><div className="settings-row-label">データをすべて削除</div><div className="settings-row-sub">全記録を削除します。復元できません。</div></div>
                   <button className="settings-btn danger" style={{alignSelf:"flex-end"}} onClick={()=>{if(window.confirm("すべてのデータを削除しますか？この操作は取り消せません。")){setRecords([]);setTab(0);}}}>削除する</button>
                 </div>
               </div>
