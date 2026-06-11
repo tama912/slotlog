@@ -671,7 +671,7 @@ export default function App() {
         {tab===2 && (
           <div className="section" style={{paddingTop:14}}>
             <div className="form-card su">
-              {editId && <div className="form-title">編集<span className="edit-badge">修正中</span></div>}
+              {editId && <div className="form-title">記録を編集<span className="edit-badge">修正中</span></div>}
               {/* Group 1: 日付 */}
               <div className="form-full">
                 <label className="form-label">日付</label>
