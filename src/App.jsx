@@ -451,7 +451,7 @@ export default function App() {
       <div className="app">
         <div className="header">
           {tab === 0
-            ? <img src="/header-banner.png?v=2" alt="スロログ" className="header-banner"/>
+            ? <img src="/logo.png?v=5" alt="スロログ" className="header-banner"/>
             : <div style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:800,color:"var(--t1)",letterSpacing:"-0.3px",padding:"0 16px",lineHeight:"normal"}}>{["","分析","履歴","記録","設定"][tab]}</div>
           }
         </div>
