@@ -128,13 +128,13 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .rec-profit.plus{color:var(--green)}.rec-profit.minus{color:var(--red)}.rec-profit.zero{color:var(--t2)}
 /* bottom row: 日付 + 投資/回収 + menu */
 .rec-footer{display:flex;align-items:center;gap:4px;margin-top:5px;padding-top:0}
-.rec-date{font-size:10px;color:var(--t3);font-weight:400;flex-shrink:0}
+.rec-date{font-size:10px;color:var(--t2);font-weight:500;flex-shrink:0}
 .rec-amounts{display:flex;gap:4px;flex:1}
 .rec-amt{font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;display:inline-flex;align-items:center;gap:2px;white-space:nowrap}
 .rec-amt.invest{background:var(--invest-bg);color:var(--invest-fg)}
 .rec-amt.collect{background:#dcfce7;color:var(--collect-fg);font-weight:800}
 .rec-amt-icon{font-size:10px;opacity:0.5}
-.rec-memo{font-size:11px;color:var(--t2);opacity:0.75;margin-top:6px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;max-height:1.5em;line-height:1.4}
+.rec-memo{font-size:11px;color:var(--t2);opacity:0.9;margin-top:6px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;max-height:1.5em;line-height:1.4}
 /* Win/Lose badge */
 .rec-badge{font-family:'Nunito',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.06em;padding:2px 6px;border-radius:3px;flex-shrink:0;align-self:flex-start;margin-top:4px}
 .rec-badge.win{background:var(--green-l);color:var(--green)}
