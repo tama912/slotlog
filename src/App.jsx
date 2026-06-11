@@ -50,8 +50,8 @@ const CSS = `
   --green:#15803d;--green-l:#f0fdf4;
   --red:#dc2626;--red-l:#fef2f2;
   --r-md:12px;--r-lg:18px;
-  --sh:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);
-  --sh-hero:0 2px 8px rgba(249,115,22,0.12),0 1px 3px rgba(0,0,0,0.05);
+  --sh:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --sh-hero:0 2px 8px rgba(249,115,22,0.08),0 1px 2px rgba(0,0,0,0.03);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 input,select,textarea{width:100%;max-width:100%;min-width:0;box-sizing:border-box}
@@ -67,10 +67,10 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .kpi.hero{background:var(--orange-l);border-color:var(--orange-m);padding:16px 22px 14px;border-radius:var(--r-lg);box-shadow:var(--sh-hero)}
 .kpi-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .kpi-sub{background:var(--card);border-radius:var(--r-md);padding:9px 9px 8px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
-.kpi-icon-wrap{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:2px;flex-shrink:0}
-.kpi-icon-wrap svg{width:14px;height:14px;stroke-width:2}
+.kpi-icon-wrap{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:3px;flex-shrink:0}
+.kpi-icon-wrap svg{width:16px;height:16px;stroke-width:1.8}
 .kpi-label{font-size:11px;color:var(--t3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:3px}
-.kpi-hero-label{font-size:11px;color:var(--orange);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:6px}
+.kpi-hero-label{font-size:10px;color:var(--t3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
 /* hero value: bigger */
 .kpi-val{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.5px;line-height:1}
 .kpi-val.hero{font-size:36px;font-weight:800;letter-spacing:-1.5px;line-height:1}
@@ -121,7 +121,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 /* top row: 機種名(主役) + 収支 */
 .rec-header{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .rec-header-left{flex:1;min-width:0}
-.rec-machine{font-size:14px;font-weight:600;color:var(--t2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;line-height:1.2}
+.rec-machine{font-size:14px;font-weight:700;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;line-height:1.2}
 .rec-store{font-size:11px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;font-weight:500}
 .rec-store-inline{font-size:11px;color:var(--t3);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:90px;flex-shrink:0}
 .rec-profit{font-family:'Nunito',sans-serif;font-size:24px;font-weight:800;letter-spacing:-1.5px;white-space:nowrap;flex-shrink:0;line-height:1}
@@ -141,7 +141,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-badge.lose{background:var(--red-l);color:var(--red)}
 .rec-badge.draw{background:var(--bg2);color:var(--t3)}
 /* Hero copy under KPI */
-.hero-copy{font-size:11px;font-weight:500;color:var(--t3);margin-top:6px;opacity:0.85}
+.hero-copy{font-size:10px;font-weight:400;color:var(--t3);margin-top:4px;opacity:0.6}
 .hero-copy.win{color:var(--orange);opacity:0.85}
 .hero-copy.lose{color:var(--t3)}
 .rec-menu-wrap{position:relative;flex-shrink:0;margin-left:8px}
@@ -471,7 +471,7 @@ export default function App() {
               {/* Sub row: 総収支・勝率・実戦回数 */}
               <div className="kpi-sub-row">
                 <div className="kpi-sub">
-                  <div className="kpi-icon-wrap" style={{background:"#fef5ee"}}>
+                  <div className="kpi-icon-wrap" style={{background:"rgba(249,115,22,0.06)"}}>
                     <svg viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
                   </div>
                   <div className="kpi-label">勝率</div>
@@ -479,14 +479,14 @@ export default function App() {
                   {records.length>0&&<div style={{fontSize:8,color:"var(--t3)",marginTop:2,fontWeight:400,opacity:0.5}}>{records.filter(r=>r.profit>0).length}勝{records.filter(r=>r.profit<0).length}敗</div>}
                 </div>
                 <div className="kpi-sub">
-                  <div className="kpi-icon-wrap" style={{background:"#fef5ee"}}>
+                  <div className="kpi-icon-wrap" style={{background:"rgba(249,115,22,0.06)"}}>
                     <svg viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
                   </div>
                   <div className="kpi-label">実戦</div>
                   <div className="kpi-val sub orange">{records.length}<span style={{fontSize:11,marginLeft:2,fontWeight:700}}>回</span></div>
                 </div>
                 <div className="kpi-sub" style={{opacity:bestWin>0?1:0.5}}>
-                  <div className="kpi-icon-wrap" style={{background:"#fef5ee"}}>
+                  <div className="kpi-icon-wrap" style={{background:"rgba(249,115,22,0.06)"}}>
                     <svg viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
                   </div>
                   <div className="kpi-label">最高勝ち</div>
