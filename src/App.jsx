@@ -418,7 +418,7 @@ export default function App() {
             <div className="rec-header" style={{marginBottom:0,marginRight:"22px",marginLeft:"auto"}}>
               <div style={{display:"flex",alignItems:"center",gap:0,flexShrink:0}}>
                 <div className={`rec-profit ${profitColor(r.profit)}`}>{profitStr(r.profit)}</div>
-                <button className="rec-menu-btn" style={{padding:"6px 4px",minWidth:"unset"}} onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
+                <button className="rec-menu-btn" style={{padding:"6px 4px 6px 5px",minWidth:"unset"}} onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
                 {menuOpen && (
                   <div className="rec-menu-dropdown">
                     <button className="rec-menu-item edit" onClick={e=>{e.stopPropagation();setMenuOpen(false);startEdit(r);}}>✏️ 編集</button>
