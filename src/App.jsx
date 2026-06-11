@@ -157,12 +157,12 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .month-label{font-size:14px;font-weight:800;color:var(--t1);letter-spacing:-0.3px}
 
 /* form */
-.form-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:18px 18px 20px;margin-bottom:var(--sp-2);box-shadow:var(--sh)}
+.form-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:14px 16px 18px;margin-bottom:var(--sp-2);box-shadow:var(--sh)}
 .form-title{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--t1);margin-bottom:var(--sp-2)}
 .form-row{display:grid;grid-template-columns:1fr;gap:var(--sp-2);margin-bottom:var(--sp-2);width:100%;box-sizing:border-box}
-.form-full{margin-bottom:12px}
+.form-full{margin-bottom:10px}
 .form-label{display:block;font-size:11px;font-weight:600;color:var(--t2);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:6px}
-.form-group-sep{height:8px;background:none}
+.form-group-sep{height:6px;background:none}
 .form-input-wrap{position:relative}
 .form-input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-md);color:var(--t1);font-family:'Nunito Sans',sans-serif;font-size:16px;outline:none;transition:border-color .15s, background .15s;-moz-appearance:textfield}
 .form-input::-webkit-outer-spin-button,.form-input::-webkit-inner-spin-button{-webkit-appearance:none}
@@ -180,19 +180,19 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
   border-radius:var(--r-md);padding:14px;margin-bottom:10px;
   border:2px solid var(--border);background:var(--card);
   transition:border-color .25s, background .25s;
-  text-align:center;min-height:64px;
+  text-align:center;min-height:56px;
 }
 .profit-preview.is-plus{background:var(--green-l);border-color:var(--green-border)}
 .profit-preview.is-minus{background:var(--red-l);border-color:var(--red-border)}
 .profit-preview.is-zero{background:var(--bg2);border-color:var(--border)}
 .profit-preview-val.empty{color:var(--t3);font-size:24px;letter-spacing:0}
 
-.profit-preview-label{font-size:11px;font-weight:600;color:var(--t3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
-.profit-preview-val{font-family:'Nunito',sans-serif;font-size:38px;font-weight:800;letter-spacing:-1.5px;line-height:1}
+.profit-preview-label{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px}
+.profit-preview-val{font-family:'Nunito',sans-serif;font-size:40px;font-weight:800;letter-spacing:-2px;line-height:1}
 .profit-preview-val.plus{color:var(--green)}.profit-preview-val.minus{color:var(--red)}.profit-preview-val.zero{color:var(--t2)}
 .submit-btn{width:100%;padding:14px;background:var(--orange);color:#fff;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;border:none;border-radius:var(--r-md);cursor:pointer;transition:background .15s,transform .1s}
 .submit-btn:hover{background:var(--orange-hover)}.submit-btn:active{transform:scale(0.98)}.submit-btn:disabled{background:var(--border);cursor:default;transform:none}
-.edit-badge{display:inline-block;background:var(--orange-l);color:var(--orange);font-size:11px;font-weight:700;border-radius:6px;padding:2px 8px;margin-left:8px;border:1px solid var(--orange-m)}
+.edit-badge{display:inline-block;background:var(--orange-l);color:var(--orange);font-size:9px;font-weight:600;border-radius:4px;padding:1px 6px;margin-left:6px;border:1px solid var(--orange-m);letter-spacing:0.03em}
 
 /* settings */
 .settings-section{margin-bottom:var(--sp-3)}
@@ -680,25 +680,25 @@ export default function App() {
               <div className="form-group-sep"/>
               {/* Group 2: 店舗・機種 */}
               <div className="form-full">
-                <label className="form-label">店舗名</label>
+                <label className="form-label">🏠 店舗名</label>
                 <AutocompleteInput value={form.store} onChange={v=>setForm(p=>({...p,store:v}))} candidates={history.stores} placeholder="〇〇パチンコ" className="form-input"/>
               </div>
               <div className="form-full">
-                <label className="form-label">機種名</label>
+                <label className="form-label">🎰 機種名</label>
                 <AutocompleteInput value={form.machine} onChange={v=>setForm(p=>({...p,machine:v}))} candidates={history.machines} placeholder="〇〇〇" className="form-input"/>
               </div>
               <div className="form-group-sep"/>
               {/* Group 3: 投資・回収 */}
               <div className="form-row">
                 <div>
-                  <label className="form-label">投資金額</label>
+                  <label className="form-label">💸 投資金額</label>
                   <div style={{position:"relative"}}>
                     <span style={{position:"absolute",left:13,top:"50%",transform:"translateY(-50%)",fontSize:15,color:"var(--t3)",fontWeight:600,pointerEvents:"none"}}>¥</span>
                     <input className="form-input" type="number" placeholder="10000" value={form.invest} style={{paddingLeft:28}} onChange={e=>setForm(p=>({...p,invest:e.target.value}))}/>
                   </div>
                 </div>
                 <div>
-                  <label className="form-label">回収金額</label>
+                  <label className="form-label">💰 回収金額</label>
                   <div style={{position:"relative"}}>
                     <span style={{position:"absolute",left:13,top:"50%",transform:"translateY(-50%)",fontSize:15,color:"var(--t3)",fontWeight:600,pointerEvents:"none"}}>¥</span>
                     <input className="form-input" type="number" placeholder="15000" value={form.collect} style={{paddingLeft:28}} onChange={e=>setForm(p=>({...p,collect:e.target.value}))}/>
@@ -712,7 +712,7 @@ export default function App() {
                 </div>
                 {(form.invest||form.collect) && (
                   <div className="profit-preview-sub">
-                    {previewProfit > 0 ? "✨ 今日はプラスです！" : previewProfit < 0 ? "💸 マイナスです" : "±0円 引き分け"}
+                    {previewProfit > 0 ? "🎯 プラス！次も勝とう" : previewProfit < 0 ? "😤 負け越し、次回に期待" : "➡️ 引き分け"}
                   </div>
                 )}
               </div>
