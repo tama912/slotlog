@@ -148,7 +148,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .rec-menu-wrap{position:relative;flex-shrink:0;margin-left:8px}
 .rec-menu-btn{background:none;border:none;cursor:pointer;color:rgba(24,18,14,0.5);font-size:26px;padding:6px 2px 6px 10px;border-radius:16px;line-height:1;letter-spacing:-6em;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .rec-menu-btn:hover{background:var(--bg2);color:var(--t2)}
-.rec-menu-dropdown{position:absolute;right:0;top:100%;margin-top:4px;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.12);z-index:200;overflow:hidden;min-width:110px}
+.rec-menu-dropdown{position:absolute;right:0;top:100%;margin-top:4px;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.12);z-index:200;min-width:110px}
 .rec-menu-item{display:block;width:100%;text-align:left;padding:10px 14px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;background:none;border:none;cursor:pointer;transition:background .12s}
 .rec-menu-item:first-child{border-bottom:1px solid var(--border)}
 .rec-menu-item.edit{color:var(--t1)}.rec-menu-item.edit:hover{background:var(--orange-l);color:var(--orange)}
@@ -420,9 +420,9 @@ export default function App() {
           <div className="rec-machine" style={{flex:1,minWidth:0}} title={r.machine}>{r.machine}</div>
           <div className={`rec-profit ${profitColor(r.profit)}`} style={{flexShrink:0,marginLeft:6}}>{profitStr(r.profit)}</div>
           <div style={{position:"relative",flexShrink:0}}>
-            <button className="rec-menu-btn" style={{padding:"4px 0px",minWidth:28,minHeight:28,fontSize:18,letterSpacing:"-0.3em",marginRight:-4}} ref={btnRef} onClick={e=>{e.stopPropagation();const btn=e.currentTarget.getBoundingClientRect();const spaceBelow=window.innerHeight-btn.bottom;const above=spaceBelow<100;const top=above?btn.top-4:btn.bottom+4;const right=window.innerWidth-btn.right;setMenuPos({top,right,above});setMenuOpen(o=>!o);}}>⋯</button>
+            <button className="rec-menu-btn" style={{padding:"4px 0px",minWidth:28,minHeight:28,fontSize:18,letterSpacing:"-0.3em",marginRight:-4}} ref={btnRef} onClick={e=>{e.stopPropagation();const btn=e.currentTarget.getBoundingClientRect();const spaceBelow=window.innerHeight-btn.bottom;const above=spaceBelow<90;const top=above?btn.top:btn.bottom+4;const right=window.innerWidth-btn.right;setMenuPos({top,right,above});setMenuOpen(o=>!o);}}>⋯</button>
             {menuOpen && createPortal(
-              <div className="rec-menu-dropdown" style={{position:"fixed",top:menuPos.above?"auto":menuPos.top,bottom:menuPos.above?`${window.innerHeight-menuPos.top}px`:"auto",right:menuPos.right,marginTop:0,zIndex:9999}}>
+              <div className="rec-menu-dropdown" style={{position:"fixed",bottom:`${window.innerHeight-menuPos.top+4}px`,right:menuPos.right,top:"auto",marginTop:0,zIndex:9999}}>
                 <button className="rec-menu-item edit" onClick={e=>{e.stopPropagation();setMenuOpen(false);startEdit(r);}}>✏️ 編集</button>
                 <button className="rec-menu-item del"  onClick={e=>{e.stopPropagation();setMenuOpen(false);handleDelete(r.id);}}>🗑️ 削除</button>
               </div>,
