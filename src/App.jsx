@@ -356,6 +356,7 @@ export default function App() {
   const handleDelete = useCallback((id) => {
     const rec = records.find(r => r.id === id);
     if (!rec) return;
+    if (!window.confirm('この実戦記録を削除しますか？')) return;
     setRecords(prev => prev.filter(r => r.id !== id));
     if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
     setUndoItem(rec);
