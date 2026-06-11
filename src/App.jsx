@@ -159,7 +159,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 /* form */
 .form-card{background:var(--card);border-radius:var(--r-lg);border:1px solid rgba(0,0,0,0.08);padding:16px 18px 20px;margin-bottom:var(--sp-2);box-shadow:0 2px 8px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04)}
 .form-title{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--t1);margin-bottom:var(--sp-2)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-1);margin-bottom:var(--sp-2);width:100%;box-sizing:border-box}
+.form-row{display:grid;grid-template-columns:1fr;gap:var(--sp-1);margin-bottom:var(--sp-2);width:100%;box-sizing:border-box}
 .form-full{margin-bottom:10px}
 .form-label{display:block;font-size:10px;font-weight:700;color:var(--t2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px}
 .form-group-sep{height:10px;background:none}
@@ -188,7 +188,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .profit-preview-val.empty{color:var(--t3);font-size:24px;letter-spacing:0}
 
 .profit-preview-label{font-size:10px;font-weight:700;color:var(--t2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px}
-.profit-preview-val{font-family:'Nunito',sans-serif;font-size:40px;font-weight:800;letter-spacing:-2px;line-height:1}
+.profit-preview-val{font-family:'Nunito',sans-serif;font-size:42px;font-weight:900;letter-spacing:-2.5px;line-height:1}
 .profit-preview-val.plus{color:var(--green)}.profit-preview-val.minus{color:var(--red)}.profit-preview-val.zero{color:var(--t2)}
 .submit-btn{width:100%;padding:15px;background:var(--orange);color:#fff;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;border:none;border-radius:var(--r-lg);cursor:pointer;transition:background .15s,transform .1s;letter-spacing:0.02em}
 .submit-btn:hover{background:var(--orange-hover)}.submit-btn:active{transform:scale(0.98)}.submit-btn:disabled{background:var(--border);cursor:default;transform:none}
@@ -689,21 +689,21 @@ export default function App() {
                 <AutocompleteInput value={form.store} onChange={v=>setForm(p=>({...p,store:v}))} candidates={history.stores} placeholder="〇〇パチンコ" className="form-input"/>
               </div>
               <div className="form-full">
-                <label className="form-label">🎰 機種名</label>
+                <label className="form-label" style={{color:"var(--orange)"}}>🎰 機種名</label>
                 <AutocompleteInput value={form.machine} onChange={v=>setForm(p=>({...p,machine:v}))} candidates={history.machines} placeholder="〇〇〇" className="form-input"/>
               </div>
               <div className="form-group-sep"/>
               {/* Group 3: 投資・回収 */}
               <div className="form-row">
                 <div>
-                  <label className="form-label">💸 投資金額</label>
+                  <label className="form-label" style={{color:"var(--invest-fg)"}}>💸 投資金額</label>
                   <div style={{position:"relative"}}>
                     <span style={{position:"absolute",left:13,top:"50%",transform:"translateY(-50%)",fontSize:15,color:"var(--t3)",fontWeight:600,pointerEvents:"none"}}>¥</span>
                     <input className="form-input" type="number" placeholder="10000" value={form.invest} style={{paddingLeft:28}} onChange={e=>setForm(p=>({...p,invest:e.target.value}))}/>
                   </div>
                 </div>
                 <div>
-                  <label className="form-label">💰 回収金額</label>
+                  <label className="form-label" style={{color:"var(--collect-fg)"}}>💰 回収金額</label>
                   <div style={{position:"relative"}}>
                     <span style={{position:"absolute",left:13,top:"50%",transform:"translateY(-50%)",fontSize:15,color:"var(--t3)",fontWeight:600,pointerEvents:"none"}}>¥</span>
                     <input className="form-input" type="number" placeholder="15000" value={form.collect} style={{paddingLeft:28}} onChange={e=>setForm(p=>({...p,collect:e.target.value}))}/>
