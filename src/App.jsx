@@ -239,7 +239,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .bnav-btn.fab{color:var(--orange);background:none;border-radius:0;width:56px;height:auto;margin-top:0;box-shadow:none;padding:2px 0 4px;gap:0;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
 .fab-dot{width:42px;height:42px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(249,115,22,0.4);margin-top:-22px;margin-bottom:2px}
 .fab-dot svg{width:22px;height:22px;stroke-width:2.5;stroke:#fff}
-.bnav-btn.fab .bnav-label{font-size:10px;font-weight:700;color:var(--orange);line-height:1}
+.bnav-btn.fab .bnav-label{font-size:9px;font-weight:500;color:var(--orange);line-height:1}
 .bnav-btn.fab:hover .fab-dot{background:var(--orange-hover)}
 
 @keyframes slideUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
