@@ -453,10 +453,12 @@ export default function App() {
           {tab === 0
             ? <img src="/logo.png?v=5" alt="スロログ" className="header-banner"/>
             : tab === 2 && editId
-              ? <div style={{display:"flex",alignItems:"center",gap:8,padding:"0 16px",width:"100%"}}>
-                  <button onClick={()=>{setEditId(null);setForm(EMPTY_FORM);setTab(3);}} style={{background:"none",border:"none",cursor:"pointer",color:"var(--orange)",fontSize:13,fontWeight:700,padding:"4px 0",fontFamily:"'Nunito',sans-serif",whiteSpace:"nowrap"}}>← 戻る</button>
-                  <div style={{flex:1,textAlign:"center",display:"flex",alignItems:"center",justifyContent:"center",gap:6}}><span style={{fontFamily:"'Nunito',sans-serif",fontSize:16,fontWeight:800,color:"var(--t1)",letterSpacing:"-0.2px"}}>記録を編集</span><span className="edit-badge">修正中</span></div>
-                  <div style={{width:48}}/>
+              ? <div style={{width:"100%",padding:"0 16px"}}>
+                  <button onClick={()=>{setEditId(null);setForm(EMPTY_FORM);setTab(3);}} style={{background:"none",border:"none",cursor:"pointer",color:"var(--orange)",fontSize:13,fontWeight:700,padding:0,fontFamily:"'Nunito',sans-serif",display:"block",marginBottom:2}}>← 戻る</button>
+                  <div style={{display:"flex",alignItems:"center",gap:6}}>
+                    <span style={{fontFamily:"'Nunito',sans-serif",fontSize:17,fontWeight:800,color:"var(--t1)",letterSpacing:"-0.3px"}}>記録を編集</span>
+                    <span className="edit-badge">修正中</span>
+                  </div>
                 </div>
               : <div style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:800,color:"var(--t1)",letterSpacing:"-0.3px",padding:"0 16px",lineHeight:"normal"}}>{["","分析","記録","履歴","設定"][tab]}</div>
           }
