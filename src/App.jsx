@@ -55,8 +55,8 @@ const CSS = `
 }
 *{box-sizing:border-box;margin:0;padding:0}
 input,select,textarea{width:100%;max-width:100%;min-width:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-.app{max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden;padding-bottom:88px}
+body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.app{max-width:100%;width:100%;margin:0 auto;min-height:100vh;overflow-x:hidden;padding-bottom:88px}
 .header{background:#fce4be;border-bottom:none;padding:0;position:sticky;top:0;z-index:50;overflow:hidden;line-height:0;height:110px}
 .header-banner{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 .header-logo{display:block;height:88px;width:auto;max-width:320px;object-fit:contain}
@@ -233,7 +233,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .empty-ico{font-size:32px;margin-bottom:8px}.empty-txt{font-size:14px;color:var(--t2);font-weight:600}.empty-hint{font-size:12px;color:var(--t3);margin-top:4px}
 
 /* bnav */
-.bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;padding:8px 0;padding-bottom:calc(16px + env(safe-area-inset-bottom,6px))}
+.bnav{position:fixed;bottom:0;left:0;right:0;width:100%;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;padding:8px 0;padding-bottom:calc(16px + env(safe-area-inset-bottom,6px))}
 .bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:6px 0;color:var(--t2);font-family:'Nunito',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.04em;transition:color .15s;-webkit-tap-highlight-color:transparent}
 .bnav-btn.on{color:var(--orange);font-weight:800}.bnav-btn svg{width:22px;height:22px;stroke-width:2}
 .bnav-btn.fab{color:var(--orange);background:none;border-radius:0;width:56px;height:auto;margin-top:0;box-shadow:none;padding:2px 0 4px;gap:0;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
