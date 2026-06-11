@@ -159,9 +159,9 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 /* form */
 .form-card{background:var(--card);border-radius:var(--r-lg);border:1px solid rgba(0,0,0,0.08);padding:16px 18px 20px;margin-bottom:var(--sp-2);box-shadow:0 2px 8px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04)}
 .form-title{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--t1);margin-bottom:var(--sp-2)}
-.form-row{display:grid;grid-template-columns:1fr;gap:var(--sp-2);margin-bottom:var(--sp-2);width:100%;box-sizing:border-box}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-1);margin-bottom:var(--sp-2);width:100%;box-sizing:border-box}
 .form-full{margin-bottom:10px}
-.form-label{display:block;font-size:10px;font-weight:700;color:var(--t2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px}
+.form-label{display:block;font-size:10px;font-weight:700;color:var(--t2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px}
 .form-group-sep{height:10px;background:none}
 .form-input-wrap{position:relative}
 .form-input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:11px 14px;background:var(--card);border:1px solid rgba(0,0,0,0.12);border-radius:var(--r-md);color:var(--t1);font-family:'Nunito Sans',sans-serif;font-size:16px;outline:none;transition:border-color .15s,box-shadow .15s;-moz-appearance:textfield}
@@ -177,20 +177,20 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .autocomplete-item:hover{background:var(--orange-l);color:var(--orange)}
 .profit-preview{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  border-radius:var(--r-md);padding:14px;margin-bottom:10px;
-  border:2px solid var(--border);background:var(--card);
-  transition:border-color .25s, background .25s;
-  text-align:center;min-height:56px;
+  border-radius:var(--r-lg);padding:16px 14px;margin-bottom:12px;
+  border:1.5px solid var(--border);background:var(--card);
+  transition:border-color .25s,background .25s,box-shadow .25s;
+  text-align:center;min-height:60px;box-shadow:var(--sh);
 }
-.profit-preview.is-plus{background:var(--green-l);border-color:var(--green-border)}
-.profit-preview.is-minus{background:var(--red-l);border-color:var(--red-border)}
+.profit-preview.is-plus{background:var(--green-l);border-color:var(--green-border);box-shadow:0 2px 8px rgba(21,128,61,0.1)}
+.profit-preview.is-minus{background:var(--red-l);border-color:var(--red-border);box-shadow:0 2px 8px rgba(220,38,38,0.08)}
 .profit-preview.is-zero{background:var(--bg2);border-color:var(--border)}
 .profit-preview-val.empty{color:var(--t3);font-size:24px;letter-spacing:0}
 
-.profit-preview-label{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px}
+.profit-preview-label{font-size:10px;font-weight:700;color:var(--t2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px}
 .profit-preview-val{font-family:'Nunito',sans-serif;font-size:40px;font-weight:800;letter-spacing:-2px;line-height:1}
 .profit-preview-val.plus{color:var(--green)}.profit-preview-val.minus{color:var(--red)}.profit-preview-val.zero{color:var(--t2)}
-.submit-btn{width:100%;padding:14px;background:var(--orange);color:#fff;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;border:none;border-radius:var(--r-md);cursor:pointer;transition:background .15s,transform .1s}
+.submit-btn{width:100%;padding:15px;background:var(--orange);color:#fff;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;border:none;border-radius:var(--r-lg);cursor:pointer;transition:background .15s,transform .1s;letter-spacing:0.02em}
 .submit-btn:hover{background:var(--orange-hover)}.submit-btn:active{transform:scale(0.98)}.submit-btn:disabled{background:var(--border);cursor:default;transform:none}
 .edit-badge{display:inline-block;background:var(--orange-l);color:var(--orange);font-size:10px;font-weight:700;border-radius:4px;padding:2px 8px;margin-left:6px;border:1px solid var(--orange-m);letter-spacing:0.03em}
 
