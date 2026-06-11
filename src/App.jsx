@@ -360,7 +360,6 @@ export default function App() {
     setRecords(prev => prev.filter(r => r.id !== id));
     if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
     setUndoItem(rec);
-    undoTimerRef.current = setTimeout(() => setUndoItem(null), 5000);
   }, [records]);
 
   const handleUndo = () => {
