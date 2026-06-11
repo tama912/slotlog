@@ -391,7 +391,7 @@ export default function App() {
   const startEdit = (r) => {
     setEditId(r.id);
     setForm({date:r.date,store:r.store,machine:r.machine,invest:String(r.invest),collect:String(r.collect),memo:r.memo||""});
-    setTab(3);
+    setTab(2);
   };
 
   const handleExport = () => {
