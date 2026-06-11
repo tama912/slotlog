@@ -114,7 +114,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .machine-profit{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;flex-shrink:0;text-align:right;min-width:68px}
 
 /* record card */
-.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:9px 14px 9px 18px;margin-bottom:6px;position:relative;box-shadow:var(--sh)}
+.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:8px 14px 8px 18px;margin-bottom:5px;position:relative;box-shadow:var(--sh)}
 .rec-item::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:3px;border-radius:0 2px 2px 0;background:var(--border)}
 .rec-item.plus::before{background:var(--green)}.rec-item.minus::before{background:var(--red)}
 /* top row: 機種名(主役) + 収支 */
@@ -126,7 +126,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-profit{font-family:'Nunito',sans-serif;font-size:21px;font-weight:800;letter-spacing:-1px;white-space:nowrap;flex-shrink:0;line-height:1}
 .rec-profit.plus{color:var(--green)}.rec-profit.minus{color:var(--red)}.rec-profit.zero{color:var(--t2)}
 /* bottom row: 日付 + 投資/回収 + menu */
-.rec-footer{display:flex;align-items:center;gap:6px;margin-top:5px;padding-top:5px;border-top:1px solid rgba(0,0,0,0.07)}
+.rec-footer{display:flex;align-items:center;gap:6px;margin-top:4px;padding-top:4px;border-top:1px solid rgba(0,0,0,0.07)}
 .rec-date{font-size:11px;color:var(--t3);font-weight:500;flex-shrink:0;letter-spacing:0.01em}
 .rec-amounts{display:flex;gap:6px;flex:1}
 .rec-amt{font-size:11px;font-weight:700;padding:3px 8px;border-radius:5px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
@@ -411,7 +411,7 @@ export default function App() {
     return (
       <div className={`rec-item ${profitColor(r.profit)} su`} style={{animationDelay:`${delay}s`,position:"relative"}} onClick={()=>menuOpen&&setMenuOpen(false)}>
         <div style={{display:"flex",alignItems:"center",gap:6,minWidth:0}}>
-          {r.id===bestRecId&&<span style={{fontSize:10,flexShrink:0,marginRight:3,lineHeight:1,opacity:0.8,verticalAlign:"middle"}}>🏆</span>}
+          {r.id===bestRecId&&<span style={{fontSize:18,flexShrink:0,marginRight:8,lineHeight:1,opacity:0.85,display:"inline-flex",alignItems:"center"}}>🏆</span>}
           <div className="rec-machine" style={{flex:1,minWidth:0,display:"flex",alignItems:"center"}} title={r.machine}>
             <span>{r.machine}</span>
             {/* 主役: 収支 */}
@@ -450,18 +450,22 @@ export default function App() {
       <div className="app">
         <div className="header">
           {tab === 0
-            ? <img
-                src="/logo.png?v=4"
-                alt="スロログ"
-                style={{
-                  display:"block",
-                  height:"62px",
-                  width:"auto",
-                  maxWidth:"300px",
-                  objectFit:"contain",
-                  flexShrink:0,
-                }}
-              />
+            ? <div style={{display:"flex",alignItems:"center",gap:10}}>
+                <span style={{fontSize:14,opacity:0.35,color:"var(--orange)",letterSpacing:"2px"}}>✦✦</span>
+                <img
+                  src="/logo.png?v=4"
+                  alt="スロログ"
+                  style={{
+                    display:"block",
+                    height:"62px",
+                    width:"auto",
+                    maxWidth:"300px",
+                    objectFit:"contain",
+                    flexShrink:0,
+                  }}
+                />
+                <span style={{fontSize:14,opacity:0.35,color:"var(--orange)",letterSpacing:"2px"}}>✦✦</span>
+              </div>
             : <div style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:800,color:"var(--t1)",letterSpacing:"-0.3px"}}>
                 {["","分析","履歴","記録","設定"][tab]}
               </div>
@@ -492,7 +496,7 @@ export default function App() {
                   </div>
                   <div className="kpi-label">勝率</div>
                   <div className="kpi-val sub orange">{winRate!=null?`${winRate}%`:"0%"}</div>
-                  {records.length>0&&<div style={{fontSize:10,color:"var(--t3)",marginTop:3,fontWeight:500}}>{records.filter(r=>r.profit>0).length}勝{records.filter(r=>r.profit<0).length}敗</div>}
+                  {records.length>0&&<div style={{fontSize:9,color:"var(--t3)",marginTop:2,fontWeight:400,opacity:0.8}}>{records.filter(r=>r.profit>0).length}勝{records.filter(r=>r.profit<0).length}敗</div>}
                 </div>
                 <div className="kpi-sub">
                   <div className="kpi-icon-wrap" style={{background:"#fff1e8"}}>
