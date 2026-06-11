@@ -57,7 +57,8 @@ const CSS = `
 input,select,textarea{width:100%;max-width:100%;min-width:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .app{max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden;padding-bottom:88px}
-.header{background:#ffd9a0 url("/header-banner.png?v=1") center/cover no-repeat;border-bottom:1px solid var(--orange-m);padding:0;position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:center;min-height:80px;box-sizing:border-box;overflow:hidden}
+.header{background:#fce4be;border-bottom:none;padding:0;position:sticky;top:0;z-index:50;overflow:hidden;line-height:0}
+.header-banner{width:100%;height:auto;display:block}
 .header-logo{display:block;height:88px;width:auto;max-width:320px;object-fit:contain}
 
 .kpi-grid{display:flex;flex-direction:column;gap:8px;padding:10px var(--sp-2) 0}
@@ -449,7 +450,10 @@ export default function App() {
       <style>{CSS}</style>
       <div className="app">
         <div className="header">
-          {tab !== 0 && <div style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:800,color:"var(--t1)",letterSpacing:"-0.3px"}}>{["","分析","履歴","記録","設定"][tab]}</div>}
+          {tab === 0
+            ? <img src="/header-banner.png?v=2" alt="スロログ" className="header-banner"/>
+            : <div style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:800,color:"var(--t1)",letterSpacing:"-0.3px",padding:"0 16px",lineHeight:"normal"}}>{["","分析","履歴","記録","設定"][tab]}</div>
+          }
         </div>
 
         {/* ═══ HOME ═══ */}
