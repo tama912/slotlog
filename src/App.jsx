@@ -57,7 +57,7 @@ const CSS = `
 input,select,textarea{width:100%;max-width:100%;min-width:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .app{max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden;padding-bottom:88px}
-.header{background:#ffd9a0;border-bottom:1px solid var(--orange-m);padding:6px 16px;position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:center;min-height:64px;box-sizing:border-box}
+.header{background:#ffd9a0 url("/header-banner.png?v=1") center/cover no-repeat;border-bottom:1px solid var(--orange-m);padding:0;position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:center;min-height:80px;box-sizing:border-box;overflow:hidden}
 .header-logo{display:block;height:88px;width:auto;max-width:320px;object-fit:contain}
 
 .kpi-grid{display:flex;flex-direction:column;gap:8px;padding:10px var(--sp-2) 0}
@@ -114,11 +114,11 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .machine-profit{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;flex-shrink:0;text-align:right;min-width:68px}
 
 /* record card */
-.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:9px 14px 9px 18px;margin-bottom:6px;position:relative;box-shadow:var(--sh)}
+.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:8px 14px 8px 18px;margin-bottom:5px;position:relative;box-shadow:var(--sh)}
 .rec-item::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:3px;border-radius:0 2px 2px 0;background:var(--border)}
 .rec-item.plus::before{background:var(--green)}.rec-item.minus::before{background:var(--red)}
 /* top row: 機種名(主役) + 収支 */
-.rec-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;gap:8px}
+.rec-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;gap:8px;flex:1;justify-content:flex-end}
 .rec-header-left{flex:1;min-width:0}
 .rec-machine{font-size:15px;font-weight:700;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;line-height:1.3;margin-bottom:2px}
 .rec-store{font-size:11px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;font-weight:500}
@@ -126,7 +126,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-profit{font-family:'Nunito',sans-serif;font-size:21px;font-weight:800;letter-spacing:-1px;white-space:nowrap;flex-shrink:0;line-height:1}
 .rec-profit.plus{color:var(--green)}.rec-profit.minus{color:var(--red)}.rec-profit.zero{color:var(--t2)}
 /* bottom row: 日付 + 投資/回収 + menu */
-.rec-footer{display:flex;align-items:center;gap:6px;margin-top:5px;padding-top:5px;border-top:1px solid rgba(0,0,0,0.07)}
+.rec-footer{display:flex;align-items:center;gap:6px;margin-top:4px;padding-top:4px;border-top:1px solid rgba(0,0,0,0.07)}
 .rec-date{font-size:11px;color:var(--t3);font-weight:500;flex-shrink:0;letter-spacing:0.01em}
 .rec-amounts{display:flex;gap:6px;flex:1}
 .rec-amt{font-size:11px;font-weight:700;padding:3px 8px;border-radius:5px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
@@ -144,7 +144,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .hero-copy.win{color:var(--orange);opacity:0.85}
 .hero-copy.lose{color:var(--t3)}
 .rec-menu-wrap{position:relative;flex-shrink:0;margin-left:8px}
-.rec-menu-btn{background:none;border:none;cursor:pointer;color:rgba(24,18,14,0.5);font-size:36px;padding:6px 8px;border-radius:16px;line-height:1;letter-spacing:-6em;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
+.rec-menu-btn{background:none;border:none;cursor:pointer;color:rgba(24,18,14,0.5);font-size:26px;padding:6px 8px;border-radius:16px;line-height:1;letter-spacing:-6em;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .rec-menu-btn:hover{background:var(--bg2);color:var(--t2)}
 .rec-menu-dropdown{position:absolute;right:0;top:100%;margin-top:4px;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.12);z-index:200;overflow:hidden;min-width:110px}
 .rec-menu-item{display:block;width:100%;text-align:left;padding:10px 14px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;background:none;border:none;cursor:pointer;transition:background .12s}
@@ -410,22 +410,23 @@ export default function App() {
     const [menuOpen, setMenuOpen] = useState(false);
     return (
       <div className={`rec-item ${profitColor(r.profit)} su`} style={{animationDelay:`${delay}s`,position:"relative"}} onClick={()=>menuOpen&&setMenuOpen(false)}>
-
-        {/* 主役: 機種名 + 収支 */}
-        <div className="rec-header" style={{marginBottom:0}}>
-          <div style={{display:"flex",alignItems:"center",gap:6,minWidth:0}}>
-            {r.id===bestRecId&&<span style={{fontSize:10,flexShrink:0,marginRight:3,lineHeight:1,opacity:0.8,verticalAlign:"middle"}}>🏆</span>}
-            <div className="rec-machine" style={{flex:1,minWidth:0}} title={r.machine}>{r.machine}</div>
-          </div>
-          <div style={{display:"flex",alignItems:"center",justifyContent:"center",alignSelf:"center",gap:2,flexShrink:0,marginRight:-20}}>
-            <div className={`rec-profit ${profitColor(r.profit)}`}>{profitStr(r.profit)}</div>
-            <button className="rec-menu-btn" onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
-            {menuOpen && (
-              <div className="rec-menu-dropdown">
-                <button className="rec-menu-item edit" onClick={e=>{e.stopPropagation();setMenuOpen(false);startEdit(r);}}>✏️ 編集</button>
-                <button className="rec-menu-item del"  onClick={e=>{e.stopPropagation();setMenuOpen(false);handleDelete(r.id);}}>🗑️ 削除</button>
+        <div style={{display:"flex",alignItems:"center",gap:6,minWidth:0}}>
+          {r.id===bestRecId&&<span style={{fontSize:18,flexShrink:0,marginRight:8,lineHeight:1,opacity:0.85,display:"inline-flex",alignItems:"center"}}>🏆</span>}
+          <div className="rec-machine" style={{flex:1,minWidth:0,display:"flex",alignItems:"center"}} title={r.machine}>
+            <span>{r.machine}</span>
+            {/* 主役: 収支 */}
+            <div className="rec-header" style={{marginBottom:0,marginRight:"22px",marginLeft:"auto"}}>
+              <div style={{display:"flex",alignItems:"center",gap:0,flexShrink:0}}>
+                <div className={`rec-profit ${profitColor(r.profit)}`}>{profitStr(r.profit)}</div>
+                <button className="rec-menu-btn" style={{padding:"6px 4px 6px 5px",minWidth:"unset"}} onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
+                {menuOpen && (
+                  <div className="rec-menu-dropdown">
+                    <button className="rec-menu-item edit" onClick={e=>{e.stopPropagation();setMenuOpen(false);startEdit(r);}}>✏️ 編集</button>
+                    <button className="rec-menu-item del"  onClick={e=>{e.stopPropagation();setMenuOpen(false);handleDelete(r.id);}}>🗑️ 削除</button>
+                  </div>
+                )}
               </div>
-            )}
+            </div>
           </div>
         </div>
         {/* 補助: 日付 + 投資/回収 */}
@@ -448,23 +449,7 @@ export default function App() {
       <style>{CSS}</style>
       <div className="app">
         <div className="header">
-          {tab === 0
-            ? <img
-                src="/logo.png?v=4"
-                alt="スロログ"
-                style={{
-                  display:"block",
-                  height:"62px",
-                  width:"auto",
-                  maxWidth:"300px",
-                  objectFit:"contain",
-                  flexShrink:0,
-                }}
-              />
-            : <div style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:800,color:"var(--t1)",letterSpacing:"-0.3px"}}>
-                {["","分析","履歴","記録","設定"][tab]}
-              </div>
-          }
+          {tab !== 0 && <div style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:800,color:"var(--t1)",letterSpacing:"-0.3px"}}>{["","分析","履歴","記録","設定"][tab]}</div>}
         </div>
 
         {/* ═══ HOME ═══ */}
@@ -491,7 +476,7 @@ export default function App() {
                   </div>
                   <div className="kpi-label">勝率</div>
                   <div className="kpi-val sub orange">{winRate!=null?`${winRate}%`:"0%"}</div>
-                  {records.length>0&&<div style={{fontSize:10,color:"var(--t3)",marginTop:3,fontWeight:500}}>{records.filter(r=>r.profit>0).length}勝{records.filter(r=>r.profit<0).length}敗</div>}
+                  {records.length>0&&<div style={{fontSize:9,color:"var(--t3)",marginTop:2,fontWeight:400,opacity:0.8}}>{records.filter(r=>r.profit>0).length}勝{records.filter(r=>r.profit<0).length}敗</div>}
                 </div>
                 <div className="kpi-sub">
                   <div className="kpi-icon-wrap" style={{background:"#fff1e8"}}>
