@@ -157,16 +157,16 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .month-label{font-size:14px;font-weight:800;color:var(--t1);letter-spacing:-0.3px}
 
 /* form */
-.form-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:14px 16px 18px;margin-bottom:var(--sp-2);box-shadow:var(--sh)}
+.form-card{background:var(--card);border-radius:var(--r-lg);border:1px solid rgba(0,0,0,0.08);padding:16px 18px 20px;margin-bottom:var(--sp-2);box-shadow:0 2px 8px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04)}
 .form-title{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--t1);margin-bottom:var(--sp-2)}
 .form-row{display:grid;grid-template-columns:1fr;gap:var(--sp-2);margin-bottom:var(--sp-2);width:100%;box-sizing:border-box}
 .form-full{margin-bottom:10px}
-.form-label{display:block;font-size:11px;font-weight:700;color:var(--t1);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:6px}
-.form-group-sep{height:6px;background:none}
+.form-label{display:block;font-size:10px;font-weight:700;color:var(--t2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px}
+.form-group-sep{height:10px;background:none}
 .form-input-wrap{position:relative}
-.form-input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-md);color:var(--t1);font-family:'Nunito Sans',sans-serif;font-size:16px;outline:none;transition:border-color .15s, background .15s;-moz-appearance:textfield}
+.form-input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:11px 14px;background:var(--card);border:1px solid rgba(0,0,0,0.12);border-radius:var(--r-md);color:var(--t1);font-family:'Nunito Sans',sans-serif;font-size:16px;outline:none;transition:border-color .15s,box-shadow .15s;-moz-appearance:textfield}
 .form-input::-webkit-outer-spin-button,.form-input::-webkit-inner-spin-button{-webkit-appearance:none}
-.form-input:focus{border-color:var(--orange);background:#fff;border-width:1.5px}
+.form-input:focus{border-color:var(--orange);background:var(--card);border-width:1.5px;box-shadow:0 0 0 3px rgba(249,115,22,0.08)}
 .form-row>*,.form-full{width:100%;max-width:100%;min-width:0;box-sizing:border-box;overflow:hidden}
 .form-card,.form-full{width:100%;max-width:100%;box-sizing:border-box}
 .form-input::placeholder{color:var(--t3)}
@@ -449,7 +449,7 @@ export default function App() {
     <>
       <style>{CSS}</style>
       <div className="app">
-        <div className="header" style={tab!==0?{height:"auto",minHeight:0,padding:"12px 0",background:"var(--bg)",borderBottom:"1px solid var(--border)"}:{}}>
+        <div className="header" style={tab!==0?{height:"auto",minHeight:0,padding:"14px 0",background:"var(--bg)",borderBottom:"1px solid rgba(0,0,0,0.07)"}:{}}>
           {tab === 0
             ? <img src="/logo.png?v=5" alt="スロログ" className="header-banner"/>
             : tab === 2 && editId
@@ -717,7 +717,7 @@ export default function App() {
                 </div>
                 {(form.invest||form.collect) && (
                   <div className="profit-preview-sub" style={{fontSize:12,fontWeight:700,opacity:1}}>
-                    {previewProfit > 0 ? "🎯 プラス！次も勝とう" : previewProfit < 0 ? "😤 負け越し、次回に期待" : "➡️ 引き分け"}
+                    {previewProfit > 0 ? "🎯 プラス！" : previewProfit < 0 ? "次回リベンジ" : "±0 引き分け"}
                   </div>
                 )}
               </div>
