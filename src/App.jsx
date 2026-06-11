@@ -50,7 +50,7 @@ const CSS = `
   --green:#15803d;--green-l:#f0fdf4;
   --red:#dc2626;--red-l:#fef2f2;
   --r-md:12px;--r-lg:18px;
-  --sh:0 1px 2px rgba(0,0,0,0.03),0 1px 1px rgba(0,0,0,0.02);
+  --sh:0 1px 2px rgba(0,0,0,0.06),0 0 1px rgba(0,0,0,0.03);
   --sh-hero:0 2px 6px rgba(249,115,22,0.07),0 1px 2px rgba(0,0,0,0.02);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -66,10 +66,10 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .kpi{background:var(--card);border-radius:var(--r-md);padding:14px 16px;border:1px solid var(--border)}
 .kpi.hero{background:var(--orange-l);border-color:var(--orange-m);padding:16px 22px 14px;border-radius:var(--r-lg);box-shadow:var(--sh-hero)}
 .kpi-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:9px 9px 8px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
-.kpi-icon-wrap{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:3px;flex-shrink:0}
+.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:8px 9px 7px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
+.kpi-icon-wrap{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:2px;flex-shrink:0}
 .kpi-icon-wrap svg{width:16px;height:16px;stroke-width:1.8}
-.kpi-label{font-size:11px;color:var(--t3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:3px}
+.kpi-label{font-size:11px;color:var(--t3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:2px}
 .kpi-hero-label{font-size:10px;color:var(--t3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
 /* hero value: bigger */
 .kpi-val{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.5px;line-height:1}
@@ -129,7 +129,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 /* bottom row: 日付 + 投資/回収 + menu */
 .rec-footer{display:flex;align-items:center;gap:4px;margin-top:4px;padding-top:0}
 .rec-date{font-size:10px;color:var(--t2);font-weight:500;flex-shrink:0}
-.rec-amounts{display:flex;gap:4px;flex:1}
+.rec-amounts{display:flex;gap:3px;flex:1}
 .rec-amt{font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;display:inline-flex;align-items:center;gap:2px;white-space:nowrap}
 .rec-amt.invest{background:var(--invest-bg);color:var(--invest-fg)}
 .rec-amt.collect{background:#dcfce7;color:var(--collect-fg);font-weight:800}
@@ -415,7 +415,7 @@ export default function App() {
         <div style={{display:"flex",alignItems:"center",minWidth:0,gap:6}}>
           {r.id===bestRecId&&<span style={{fontSize:13,lineHeight:1,opacity:0.75,flexShrink:0}}>🏆</span>}
           <div className="rec-machine" style={{flex:1,minWidth:0}} title={r.machine}>{r.machine}</div>
-          <div className={`rec-profit ${profitColor(r.profit)}`} style={{flexShrink:0,marginLeft:8}}>{profitStr(r.profit)}</div>
+          <div className={`rec-profit ${profitColor(r.profit)}`} style={{flexShrink:0,marginLeft:6}}>{profitStr(r.profit)}</div>
           <div style={{position:"relative",flexShrink:0}}>
             <button className="rec-menu-btn" style={{padding:"4px 0px",minWidth:28,minHeight:28,fontSize:18,letterSpacing:"-0.3em",marginRight:-4}} onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
             {menuOpen && (
@@ -521,7 +521,7 @@ export default function App() {
                       </ResponsiveContainer>
                     </div>
                   )}
-                  <div className="section-title" style={{textTransform:"none",letterSpacing:0,fontSize:13,fontWeight:700}}>最近の実戦</div>
+                  <div className="section-title" style={{textTransform:"none",letterSpacing:0,fontSize:13,fontWeight:700,display:"flex",alignItems:"center",gap:5}}><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>最近の実戦</div>
                   {sorted.slice(0,3).map((r,i)=><RecCard key={r.id} r={r} delay={i*0.05}/>)}
                   {sorted.length>3 && (
                     <div style={{textAlign:"center",paddingBottom:8}}>
