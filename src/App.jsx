@@ -449,7 +449,7 @@ export default function App() {
     <>
       <style>{CSS}</style>
       <div className="app">
-        <div className="header" style={tab!==0?{height:"auto",minHeight:0,padding:"14px 0",background:"var(--bg)",borderBottom:"1px solid rgba(0,0,0,0.07)"}:{}}>
+        <div className="header" style={tab!==0?{height:"auto",minHeight:0,padding:"14px 0",background:"#ede6dc",borderBottom:"1px solid rgba(0,0,0,0.04)"}:{}}>
           {tab === 0
             ? <img src="/logo.png?v=5" alt="スロログ" className="header-banner"/>
             : tab === 2 && editId
