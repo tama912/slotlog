@@ -455,7 +455,7 @@ export default function App() {
             : tab === 2 && editId
               ? <div style={{display:"flex",alignItems:"center",width:"100%",padding:"0 16px",position:"relative"}}>
                   <button onClick={()=>{setEditId(null);setForm(EMPTY_FORM);setTab(3);}} style={{background:"none",border:"none",cursor:"pointer",color:"var(--orange)",fontSize:13,fontWeight:700,padding:0,fontFamily:"'Nunito',sans-serif",zIndex:1}}>← 戻る</button>
-                  <div style={{position:"absolute",left:0,right:0,textAlign:"center",fontFamily:"'Nunito',sans-serif",fontSize:16,fontWeight:800,color:"#4B433C",letterSpacing:"-0.3px",pointerEvents:"none"}}>記録を編集</div>
+                  <div style={{position:"absolute",left:0,right:0,textAlign:"center",fontFamily:"'Nunito',sans-serif",fontSize:16,fontWeight:800,color:"#4B433C",letterSpacing:"-0.3px",pointerEvents:"none"}}>✏️ 実戦結果を編集</div>
                 </div>
               : <div style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:800,color:"var(--t1)",letterSpacing:"-0.3px",padding:"0 16px",lineHeight:"normal"}}>{["","分析","記録","履歴","設定"][tab]}</div>
           }
