@@ -66,15 +66,15 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .kpi{background:var(--card);border-radius:var(--r-md);padding:14px 16px;border:1px solid var(--border)}
 .kpi.hero{background:var(--orange-l);border-color:var(--orange-m);padding:16px 22px 14px;border-radius:var(--r-lg);box-shadow:var(--sh-hero)}
 .kpi-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:7px 9px 6px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
-.kpi-icon-wrap{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:2px;flex-shrink:0}
+.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:6px 9px 5px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
+.kpi-icon-wrap{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1px;flex-shrink:0}
 .kpi-icon-wrap svg{width:16px;height:16px;stroke-width:1.8}
 .kpi-label{font-size:11px;color:var(--t3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:2px}
 .kpi-hero-label{font-size:10px;color:var(--t3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
 /* hero value: bigger */
 .kpi-val{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.5px;line-height:1}
 .kpi-val.hero{font-size:36px;font-weight:800;letter-spacing:-1.5px;line-height:1}
-.kpi-val.sub{font-size:17px;font-weight:800;letter-spacing:-0.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1}
+.kpi-val.sub{font-size:16px;font-weight:800;letter-spacing:-0.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1}
 .kpi-val.plus{color:var(--green)}.kpi-val.minus{color:var(--red)}.kpi-val.zero{color:var(--t2)}.kpi-val.orange{color:var(--orange)}
 .section{padding:var(--sp-2) var(--sp-2) 0}
 .section-title{font-size:11px;font-weight:700;color:#6e6760;padding:16px 0 4px;letter-spacing:0.06em;text-transform:uppercase}
@@ -128,8 +128,8 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .rec-profit.plus{color:var(--green)}.rec-profit.minus{color:var(--red)}.rec-profit.zero{color:var(--t2)}
 /* bottom row: 日付 + 投資/回収 + menu */
 .rec-footer{display:flex;align-items:center;gap:4px;margin-top:4px;padding-top:0}
-.rec-date{font-size:10px;color:var(--t2);font-weight:500;flex-shrink:0}
-.rec-amounts{display:flex;gap:3px;flex:1}
+.rec-date{font-size:10px;color:var(--t3);font-weight:400;flex-shrink:0;margin-right:2px}
+.rec-amounts{display:flex;gap:3px}
 .rec-amt{font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;display:inline-flex;align-items:center;gap:2px;white-space:nowrap}
 .rec-amt.invest{background:var(--invest-bg);color:var(--invest-fg)}
 .rec-amt.collect{background:#dcfce7;color:var(--collect-fg);font-weight:800}
