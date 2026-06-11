@@ -64,13 +64,13 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .kpi-grid{display:flex;flex-direction:column;gap:8px;padding:10px var(--sp-2) 0}
 /* hero: 今月収支 — full width, large */
 .kpi{background:var(--card);border-radius:var(--r-md);padding:14px 16px;border:1px solid var(--border)}
-.kpi.hero{background:var(--orange-l);border-color:var(--orange-m);padding:20px 22px 18px;border-radius:var(--r-lg);box-shadow:var(--sh-hero)}
+.kpi.hero{background:var(--orange-l);border-color:var(--orange-m);padding:16px 22px 14px;border-radius:var(--r-lg);box-shadow:var(--sh-hero)}
 .kpi-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .kpi-sub{background:var(--card);border-radius:var(--r-md);padding:9px 9px 8px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
 .kpi-icon-wrap{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:2px;flex-shrink:0}
 .kpi-icon-wrap svg{width:14px;height:14px;stroke-width:2}
 .kpi-label{font-size:11px;color:var(--t3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:3px}
-.kpi-hero-label{font-size:11px;color:var(--orange);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:8px}
+.kpi-hero-label{font-size:11px;color:var(--orange);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:6px}
 /* hero value: bigger */
 .kpi-val{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.5px;line-height:1}
 .kpi-val.hero{font-size:36px;font-weight:800;letter-spacing:-1.5px;line-height:1}
@@ -115,11 +115,11 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .machine-profit{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;flex-shrink:0;text-align:right;min-width:68px}
 
 /* record card */
-.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:8px 14px 8px 18px;margin-bottom:5px;position:relative;box-shadow:var(--sh)}
+.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:7px 14px 7px 18px;margin-bottom:5px;position:relative;box-shadow:var(--sh)}
 .rec-item::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:3px;border-radius:0 2px 2px 0;background:var(--border)}
 .rec-item.plus::before{background:var(--green)}.rec-item.minus::before{background:var(--red)}
 /* top row: 機種名(主役) + 収支 */
-.rec-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;gap:8px;flex:1;justify-content:flex-end}
+.rec-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1px;gap:8px;flex:1;justify-content:flex-end}
 .rec-header-left{flex:1;min-width:0}
 .rec-machine{font-size:15px;font-weight:700;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;line-height:1.3;margin-bottom:2px}
 .rec-store{font-size:11px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;font-weight:500}
@@ -127,7 +127,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .rec-profit{font-family:'Nunito',sans-serif;font-size:21px;font-weight:800;letter-spacing:-1px;white-space:nowrap;flex-shrink:0;line-height:1}
 .rec-profit.plus{color:var(--green)}.rec-profit.minus{color:var(--red)}.rec-profit.zero{color:var(--t2)}
 /* bottom row: 日付 + 投資/回収 + menu */
-.rec-footer{display:flex;align-items:center;gap:6px;margin-top:4px;padding-top:4px;border-top:1px solid rgba(0,0,0,0.07)}
+.rec-footer{display:flex;align-items:center;gap:6px;margin-top:3px;padding-top:3px;border-top:1px solid rgba(0,0,0,0.07)}
 .rec-date{font-size:11px;color:var(--t3);font-weight:500;flex-shrink:0;letter-spacing:0.01em}
 .rec-amounts{display:flex;gap:6px;flex:1}
 .rec-amt{font-size:11px;font-weight:700;padding:3px 8px;border-radius:5px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
@@ -145,7 +145,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Nunito Sans',sans-serif;-
 .hero-copy.win{color:var(--orange);opacity:0.85}
 .hero-copy.lose{color:var(--t3)}
 .rec-menu-wrap{position:relative;flex-shrink:0;margin-left:8px}
-.rec-menu-btn{background:none;border:none;cursor:pointer;color:rgba(24,18,14,0.5);font-size:26px;padding:6px 8px;border-radius:16px;line-height:1;letter-spacing:-6em;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
+.rec-menu-btn{background:none;border:none;cursor:pointer;color:rgba(24,18,14,0.5);font-size:26px;padding:6px 2px 6px 10px;border-radius:16px;line-height:1;letter-spacing:-6em;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .rec-menu-btn:hover{background:var(--bg2);color:var(--t2)}
 .rec-menu-dropdown{position:absolute;right:0;top:100%;margin-top:4px;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.12);z-index:200;overflow:hidden;min-width:110px}
 .rec-menu-item{display:block;width:100%;text-align:left;padding:10px 14px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;background:none;border:none;cursor:pointer;transition:background .12s}
@@ -480,7 +480,7 @@ export default function App() {
                   </div>
                   <div className="kpi-label">勝率</div>
                   <div className="kpi-val sub orange">{winRate!=null?`${winRate}%`:"0%"}</div>
-                  {records.length>0&&<div style={{fontSize:9,color:"var(--t3)",marginTop:2,fontWeight:400,opacity:0.8}}>{records.filter(r=>r.profit>0).length}勝{records.filter(r=>r.profit<0).length}敗</div>}
+                  {records.length>0&&<div style={{fontSize:8,color:"var(--t3)",marginTop:2,fontWeight:400,opacity:0.65}}>{records.filter(r=>r.profit>0).length}勝{records.filter(r=>r.profit<0).length}敗</div>}
                 </div>
                 <div className="kpi-sub">
                   <div className="kpi-icon-wrap" style={{background:"#fff1e8"}}>
