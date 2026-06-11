@@ -66,7 +66,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .kpi{background:var(--card);border-radius:var(--r-md);padding:14px 16px;border:1px solid var(--border)}
 .kpi.hero{background:var(--orange-l);border-color:var(--orange-m);padding:16px 22px 14px;border-radius:var(--r-lg);box-shadow:var(--sh-hero)}
 .kpi-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:8px 9px 7px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
+.kpi-sub{background:var(--card);border-radius:var(--r-md);padding:7px 9px 6px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
 .kpi-icon-wrap{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:2px;flex-shrink:0}
 .kpi-icon-wrap svg{width:16px;height:16px;stroke-width:1.8}
 .kpi-label{font-size:11px;color:var(--t3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:2px}
@@ -413,7 +413,7 @@ export default function App() {
       <div className={`rec-item ${profitColor(r.profit)} su`} style={{animationDelay:`${delay}s`}} onClick={()=>menuOpen&&setMenuOpen(false)}>
         {/* 上段: 機種名 ＋ 収支 ＋ ⋯ */}
         <div style={{display:"flex",alignItems:"center",minWidth:0,gap:6}}>
-          {r.id===bestRecId&&<span style={{fontSize:13,lineHeight:1,opacity:0.75,flexShrink:0}}>🏆</span>}
+          {r.id===bestRecId&&<span style={{fontSize:13,lineHeight:1,opacity:0.75,flexShrink:0,position:"relative",top:2}}>🏆</span>}
           <div className="rec-machine" style={{flex:1,minWidth:0}} title={r.machine}>{r.machine}</div>
           <div className={`rec-profit ${profitColor(r.profit)}`} style={{flexShrink:0,marginLeft:6}}>{profitStr(r.profit)}</div>
           <div style={{position:"relative",flexShrink:0}}>
@@ -461,10 +461,10 @@ export default function App() {
                 <div className="kpi-hero-label">今月の収支</div>
                 <div className={`kpi-val hero ${profitColor(monthProfit)}`}>{profitStr(monthProfit)}</div>
                 {monthRecs.length > 0 && (
-                  <div style={{marginTop:7,fontSize:11,color:"var(--t3)",lineHeight:1.5}}>
-                    {monthRecs.length}戦{monthRecs.filter(r=>r.profit>0).length}勝{monthRecs.filter(r=>r.profit<0).length}敗
-                    {winRate!=null&&<> · 勝率<span style={{fontWeight:700}}>{winRate}%</span></>}
-                    {streak.count>=2&&` · ${streak.count}${streak.type==="win"?"連勝中":"連敗中"}`}
+                  <div style={{marginTop:8,display:"flex",flexWrap:"wrap",gap:4}}>
+                    <span style={{fontSize:10,background:"rgba(0,0,0,0.06)",color:"var(--t2)",padding:"2px 7px",borderRadius:20,fontWeight:600,lineHeight:1.6}}>{monthRecs.length}戦{monthRecs.filter(r=>r.profit>0).length}勝{monthRecs.filter(r=>r.profit<0).length}敗</span>
+                    {winRate!=null&&<span style={{fontSize:10,background:"rgba(249,115,22,0.1)",color:"var(--orange)",padding:"2px 7px",borderRadius:20,fontWeight:600,lineHeight:1.6}}>勝率{winRate}%</span>}
+                    {streak.count>=2&&<span style={{fontSize:10,background:streak.type==="win"?"rgba(249,115,22,0.1)":"rgba(0,0,0,0.05)",color:streak.type==="win"?"var(--orange)":"var(--t3)",padding:"2px 7px",borderRadius:20,fontWeight:600,lineHeight:1.6}}>{streak.count}{streak.type==="win"?"連勝中":"連敗中"}</span>}
                   </div>
                 )}
               </div>
