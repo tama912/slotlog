@@ -50,8 +50,8 @@ const CSS = `
   --green:#15803d;--green-l:#f0fdf4;
   --red:#dc2626;--red-l:#fef2f2;
   --r-md:12px;--r-lg:18px;
-  --sh:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
-  --sh-hero:0 2px 8px rgba(249,115,22,0.08),0 1px 2px rgba(0,0,0,0.03);
+  --sh:0 1px 2px rgba(0,0,0,0.03),0 1px 1px rgba(0,0,0,0.02);
+  --sh-hero:0 2px 6px rgba(249,115,22,0.07),0 1px 2px rgba(0,0,0,0.02);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 input,select,textarea{width:100%;max-width:100%;min-width:0;box-sizing:border-box}
@@ -77,7 +77,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .kpi-val.sub{font-size:17px;font-weight:800;letter-spacing:-0.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1}
 .kpi-val.plus{color:var(--green)}.kpi-val.minus{color:var(--red)}.kpi-val.zero{color:var(--t2)}.kpi-val.orange{color:var(--orange)}
 .section{padding:var(--sp-2) var(--sp-2) 0}
-.section-title{font-size:11px;font-weight:700;color:#6e6760;padding:16px 0 10px;letter-spacing:0.06em;text-transform:uppercase}
+.section-title{font-size:11px;font-weight:700;color:#6e6760;padding:16px 0 4px;letter-spacing:0.06em;text-transform:uppercase}
 .month-nav{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 16px;margin-bottom:var(--sp-2)}
 .month-nav-btn{background:none;border:none;cursor:pointer;padding:10px 16px;font-size:18px;color:var(--t2);border-radius:8px;line-height:1;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .month-nav-btn:hover{background:var(--bg2)}.month-nav-btn:disabled{color:var(--border);cursor:default}
@@ -127,7 +127,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .rec-profit{font-family:'Nunito',sans-serif;font-size:24px;font-weight:800;letter-spacing:-1.5px;white-space:nowrap;flex-shrink:0;line-height:1}
 .rec-profit.plus{color:var(--green)}.rec-profit.minus{color:var(--red)}.rec-profit.zero{color:var(--t2)}
 /* bottom row: 日付 + 投資/回収 + menu */
-.rec-footer{display:flex;align-items:center;gap:4px;margin-top:5px;padding-top:0}
+.rec-footer{display:flex;align-items:center;gap:4px;margin-top:4px;padding-top:0}
 .rec-date{font-size:10px;color:var(--t2);font-weight:500;flex-shrink:0}
 .rec-amounts{display:flex;gap:4px;flex:1}
 .rec-amt{font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;display:inline-flex;align-items:center;gap:2px;white-space:nowrap}
@@ -471,7 +471,7 @@ export default function App() {
               {/* Sub row: 総収支・勝率・実戦回数 */}
               <div className="kpi-sub-row">
                 <div className="kpi-sub">
-                  <div className="kpi-icon-wrap" style={{background:"rgba(249,115,22,0.06)"}}>
+                  <div className="kpi-icon-wrap" style={{background:"rgba(249,115,22,0.05)"}}>
                     <svg viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
                   </div>
                   <div className="kpi-label">勝率</div>
@@ -479,14 +479,14 @@ export default function App() {
                   {records.length>0&&<div style={{fontSize:8,color:"var(--t3)",marginTop:2,fontWeight:400,opacity:0.5}}>{records.filter(r=>r.profit>0).length}勝{records.filter(r=>r.profit<0).length}敗</div>}
                 </div>
                 <div className="kpi-sub">
-                  <div className="kpi-icon-wrap" style={{background:"rgba(249,115,22,0.06)"}}>
+                  <div className="kpi-icon-wrap" style={{background:"rgba(249,115,22,0.05)"}}>
                     <svg viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
                   </div>
                   <div className="kpi-label">実戦</div>
                   <div className="kpi-val sub orange">{records.length}<span style={{fontSize:11,marginLeft:2,fontWeight:700}}>回</span></div>
                 </div>
                 <div className="kpi-sub" style={{opacity:bestWin>0?1:0.5}}>
-                  <div className="kpi-icon-wrap" style={{background:"rgba(249,115,22,0.06)"}}>
+                  <div className="kpi-icon-wrap" style={{background:"rgba(249,115,22,0.05)"}}>
                     <svg viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
                   </div>
                   <div className="kpi-label">最高勝ち</div>
