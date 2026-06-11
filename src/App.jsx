@@ -385,7 +385,7 @@ export default function App() {
     if (form.store.trim()) setHistory(h => ({...h, stores:[...new Set([form.store.trim(),...h.stores])].slice(0,20)}));
     if (form.machine.trim()) setHistory(h => ({...h, machines:[...new Set([form.machine.trim(),...h.machines])].slice(0,20)}));
     setForm({...EMPTY_FORM,date:form.date}); setEditId(null);
-    setSaved(true); setTimeout(()=>{ setSaved(false); setTab(2); },1200);
+    setSaved(true); setTimeout(()=>{ setSaved(false); setTab(3); },1200);
   };
 
   const startEdit = (r) => {
@@ -439,7 +439,7 @@ export default function App() {
     );
   };
 
-  const NAV = [{id:"home",label:"ホーム"},{id:"graph",label:"分析"},{id:"list",label:"履歴"},{id:"add",label:"記録"},{id:"gear",label:"設定"}];
+  const NAV = [{id:"home",label:"ホーム"},{id:"graph",label:"分析"},{id:"add",label:"記録"},{id:"list",label:"履歴"},{id:"gear",label:"設定"}];
 
   return (
     <>
@@ -448,7 +448,7 @@ export default function App() {
         <div className="header">
           {tab === 0
             ? <img src="/logo.png?v=5" alt="スロログ" className="header-banner"/>
-            : <div style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:800,color:"var(--t1)",letterSpacing:"-0.3px",padding:"0 16px",lineHeight:"normal"}}>{["","分析","履歴","記録","設定"][tab]}</div>
+            : <div style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:800,color:"var(--t1)",letterSpacing:"-0.3px",padding:"0 16px",lineHeight:"normal"}}>{["","分析","記録","履歴","設定"][tab]}</div>
           }
         </div>
 
@@ -502,7 +502,7 @@ export default function App() {
                   <div style={{fontSize:13,color:"var(--t2)",lineHeight:1.7,marginBottom:20}}>
                     日付・機種・投資額・回収額を入力するだけで<br/>収支が自動計算されます。
                   </div>
-                  <button className="onboard-btn" onClick={()=>setTab(3)}>最初の収支を記録する</button>
+                  <button className="onboard-btn" onClick={()=>setTab(2)}>最初の収支を記録する</button>
                 </div>
               ) : (
                 <>
@@ -636,7 +636,7 @@ export default function App() {
         )}
 
         {/* ═══ LIST ═══ */}
-        {tab===2 && (
+        {tab===3 && (
           <div className="section" style={{paddingTop:14}}>
             {sorted.length===0 && (
               <div className="empty-card su"><div className="empty-ico">📋</div><div className="empty-txt">記録がありません</div><div className="empty-hint">追加タブから収支を記録してください</div></div>
@@ -664,7 +664,7 @@ export default function App() {
         )}
 
         {/* ═══ ADD / EDIT ═══ */}
-        {tab===3 && (
+        {tab===2 && (
           <div className="section" style={{paddingTop:14}}>
             <div className="form-card su">
               {editId && <div className="form-title">編集<span className="edit-badge">修正中</span></div>}
@@ -720,7 +720,7 @@ export default function App() {
                 {saved ? "✓ 保存しました！" : editId ? "更新する" : "記録する"}
               </button>
               {editId && (
-                <button onClick={()=>{setEditId(null);setForm(EMPTY_FORM);setTab(2);}}
+                <button onClick={()=>{setEditId(null);setForm(EMPTY_FORM);setTab(3);}}
                   style={{width:"100%",marginTop:8,padding:"10px",background:"none",border:"1px solid var(--border)",borderRadius:"var(--r-md)",color:"var(--t2)",fontFamily:"'Nunito',sans-serif",fontWeight:700,fontSize:13,cursor:"pointer"}}>
                   キャンセル
                 </button>
@@ -804,9 +804,9 @@ export default function App() {
         <nav className="bnav">
           {NAV.map((n,i)=>(
             <button key={i}
-              className={`bnav-btn${tab===i?" on":""}${i===3?" fab":""}`}
+              className={`bnav-btn${tab===i?" on":""}${i===2?" fab":""}`}
               onClick={()=>setTab(i)}>
-              {i===3
+              {i===2
                 ? <><div className="fab-dot"><Icon id={n.id}/></div><span className="bnav-label">記録</span></>
                 : <><Icon id={n.id}/>{n.label}</>
               }
