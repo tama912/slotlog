@@ -161,7 +161,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .form-title{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--t1);margin-bottom:var(--sp-2)}
 .form-row{display:grid;grid-template-columns:1fr;gap:var(--sp-2);margin-bottom:var(--sp-2);width:100%;box-sizing:border-box}
 .form-full{margin-bottom:10px}
-.form-label{display:block;font-size:11px;font-weight:600;color:var(--t2);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:6px}
+.form-label{display:block;font-size:11px;font-weight:700;color:var(--t1);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:6px}
 .form-group-sep{height:6px;background:none}
 .form-input-wrap{position:relative}
 .form-input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-md);color:var(--t1);font-family:'Nunito Sans',sans-serif;font-size:16px;outline:none;transition:border-color .15s, background .15s;-moz-appearance:textfield}
@@ -192,7 +192,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .profit-preview-val.plus{color:var(--green)}.profit-preview-val.minus{color:var(--red)}.profit-preview-val.zero{color:var(--t2)}
 .submit-btn{width:100%;padding:14px;background:var(--orange);color:#fff;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;border:none;border-radius:var(--r-md);cursor:pointer;transition:background .15s,transform .1s}
 .submit-btn:hover{background:var(--orange-hover)}.submit-btn:active{transform:scale(0.98)}.submit-btn:disabled{background:var(--border);cursor:default;transform:none}
-.edit-badge{display:inline-block;background:var(--orange-l);color:var(--orange);font-size:9px;font-weight:600;border-radius:4px;padding:1px 6px;margin-left:6px;border:1px solid var(--orange-m);letter-spacing:0.03em}
+.edit-badge{display:inline-block;background:var(--orange-l);color:var(--orange);font-size:10px;font-weight:700;border-radius:4px;padding:2px 8px;margin-left:6px;border:1px solid var(--orange-m);letter-spacing:0.03em}
 
 /* settings */
 .settings-section{margin-bottom:var(--sp-3)}
@@ -677,7 +677,7 @@ export default function App() {
         {tab===2 && (
           <div className="section" style={{paddingTop:14}}>
             <div className="form-card su">
-              {editId && <div className="form-title">記録を編集<span className="edit-badge">修正中</span></div>}
+              {editId && <div style={{marginBottom:12,display:"flex",alignItems:"center"}}><span className="edit-badge" style={{fontSize:11,padding:"3px 10px"}}>修正中</span></div>}
               {/* Group 1: 日付 */}
               <div className="form-full">
                 <label className="form-label">日付</label>
@@ -717,7 +717,7 @@ export default function App() {
                   {form.invest||form.collect ? profitStr(previewProfit) : "—"}
                 </div>
                 {(form.invest||form.collect) && (
-                  <div className="profit-preview-sub">
+                  <div className="profit-preview-sub" style={{fontSize:12,fontWeight:700,opacity:1}}>
                     {previewProfit > 0 ? "🎯 プラス！次も勝とう" : previewProfit < 0 ? "😤 負け越し、次回に期待" : "➡️ 引き分け"}
                   </div>
                 )}
