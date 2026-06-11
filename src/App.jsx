@@ -409,6 +409,7 @@ export default function App() {
   /* ── RecCard ── */
   const RecCard = ({ r, delay=0 }) => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [menuAbove, setMenuAbove] = useState(false);
     return (
       <div className={`rec-item ${profitColor(r.profit)} su`} style={{animationDelay:`${delay}s`}} onClick={()=>menuOpen&&setMenuOpen(false)}>
         {/* 上段: 機種名 ＋ 収支 ＋ ⋯ */}
@@ -417,9 +418,9 @@ export default function App() {
           <div className="rec-machine" style={{flex:1,minWidth:0}} title={r.machine}>{r.machine}</div>
           <div className={`rec-profit ${profitColor(r.profit)}`} style={{flexShrink:0,marginLeft:6}}>{profitStr(r.profit)}</div>
           <div style={{position:"relative",flexShrink:0}}>
-            <button className="rec-menu-btn" style={{padding:"4px 0px",minWidth:28,minHeight:28,fontSize:18,letterSpacing:"-0.3em",marginRight:-4}} onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o);}}>⋯</button>
+            <button className="rec-menu-btn" style={{padding:"4px 0px",minWidth:28,minHeight:28,fontSize:18,letterSpacing:"-0.3em",marginRight:-4}} onClick={e=>{e.stopPropagation();const btn=e.currentTarget.getBoundingClientRect();const spaceBelow=window.innerHeight-btn.bottom;setMenuAbove(spaceBelow<100);setMenuOpen(o=>!o);}}>⋯</button>
             {menuOpen && (
-              <div className="rec-menu-dropdown">
+              <div className="rec-menu-dropdown" style={menuAbove?{top:"auto",bottom:"100%",marginTop:0,marginBottom:4}:{}}>
                 <button className="rec-menu-item edit" onClick={e=>{e.stopPropagation();setMenuOpen(false);startEdit(r);}}>✏️ 編集</button>
                 <button className="rec-menu-item del"  onClick={e=>{e.stopPropagation();setMenuOpen(false);handleDelete(r.id);}}>🗑️ 削除</button>
               </div>
