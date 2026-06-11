@@ -121,7 +121,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 /* top row: 機種名(主役) + 収支 */
 .rec-header{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .rec-header-left{flex:1;min-width:0}
-.rec-machine{font-size:14px;font-weight:700;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;line-height:1.2}
+.rec-machine{font-size:14px;font-weight:700;color:#333;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;line-height:1.2}
 .rec-store{font-size:11px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;font-weight:500}
 .rec-store-inline{font-size:11px;color:var(--t3);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:90px;flex-shrink:0}
 .rec-profit{font-family:'Nunito',sans-serif;font-size:24px;font-weight:800;letter-spacing:-1.5px;white-space:nowrap;flex-shrink:0;line-height:1}
