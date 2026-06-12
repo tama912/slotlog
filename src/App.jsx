@@ -79,16 +79,16 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .kpi-val.plus{color:var(--green)}.kpi-val.minus{color:var(--red)}.kpi-val.zero{color:var(--t2)}.kpi-val.orange{color:var(--orange)}
 .section{padding:var(--sp-2) var(--sp-2) 0}
 .section-title{font-size:11px;font-weight:700;color:#6e6760;padding:16px 0 4px;letter-spacing:0.06em;text-transform:uppercase}
-.month-nav{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 16px;margin-bottom:var(--sp-2)}
+.month-nav{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:9px 16px;margin-bottom:var(--sp-2)}
 .month-nav-btn{background:none;border:none;cursor:pointer;padding:10px 16px;font-size:18px;color:var(--t2);border-radius:8px;line-height:1;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .month-nav-btn:hover{background:var(--bg2)}.month-nav-btn:disabled{color:var(--border);cursor:default}
 .month-nav-label{font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:var(--t1);letter-spacing:-0.3px}
-.graph-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:16px 14px 14px;margin-bottom:var(--sp-2);overflow:hidden;box-shadow:var(--sh)}
+.graph-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:14px 14px 12px;margin-bottom:var(--sp-2);overflow:hidden;box-shadow:var(--sh)}
 .graph-title{font-size:11px;font-weight:600;color:var(--t3);margin-bottom:12px;padding:0 12px;letter-spacing:0.06em;text-transform:uppercase}
 .ctip{background:#fff;border:1px solid var(--border);border-radius:var(--r-md);padding:8px 12px;font-family:'Nunito',sans-serif;font-size:13px;box-shadow:var(--sh)}
 .ctip-date{color:var(--t3);font-size:11px;margin-bottom:2px}
 .sum-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:var(--sp-2)}
-.sum-cell{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:16px 18px}
+.sum-cell{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 18px}
 .sum-cell.accent{background:var(--orange-l);border-color:var(--orange-m);padding:20px 22px 18px;border-radius:var(--r-lg)}
 .sum-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .sum-sub{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:12px;box-shadow:var(--sh)}
@@ -231,8 +231,8 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .show-more-btn:hover{background:var(--bg2)}
 
 /* empty */
-.empty-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp-3) var(--sp-2);text-align:center}
-.empty-ico{font-size:32px;margin-bottom:8px}.empty-txt{font-size:14px;color:var(--t2);font-weight:600}.empty-hint{font-size:12px;color:var(--t3);margin-top:4px}
+.empty-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp-2) var(--sp-2);text-align:center}
+.empty-ico{font-size:28px;margin-bottom:6px}.empty-txt{font-size:14px;color:var(--t2);font-weight:600}.empty-hint{font-size:12px;color:var(--t3);margin-top:4px}
 
 /* bnav */
 .bnav{position:fixed;bottom:0;left:0;right:0;width:100%;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;padding:8px 0;padding-bottom:calc(16px + env(safe-area-inset-bottom,6px))}
@@ -485,7 +485,7 @@ export default function App() {
                   <button onClick={()=>{setEditId(null);setForm(EMPTY_FORM);setTab(3);}} style={{background:"none",border:"none",cursor:"pointer",color:"#C96A14",fontSize:13,fontWeight:700,padding:0,fontFamily:"'Nunito',sans-serif",zIndex:1}}>← 戻る</button>
                   <div style={{position:"absolute",left:0,right:0,textAlign:"center",fontFamily:"'Nunito',sans-serif",fontSize:16,fontWeight:800,color:"#4B433C",letterSpacing:"-0.3px",pointerEvents:"none"}}>✏️ 実戦結果を編集</div>
                 </div>
-              : <div style={{fontFamily:"'Nunito',sans-serif",fontSize:18,fontWeight:800,color:"var(--t1)",letterSpacing:"-0.3px",padding:"0 16px",lineHeight:"normal"}}>{["","分析","記録","履歴","設定"][tab]}</div>
+              : <div style={{fontFamily:"'Nunito',sans-serif",fontSize:17,fontWeight:800,color:"#4B433C",letterSpacing:"-0.3px",padding:"0 16px",lineHeight:"normal",width:"100%",textAlign:"center"}}>{tab===1?"📊 分析":["","","記録","履歴","設定"][tab]}</div>
           }
         </div>
 
@@ -527,7 +527,7 @@ export default function App() {
                     <svg viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
                   </div>
                   <div className="kpi-label">最高勝ち</div>
-                  <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?profitStr(bestWin):"—"}</div>
+                  <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?profitStr(bestWin):<span style={{fontSize:11,color:"var(--t3)"}}>未記録</span>}</div>
                 </div>
               </div>
             </div>
@@ -586,10 +586,12 @@ export default function App() {
               <div className="sum-cell accent">
                 <div className="kpi-hero-label">今月の収支</div>
                 <div className={`kpi-val hero ${profitColor(viewMonthProfit)}`}>{profitStr(viewMonthProfit)}</div>
-                {viewMonthRecs.length > 0 && (
+                {viewMonthRecs.length > 0 ? (
                   <div className="hero-copy">
                     {viewMonthRecs.length}戦{viewMonthRecs.filter(r=>r.profit>0).length}勝{viewMonthRecs.filter(r=>r.profit<0).length}敗
                   </div>
+                ) : (
+                  <div style={{fontSize:11,color:"var(--t3)",marginTop:4}}>この月の記録はありません</div>
                 )}
               </div>
               {/* Sub row — 全期間統計 */}
@@ -601,11 +603,11 @@ export default function App() {
                 </div>
                 <div className="sum-sub">
                   <div className="kpi-label">最高勝ち</div>
-                  <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?profitStr(bestWin):"—"}</div>
+                  <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?profitStr(bestWin):<span style={{fontSize:11,color:"var(--t3)"}}>未記録</span>}</div>
                 </div>
                 <div className="sum-sub">
                   <div className="kpi-label">最大負け</div>
-                  <div className={`kpi-val sub ${bestLose<0?"minus":"zero"}`}>{bestLose<0?profitStr(bestLose):"—"}</div>
+                  <div className={`kpi-val sub ${bestLose<0?"minus":"zero"}`}>{bestLose<0?profitStr(bestLose):<span style={{fontSize:11,color:"var(--t3)"}}>未記録</span>}</div>
                 </div>
               </div>
             </div>
