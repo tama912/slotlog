@@ -244,6 +244,14 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .bnav-btn.fab:hover .fab-dot{background:var(--orange-hover)}
 
 @keyframes slideUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.del-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:1000;display:flex;align-items:center;justify-content:center;animation:fadeIn .15s ease;padding:24px}
+.del-modal{background:var(--card);border-radius:var(--r-lg);padding:24px 20px 20px;width:100%;max-width:320px;box-shadow:0 8px 32px rgba(0,0,0,0.18)}
+.del-modal-title{font-size:16px;font-weight:800;color:var(--t1);margin-bottom:8px;letter-spacing:-0.2px}
+.del-modal-body{font-size:13px;color:var(--t2);margin-bottom:20px;line-height:1.6}
+.del-modal-btns{display:flex;gap:10px}
+.del-modal-cancel{flex:1;padding:11px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-md);font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--t2);cursor:pointer}
+.del-modal-confirm{flex:1;padding:11px;background:var(--red);border:none;border-radius:var(--r-md);font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:#fff;cursor:pointer}
 .su{animation:slideUp .28s ease both}
 
 `;
@@ -313,6 +321,7 @@ export default function App() {
   const [viewMonth,   setViewMonth]   = useState(thisMonth());
   const [importMsg,   setImportMsg]   = useState("");
   const [undoItem,    setUndoItem]    = useState(null);   // {record, timer}
+  const [deleteTarget, setDeleteTarget] = useState(null);
   const [listExpanded,setListExpanded]= useState({});     // {month: bool}
   const [history,     setHistory]     = useState(loadHistory);
   const fileInputRef  = useRef(null);
@@ -356,11 +365,16 @@ export default function App() {
   const handleDelete = useCallback((id) => {
     const rec = records.find(r => r.id === id);
     if (!rec) return;
-    if (!window.confirm('この実戦記録を削除しますか？')) return;
-    setRecords(prev => prev.filter(r => r.id !== id));
-    if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
-    setUndoItem(rec);
+    setDeleteTarget(rec);
   }, [records]);
+
+  const confirmDelete = useCallback(() => {
+    if (!deleteTarget) return;
+    setRecords(prev => prev.filter(r => r.id !== deleteTarget.id));
+    if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
+    setUndoItem(deleteTarget);
+    setDeleteTarget(null);
+  }, [deleteTarget]);
 
   const handleUndo = () => {
     if (!undoItem) return;
@@ -823,6 +837,20 @@ export default function App() {
           ))}
         </nav>
 
+        {/* Delete Confirm Modal */}
+        {deleteTarget && createPortal(
+          <div className="del-overlay" onClick={()=>setDeleteTarget(null)}>
+            <div className="del-modal" onClick={e=>e.stopPropagation()}>
+              <div className="del-modal-title">この実戦記録を削除しますか？</div>
+              <div className="del-modal-body">「{deleteTarget.machine}」の記録が削除されます。この操作は元に戻せません。</div>
+              <div className="del-modal-btns">
+                <button className="del-modal-cancel" onClick={()=>setDeleteTarget(null)}>キャンセル</button>
+                <button className="del-modal-confirm" onClick={confirmDelete}>削除する</button>
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
         {/* Undo Toast */}
         {undoItem && (
           <div className="undo-toast">
