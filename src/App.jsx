@@ -737,7 +737,7 @@ export default function App() {
                 <label className="form-label">日付</label>
                 <div style={{position:"relative"}}>
                   <input className="form-input form-date" type="date" value={form.date} onChange={e=>handleDateChange(e.target.value)} max="2099-12-31" min="2000-01-01" style={{paddingRight:44}}/>
-                  <button type="button" onClick={e=>{e.preventDefault();const inp=e.currentTarget.previousElementSibling;try{inp.showPicker();}catch{inp.focus();}}} style={{position:"absolute",right:10,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",cursor:"pointer",padding:4,color:"#8a837a",display:"flex",alignItems:"center",justifyContent:"center"}}>
+                  <button type="button" onClick={e=>{e.preventDefault();const inp=e.currentTarget.previousElementSibling;try{inp.showPicker();}catch{inp.focus();}}} style={{position:"absolute",right:14,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",cursor:"pointer",padding:4,color:"#c49a6c",display:"flex",alignItems:"center",justifyContent:"center",opacity:0.7,transition:"opacity .15s"}} onMouseEnter={e=>e.currentTarget.style.opacity=1} onMouseLeave={e=>e.currentTarget.style.opacity=0.7} onTouchStart={e=>e.currentTarget.style.opacity=1} onTouchEnd={e=>e.currentTarget.style.opacity=0.7}>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                   </button>
                 </div>
