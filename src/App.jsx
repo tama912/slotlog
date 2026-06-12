@@ -169,7 +169,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .form-input::-webkit-outer-spin-button,.form-input::-webkit-inner-spin-button{-webkit-appearance:none}
 .form-input:focus{border-color:var(--orange);background:var(--card);border-width:1.5px;box-shadow:0 0 0 3px rgba(249,115,22,0.08)}
 .form-date{color:var(--t1);cursor:pointer}
-.form-date::-webkit-calendar-picker-indicator{opacity:0.5;cursor:pointer}
+.form-date::-webkit-calendar-picker-indicator{opacity:0;position:absolute;width:100%;height:100%;cursor:pointer}
 .form-row>*,.form-full{width:100%;max-width:100%;min-width:0;box-sizing:border-box;overflow:hidden}
 .form-card,.form-full{width:100%;max-width:100%;box-sizing:border-box}
 .form-input::placeholder{color:var(--t3)}
