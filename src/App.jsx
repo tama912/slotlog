@@ -168,6 +168,8 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .form-input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:11px 14px;background:var(--card);border:1px solid rgba(0,0,0,0.12);border-radius:var(--r-md);color:var(--t1);font-family:'Nunito Sans',sans-serif;font-size:16px;outline:none;transition:border-color .15s,box-shadow .15s;-moz-appearance:textfield}
 .form-input::-webkit-outer-spin-button,.form-input::-webkit-inner-spin-button{-webkit-appearance:none}
 .form-input:focus{border-color:var(--orange);background:var(--card);border-width:1.5px;box-shadow:0 0 0 3px rgba(249,115,22,0.08)}
+.form-date{color:var(--t1);cursor:pointer}
+.form-date::-webkit-calendar-picker-indicator{opacity:0.5;cursor:pointer}
 .form-row>*,.form-full{width:100%;max-width:100%;min-width:0;box-sizing:border-box;overflow:hidden}
 .form-card,.form-full{width:100%;max-width:100%;box-sizing:border-box}
 .form-input::placeholder{color:var(--t3)}
@@ -398,10 +400,32 @@ export default function App() {
     if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
   };
 
+  /* ── date input ── */
+  const handleDateChange = (val) => {
+    // type=date から YYYY-MM-DD が来る場合はそのまま
+    if (/^\d{4}-\d{2}-\d{2}$/.test(val)) {
+      setForm(p=>({...p, date:val}));
+      return;
+    }
+    // 手入力: 数字8桁 → YYYY-MM-DD に自動変換
+    const digits = val.replace(/\D/g, '');
+    if (digits.length === 8) {
+      const formatted = `${digits.slice(0,4)}-${digits.slice(4,6)}-${digits.slice(6,8)}`;
+      setForm(p=>({...p, date:formatted}));
+    } else {
+      setForm(p=>({...p, date:val}));
+    }
+  };
+
   /* ── submit ── */
   const handleSubmit = () => {
     const inv=parseInt(form.invest), col=parseInt(form.collect);
-    if(!form.date||isNaN(inv)||isNaN(col)) return;
+    const isValidDate = (s) => {
+      if(!/^\d{4}-\d{2}-\d{2}$/.test(s)) return false;
+      const d = new Date(s);
+      return d instanceof Date && !isNaN(d) && d.toISOString().slice(0,10)===s;
+    };
+    if(!form.date||!isValidDate(form.date)||isNaN(inv)||isNaN(col)) return;
     const rec={
       id:editId||Date.now().toString(),
       date:form.date, store:form.store.trim()||"店舗不明",
@@ -711,7 +735,7 @@ export default function App() {
               {/* Group 1: 日付 */}
               <div className="form-full">
                 <label className="form-label">日付</label>
-                <input className="form-input" type="text" inputMode="numeric" placeholder="例: 2026-06-08" value={form.date} onChange={e=>setForm(p=>({...p,date:e.target.value}))} maxLength={10} pattern="\d{4}-\d{2}-\d{2}"/>
+                <input className="form-input form-date" type="date" value={form.date} onChange={e=>handleDateChange(e.target.value)} max="2099-12-31" min="2000-01-01"/>
               </div>
               <div className="form-group-sep"/>
               {/* Group 2: 店舗・機種 */}
