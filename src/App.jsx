@@ -22,6 +22,7 @@ const addMonth    = (ym, n) => { const [y,m]=ym.split("-").map(Number); const d=
 const profitColor = (n) => n > 0 ? "plus" : n < 0 ? "minus" : "zero";
 const roundY      = (n) => Math.round(n / 100) * 100;
 const profitStr   = (n) => { const r=roundY(n); return r>0?`+${r.toLocaleString()}円`:r<0?`-${Math.abs(r).toLocaleString()}円`:"±0円"; };
+const ProfitStr   = ({n}) => { const r=roundY(n); const s={fontSize:"0.72em",fontWeight:"inherit",verticalAlign:"baseline"}; if(r>0) return <>{`+${r.toLocaleString()}`}<span style={s}>円</span></>; if(r<0) return <>{`-${Math.abs(r).toLocaleString()}`}<span style={s}>円</span></>; return <>±0<span style={s}>円</span></>; };
 const calcYTicks  = (data) => {
   if (!data.length) return [0];
   const vals=data.map(d=>d.profit);
@@ -446,7 +447,7 @@ export default function App() {
         <div style={{display:"flex",alignItems:"center",minWidth:0,gap:6}}>
           {r.id===bestRecId&&<span style={{fontSize:13,lineHeight:1,opacity:0.75,flexShrink:0,position:"relative",top:2}}>🏆</span>}
           <div className="rec-machine" style={{flex:1,minWidth:0}} title={r.machine}>{r.machine}</div>
-          <div className={`rec-profit ${profitColor(r.profit)}`} style={{flexShrink:0,marginLeft:6}}>{profitStr(r.profit)}</div>
+          <div className={`rec-profit ${profitColor(r.profit)}`} style={{flexShrink:0,marginLeft:6}}><ProfitStr n={r.profit}/></div>
           <div style={{position:"relative",flexShrink:0}}>
             <button className="rec-menu-btn" style={{padding:"4px 0px",minWidth:28,minHeight:28,fontSize:18,letterSpacing:"-0.3em",marginRight:-4}} ref={btnRef} onClick={e=>{e.stopPropagation();const btn=e.currentTarget.getBoundingClientRect();const spaceBelow=window.innerHeight-btn.bottom;const above=spaceBelow<90;const top=above?btn.top:btn.bottom+4;const right=window.innerWidth-btn.right;setMenuPos({top,right,above});setMenuOpen(o=>!o);}}>⋯</button>
             {menuOpen && createPortal(
@@ -496,7 +497,7 @@ export default function App() {
               {/* Hero: 今月収支 */}
               <div className="kpi hero">
                 <div className="kpi-hero-label">今月の収支</div>
-                <div className={`kpi-val hero ${profitColor(monthProfit)}`}>{profitStr(monthProfit)}</div>
+                <div className={`kpi-val hero ${profitColor(monthProfit)}`}><ProfitStr n={monthProfit}/></div>
                 {monthRecs.length > 0 && (
                   <div style={{marginTop:8,display:"flex",flexWrap:"wrap",gap:4}}>
                     <span style={{fontSize:10,background:"rgba(0,0,0,0.06)",color:"var(--t2)",padding:"2px 7px",borderRadius:20,fontWeight:600,lineHeight:1.6}}>{monthRecs.length}戦{monthRecs.filter(r=>r.profit>0).length}勝{monthRecs.filter(r=>r.profit<0).length}敗</span>
@@ -527,7 +528,7 @@ export default function App() {
                     <svg viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
                   </div>
                   <div className="kpi-label">最高勝ち</div>
-                  <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?profitStr(bestWin):<span style={{fontSize:11,color:"var(--t2)",fontWeight:500}}>未記録</span>}</div>
+                  <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?<ProfitStr n={bestWin}/>:<span style={{fontSize:11,color:"var(--t2)",fontWeight:500}}>未記録</span>}</div>
                 </div>
               </div>
             </div>
@@ -585,7 +586,7 @@ export default function App() {
               {/* Hero */}
               <div className="sum-cell accent">
                 <div className="kpi-hero-label">今月の収支</div>
-                <div className={`kpi-val hero ${profitColor(viewMonthProfit)}`}>{profitStr(viewMonthProfit)}</div>
+                <div className={`kpi-val hero ${profitColor(viewMonthProfit)}`}><ProfitStr n={viewMonthProfit}/></div>
                 {viewMonthRecs.length > 0 ? (
                   <div className="hero-copy">
                     {viewMonthRecs.length}戦{viewMonthRecs.filter(r=>r.profit>0).length}勝{viewMonthRecs.filter(r=>r.profit<0).length}敗
@@ -599,15 +600,15 @@ export default function App() {
               <div className="sum-sub-row">
                 <div className="sum-sub">
                   <div className="kpi-label">1回あたり</div>
-                  <div className={`kpi-val sub ${profitColor(avgProfit)}`}>{records.length?profitStr(avgProfit):"—"}</div>
+                  <div className={`kpi-val sub ${profitColor(avgProfit)}`}>{records.length?<ProfitStr n={avgProfit}/>:"—"}</div>
                 </div>
                 <div className="sum-sub">
                   <div className="kpi-label">最高勝ち</div>
-                  <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?profitStr(bestWin):<span style={{fontSize:11,color:"var(--t2)",fontWeight:500}}>未記録</span>}</div>
+                  <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?<ProfitStr n={bestWin}/>:<span style={{fontSize:11,color:"var(--t2)",fontWeight:500}}>未記録</span>}</div>
                 </div>
                 <div className="sum-sub">
                   <div className="kpi-label">最大負け</div>
-                  <div className={`kpi-val sub ${bestLose<0?"minus":"zero"}`}>{bestLose<0?profitStr(bestLose):<span style={{fontSize:11,color:"var(--t2)",fontWeight:500}}>未記録</span>}</div>
+                  <div className={`kpi-val sub ${bestLose<0?"minus":"zero"}`}>{bestLose<0?<ProfitStr n={bestLose}/>:<span style={{fontSize:11,color:"var(--t2)",fontWeight:500}}>未記録</span>}</div>
                 </div>
               </div>
             </div>
@@ -644,7 +645,7 @@ export default function App() {
                 <div style={{display:"flex",gap:16,flexWrap:"wrap",alignItems:"baseline"}}>
                   <span style={{fontSize:13,color:"var(--t2)"}}>{records.length}戦<span style={{marginLeft:4,fontWeight:800,color:"var(--green)"}}>{records.filter(r=>r.profit>0).length}勝</span><span style={{marginLeft:2,fontWeight:800,color:"var(--red)"}}>{records.filter(r=>r.profit<0).length}敗</span></span>
                   <span style={{fontSize:13,color:"var(--t2)"}}>勝率 <span style={{fontWeight:800,color:"var(--orange)"}}>{winRate!=null?`${winRate}%`:"0%"}</span></span>
-                  {bestWin>0&&<span style={{fontSize:13,color:"var(--t2)"}}>最高 <span style={{fontWeight:800,color:"var(--green)"}}>{profitStr(bestWin)}</span></span>}
+                  {bestWin>0&&<span style={{fontSize:13,color:"var(--t2)"}}>最高 <span style={{fontWeight:800,color:"var(--green)"}}><ProfitStr n={bestWin}/></span></span>}
                 </div>
               </div>
             )}
@@ -665,7 +666,7 @@ export default function App() {
                       <div className="machine-bar-wrap">
                         <div className={`machine-bar ${m.profit>=0?"plus":"minus"}`} style={{width:`${Math.abs(m.profit)/maxAbs*100}%`}}/>
                       </div>
-                      <div className="machine-profit" style={{color:m.profit>0?"var(--green)":m.profit<0?"var(--red)":"var(--t2)"}}>{profitStr(m.profit)}</div>
+                      <div className="machine-profit" style={{color:m.profit>0?"var(--green)":m.profit<0?"var(--red)":"var(--t2)"}}><ProfitStr n={m.profit}/></div>
                     </div>
                   ));
                 })()}
@@ -688,7 +689,7 @@ export default function App() {
                 <div key={month}>
                   <div className="month-row">
                     <div className="month-label">{fmtMon(month)}</div>
-                    <div className={`sum-val ${profitColor(mp)}`} style={{fontSize:16,fontWeight:800,letterSpacing:"-0.5px",lineHeight:1}}>{profitStr(mp)}</div>
+                    <div className={`sum-val ${profitColor(mp)}`} style={{fontSize:16,fontWeight:800,letterSpacing:"-0.5px",lineHeight:1}}><ProfitStr n={mp}/></div>
                   </div>
                   {visible.map((r,i)=><RecCard key={r.id} r={r} delay={i*0.03}/>)}
                   {recs.length > LIST_PAGE_SIZE && (
