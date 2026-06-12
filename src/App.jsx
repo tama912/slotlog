@@ -211,7 +211,8 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .settings-info{font-size:13px;color:var(--t2);background:var(--bg2);border-radius:var(--r-md);padding:12px 16px;margin-bottom:12px;line-height:1.6}
 
 /* undo toast */
-.undo-toast{position:fixed;bottom:calc(var(--sp-2) + 64px);left:50%;transform:translateX(-50%);background:#1c1917;color:#fff;border-radius:100px;padding:10px 20px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;gap:12px;box-shadow:0 4px 20px rgba(0,0,0,.3);z-index:300;white-space:nowrap;animation:toastIn .25s ease}
+.undo-toast{position:fixed;bottom:calc(var(--sp-2) + 64px);left:50%;transform:translateX(-50%);background:#1c1917;color:#fff;border-radius:100px;padding:10px 16px 10px 20px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;gap:10px;box-shadow:0 4px 20px rgba(0,0,0,.3);z-index:300;white-space:nowrap;animation:toastIn .25s ease}
+.undo-close{background:none;border:none;color:rgba(255,255,255,0.5);font-size:16px;cursor:pointer;padding:0 4px;line-height:1;font-weight:400}
 .undo-btn{background:var(--orange);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer}
 @keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(8px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 
@@ -245,6 +246,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 
 @keyframes slideUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(8px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 .del-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:1000;display:flex;align-items:center;justify-content:center;animation:fadeIn .15s ease;padding:24px}
 .del-modal{background:var(--card);border-radius:var(--r-lg);padding:24px 20px 20px;width:100%;max-width:320px;box-shadow:0 8px 32px rgba(0,0,0,0.18)}
 .del-modal-title{font-size:16px;font-weight:800;color:var(--t1);margin-bottom:8px;letter-spacing:-0.2px}
@@ -374,11 +376,23 @@ export default function App() {
     if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
     setUndoItem(deleteTarget);
     setDeleteTarget(null);
+    undoTimerRef.current = setTimeout(() => setUndoItem(null), 7000);
   }, [deleteTarget]);
+
+  const pauseUndoTimer = () => {
+    if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
+  };
+
+  const resumeUndoTimer = () => {
+    if (undoItem) undoTimerRef.current = setTimeout(() => setUndoItem(null), 3000);
+  };
 
   const handleUndo = () => {
     if (!undoItem) return;
-    setRecords(prev => [...prev, undoItem]);
+    setRecords(prev => {
+      const exists = prev.some(r => r.id === undoItem.id);
+      return exists ? prev : [...prev, undoItem];
+    });
     setUndoItem(null);
     if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
   };
@@ -853,9 +867,10 @@ export default function App() {
         )}
         {/* Undo Toast */}
         {undoItem && (
-          <div className="undo-toast">
+          <div className="undo-toast" onMouseEnter={pauseUndoTimer} onMouseLeave={resumeUndoTimer} onTouchStart={pauseUndoTimer}>
             <span>「{undoItem.machine}」を削除しました</span>
             <button className="undo-btn" onClick={handleUndo}>元に戻す</button>
+            <button className="undo-close" onClick={()=>{setUndoItem(null);if(undoTimerRef.current)clearTimeout(undoTimerRef.current);}}>✕</button>
           </div>
         )}
       </div>
