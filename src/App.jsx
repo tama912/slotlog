@@ -22,7 +22,7 @@ const addMonth    = (ym, n) => { const [y,m]=ym.split("-").map(Number); const d=
 const profitColor = (n) => n > 0 ? "plus" : n < 0 ? "minus" : "zero";
 const roundY      = (n) => Math.round(n / 100) * 100;
 const profitStr   = (n) => { const r=roundY(n); return r>0?`+${r.toLocaleString()}円`:r<0?`-${Math.abs(r).toLocaleString()}円`:"±0円"; };
-const ProfitStr   = ({n}) => { const r=roundY(n); const s={fontSize:"0.72em",fontWeight:"inherit",letterSpacing:"normal",verticalAlign:"baseline",WebkitTextStroke:"0.3px currentColor"}; if(r>0) return <>{`+${r.toLocaleString()}`}<span style={s}>円</span></>; if(r<0) return <>{`-${Math.abs(r).toLocaleString()}`}<span style={s}>円</span></>; return <>±0<span style={s}>円</span></>; };
+const ProfitStr   = ({n}) => { const r=roundY(n); const s={fontSize:"0.73em",fontWeight:700,letterSpacing:"normal",verticalAlign:"baseline"}; if(r>0) return <>{`+${r.toLocaleString()}`}<span style={s}>円</span></>; if(r<0) return <>{`-${Math.abs(r).toLocaleString()}`}<span style={s}>円</span></>; return <>±0<span style={s}>円</span></>; };
 const calcYTicks  = (data) => {
   if (!data.length) return [0];
   const vals=data.map(d=>d.profit);
@@ -52,7 +52,7 @@ const CSS = `
   --green:#15803d;--green-l:#f0fdf4;
   --red:#dc2626;--red-l:#fef2f2;
   --r-md:12px;--r-lg:18px;
-  --sh:0 1px 2px rgba(0,0,0,0.06),0 0 1px rgba(0,0,0,0.03);
+  --sh:0 2px 8px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.03);
   --sh-hero:0 2px 6px rgba(249,115,22,0.07),0 1px 2px rgba(0,0,0,0.02);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -117,9 +117,9 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .machine-profit{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;flex-shrink:0;text-align:right;min-width:68px}
 
 /* record card */
-.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:11px 10px 10px 18px;margin-bottom:8px;position:relative;box-shadow:var(--sh)}
-.rec-item::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:3px;border-radius:0 2px 2px 0;background:var(--border)}
-.rec-item.plus::before{background:var(--green)}.rec-item.minus::before{background:var(--red)}
+.rec-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:13px 10px 12px 18px;margin-bottom:8px;position:relative;box-shadow:var(--sh)}
+.rec-item::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:3px;border-radius:0 2px 2px 0;background:rgba(0,0,0,0.1)}
+.rec-item.plus::before{background:rgba(21,128,61,0.5)}.rec-item.minus::before{background:rgba(220,38,38,0.45)}
 /* top row: 機種名(主役) + 収支 */
 .rec-header{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .rec-header-left{flex:1;min-width:0}
@@ -129,7 +129,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .rec-profit{font-family:'Nunito',sans-serif;font-size:24px;font-weight:800;letter-spacing:-1.5px;white-space:nowrap;flex-shrink:0;line-height:1}
 .rec-profit.plus{color:var(--green)}.rec-profit.minus{color:var(--red)}.rec-profit.zero{color:var(--t2)}
 /* bottom row: 日付 + 投資/回収 + menu */
-.rec-footer{display:flex;align-items:center;gap:4px;margin-top:4px;padding-top:0}
+.rec-footer{display:flex;align-items:center;gap:4px;margin-top:6px;padding-top:0}
 .rec-date{font-size:10px;color:var(--t3);font-weight:400;flex-shrink:0;margin-right:2px}
 .rec-amounts{display:flex;gap:3px}
 .rec-amt{font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;display:inline-flex;align-items:center;gap:2px;white-space:nowrap}
@@ -147,7 +147,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .hero-copy.win{color:var(--orange);opacity:0.85}
 .hero-copy.lose{color:var(--t3)}
 .rec-menu-wrap{position:relative;flex-shrink:0;margin-left:8px}
-.rec-menu-btn{background:none;border:none;cursor:pointer;color:#5A524A;font-size:20px;font-weight:700;padding:8px;border-radius:8px;line-height:1;letter-spacing:-2px;transition:color .12s;min-width:40px;min-height:40px;display:flex;align-items:center;justify-content:center}
+.rec-menu-btn{background:none;border:none;cursor:pointer;color:#6F665F;font-size:21px;font-weight:700;padding:8px;border-radius:8px;line-height:1;letter-spacing:-2px;transition:color .12s;min-width:40px;min-height:40px;display:flex;align-items:center;justify-content:center}
 .rec-menu-btn:hover{background:var(--bg2);color:var(--t2)}
 .rec-menu-dropdown{position:absolute;right:0;top:100%;margin-top:4px;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.12);z-index:200;min-width:110px}
 .rec-menu-item{display:block;width:100%;text-align:left;padding:10px 14px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;background:none;border:none;cursor:pointer;transition:background .12s}
