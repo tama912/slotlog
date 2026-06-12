@@ -82,9 +82,9 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .month-nav{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:8px 16px;margin-bottom:var(--sp-2)}
 .month-nav-btn{background:none;border:none;cursor:pointer;padding:10px 16px;font-size:18px;color:var(--t2);border-radius:8px;line-height:1;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .month-nav-btn:hover{background:var(--bg2)}.month-nav-btn:disabled{color:var(--border);cursor:default}
-.month-nav-label{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--t1);letter-spacing:-0.3px}
+.month-nav-label{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:#4B433C;letter-spacing:-0.3px}
 .graph-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:14px 14px 12px;margin-bottom:var(--sp-2);overflow:hidden;box-shadow:var(--sh)}
-.graph-title{font-size:11px;font-weight:600;color:var(--t3);margin-bottom:12px;padding:0 12px;letter-spacing:0.06em;text-transform:uppercase}
+.graph-title{font-size:11px;font-weight:600;color:#8a837a;margin-bottom:12px;padding:0 12px;letter-spacing:0.06em;text-transform:uppercase}
 .ctip{background:#fff;border:1px solid var(--border);border-radius:var(--r-md);padding:8px 12px;font-family:'Nunito',sans-serif;font-size:13px;box-shadow:var(--sh)}
 .ctip-date{color:var(--t3);font-size:11px;margin-bottom:2px}
 .sum-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:var(--sp-2)}
@@ -92,7 +92,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .sum-cell.accent{background:var(--orange-l);border-color:var(--orange-m);padding:18px 22px 16px;border-radius:var(--r-lg);box-shadow:var(--sh-hero)}
 .sum-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .sum-sub{background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:12px;box-shadow:var(--sh)}
-.sum-label{font-size:11px;font-weight:600;color:var(--t3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px}
+.sum-label{font-size:11px;font-weight:600;color:#8a837a;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px}
 .sum-val{font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;letter-spacing:-0.5px;line-height:1}
 .sum-val.hero{font-size:36px;letter-spacing:-1.5px}
 .sum-val.plus{color:var(--green)}.sum-val.minus{color:var(--red)}.sum-val.zero{color:var(--t2)}.sum-val.orange{color:var(--orange)}
@@ -100,10 +100,10 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 /* ranking rows */
 .machine-row{display:flex;align-items:center;gap:10px;padding:12px 18px;border-bottom:1px solid var(--border)}
 .machine-row:last-child{border-bottom:none}
-.machine-rank{font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:var(--t3);width:22px;flex-shrink:0;text-align:center;line-height:1}
+.machine-rank{font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:#8a837a;width:22px;flex-shrink:0;text-align:center;line-height:1}
 .machine-rank.top{color:var(--orange)}
 .machine-info{flex:1;min-width:0}
-.machine-name{font-size:14px;font-weight:700;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.machine-name{font-size:14px;font-weight:700;color:#4B433C;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .machine-meta{font-size:11px;color:var(--t3);margin-top:1px}
 /* bar */
 .machine-bar-wrap{display:none}
@@ -154,7 +154,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .rec-menu-item.edit{color:var(--t1)}.rec-menu-item.edit:hover{background:var(--orange-l);color:var(--orange)}
 .rec-menu-item.del{color:var(--red)}.rec-menu-item.del:hover{background:var(--red-l)}
 .month-row{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0 10px;border-bottom:1px solid rgba(0,0,0,0.07);margin-bottom:10px}
-.month-label{font-size:14px;font-weight:800;color:var(--t1);letter-spacing:-0.3px}
+.month-label{font-size:14px;font-weight:800;color:#4B433C;letter-spacing:-0.3px}
 
 /* form */
 .form-card{background:var(--card);border-radius:var(--r-lg);border:1px solid rgba(0,0,0,0.08);padding:16px 18px 20px;margin-bottom:var(--sp-2);box-shadow:0 2px 8px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04)}
@@ -232,7 +232,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 
 /* empty */
 .empty-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:14px var(--sp-2) 16px;text-align:center}
-.empty-ico{font-size:26px;margin-bottom:4px}.empty-txt{font-size:13px;color:var(--t2);font-weight:700}.empty-hint{font-size:11px;color:var(--t3);margin-top:3px;line-height:1.5}
+.empty-ico{font-size:26px;margin-bottom:4px}.empty-txt{font-size:13px;color:#5A524A;font-weight:700}.empty-hint{font-size:11px;color:#8a837a;margin-top:3px;line-height:1.5}
 
 /* bnav */
 .bnav{position:fixed;bottom:0;left:0;right:0;width:100%;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;padding:8px 0;padding-bottom:calc(16px + env(safe-area-inset-bottom,6px))}
@@ -595,7 +595,7 @@ export default function App() {
                 )}
               </div>
               {/* Sub row — 全期間統計 */}
-              <div style={{fontSize:9,color:"var(--t3)",fontWeight:700,letterSpacing:"0.09em",textTransform:"uppercase",marginBottom:6}}>全期間</div>
+              <div style={{fontSize:9,color:"#8a837a",fontWeight:700,letterSpacing:"0.09em",textTransform:"uppercase",marginBottom:6}}>全期間</div>
               <div className="sum-sub-row">
                 <div className="sum-sub">
                   <div className="kpi-label">1回あたり</div>
