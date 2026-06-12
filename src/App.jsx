@@ -146,14 +146,14 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .hero-copy.win{color:var(--orange);opacity:0.85}
 .hero-copy.lose{color:var(--t3)}
 .rec-menu-wrap{position:relative;flex-shrink:0;margin-left:8px}
-.rec-menu-btn{background:none;border:none;cursor:pointer;color:rgba(24,18,14,0.5);font-size:26px;padding:6px 2px 6px 10px;border-radius:16px;line-height:1;letter-spacing:-6em;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
+.rec-menu-btn{background:none;border:none;cursor:pointer;color:#6B6259;font-size:22px;padding:6px 4px 6px 10px;border-radius:16px;line-height:1;letter-spacing:-4px;transition:background .12s;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .rec-menu-btn:hover{background:var(--bg2);color:var(--t2)}
 .rec-menu-dropdown{position:absolute;right:0;top:100%;margin-top:4px;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.12);z-index:200;min-width:110px}
 .rec-menu-item{display:block;width:100%;text-align:left;padding:10px 14px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;background:none;border:none;cursor:pointer;transition:background .12s}
 .rec-menu-item:first-child{border-bottom:1px solid var(--border)}
 .rec-menu-item.edit{color:var(--t1)}.rec-menu-item.edit:hover{background:var(--orange-l);color:var(--orange)}
 .rec-menu-item.del{color:var(--red)}.rec-menu-item.del:hover{background:var(--red-l)}
-.month-row{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0 10px;border-bottom:1px solid rgba(0,0,0,0.07);margin-bottom:10px}
+.month-row{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0 10px;border-bottom:1px solid #D8D0C5;margin-bottom:10px}
 .month-label{font-size:14px;font-weight:800;color:#4B433C;letter-spacing:-0.3px}
 
 /* form */
@@ -196,12 +196,12 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 
 /* settings */
 .settings-section{margin-bottom:var(--sp-2)}
-.settings-title{font-size:11px;font-weight:700;color:var(--t2);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:var(--sp-1)}
+.settings-title{font-size:11px;font-weight:700;color:#6B6259;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:var(--sp-1)}
 .settings-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh)}
 .settings-row{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--border);gap:var(--sp-1)}
 .settings-row:last-child{border-bottom:none}
-.settings-row-label{font-size:14px;font-weight:700;color:var(--t1)}
-.settings-row-sub{font-size:12px;color:var(--t3);margin-top:3px;line-height:1.5}
+.settings-row-label{font-size:14px;font-weight:700;color:#4B433C}
+.settings-row-sub{font-size:12px;color:#8a837a;margin-top:3px;line-height:1.5}
 .settings-btn{background:var(--orange);color:#fff;border:none;border-radius:10px;padding:9px 16px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .15s;min-height:44px}
 .settings-btn:hover{background:var(--orange-hover)}
 .settings-btn.secondary{background:var(--bg2);color:var(--t2);border:1px solid var(--border)}
@@ -829,7 +829,7 @@ export default function App() {
             </div>
             <div className="settings-section">
               <div className="settings-title" style={{color:"var(--red)"}}>危険な操作</div>
-              <div className="settings-card" style={{border:"1px solid #fca5a5",background:"var(--red-l)"}}>
+              <div className="settings-card" style={{border:"1.5px solid #FF9B9B",background:"#FFF3F3"}}>
                 <div className="settings-row" style={{flexDirection:"column",alignItems:"flex-start",gap:12}}>
                   <div><div className="settings-row-label">データをすべて削除</div><div className="settings-row-sub">{records.length}件の記録をすべて削除します。復元できません。</div></div>
                   <button className="settings-btn danger" style={{alignSelf:"flex-end"}} onClick={()=>{if(window.confirm("すべてのデータを削除しますか？この操作は取り消せません。")){setRecords([]);setTab(0);}}}>削除する</button>
