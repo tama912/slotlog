@@ -449,15 +449,36 @@ export default function App() {
   };
 
   const handleExport = () => {
-    const blob=new Blob([JSON.stringify(records,null,2)],{type:"application/json"});
+    const payload = {
+      appName: "スロログ",
+      version: "1.0.0",
+      exportedAt: new Date().toISOString(),
+      records,
+    };
+    const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
     const url=URL.createObjectURL(blob); const a=document.createElement("a");
-    a.href=url; a.download=`surorogue_backup_${todayStr()}.json`; a.click(); URL.revokeObjectURL(url);
+    a.href=url; a.download=`slotlog-backup-${todayStr()}.json`; a.click(); URL.revokeObjectURL(url);
   };
   const handleImport = (e) => {
     const file=e.target.files?.[0]; if(!file) return;
     const reader=new FileReader();
-    reader.onload=(ev)=>{ try { const data=JSON.parse(ev.target.result); if(!Array.isArray(data)) throw new Error(); setRecords(data); setImportMsg(`${data.length}件のデータを読み込みました`); setTimeout(()=>setImportMsg(""),3000); } catch { setImportMsg("読み込みに失敗しました"); setTimeout(()=>setImportMsg(""),4000); } };
-    reader.readAsText(file); e.target.value="";
+    reader.onload=(ev)=>{
+      try {
+        const parsed=JSON.parse(ev.target.result);
+        // 新フォーマット { records: [...] } または旧フォーマット [...]
+        const imported = Array.isArray(parsed) ? parsed : (Array.isArray(parsed.records) ? parsed.records : null);
+        if(!imported) throw new Error("records が見つかりません");
+        if(!window.confirm("現在のデータをバックアップデータで上書きします。よろしいですか？")) { e.target.value=""; return; }
+        setRecords(imported);
+        setImportMsg(`✓ ${imported.length}件のデータを読み込みました`);
+        setTimeout(()=>setImportMsg(""),4000);
+      } catch(err) {
+        setImportMsg(`⚠ 読み込みに失敗しました: ${err.message||"不正なファイルです"}`);
+        setTimeout(()=>setImportMsg(""),5000);
+      }
+      e.target.value="";
+    };
+    reader.readAsText(file);
   };
 
   /* ── RecCard ── */
@@ -832,14 +853,22 @@ export default function App() {
               <div className="settings-title">データのバックアップ</div>
               <div className="settings-card">
                 <div className="settings-row">
-                  <div><div className="settings-row-label">データをエクスポート</div><div className="settings-row-sub">全 <strong style={{color:"var(--orange)"}}>{records.length}</strong> 件をJSONで保存</div></div>
+                  <div>
+                    <div className="settings-row-label">エクスポート</div>
+                    <div className="settings-row-sub">実戦記録（全{records.length}件）をJSONファイルとして保存</div>
+                  </div>
                   <button className="settings-btn" onClick={handleExport}>書き出し</button>
                 </div>
                 <div className="settings-row">
-                  <div><div className="settings-row-label">データをインポート</div><div className="settings-row-sub">JSONファイルから読み込み（上書き）</div></div>
+                  <div>
+                    <div className="settings-row-label">インポート</div>
+                    <div className="settings-row-sub">JSONファイルから記録を復元（現在のデータを上書き）</div>
+                  </div>
                   <button className="settings-btn secondary" onClick={()=>fileInputRef.current?.click()}>読み込み</button>
                   <input ref={fileInputRef} type="file" accept=".json" style={{display:"none"}} onChange={handleImport}/>
                 </div>
+                {importMsg&&<div style={{padding:"10px 16px",fontSize:12,color:importMsg.startsWith("⚠")?"var(--red)":"var(--green)",fontWeight:600,borderTop:"1px solid var(--border)"}}>{importMsg}</div>}
+                <div style={{padding:"10px 16px 12px",fontSize:11,color:"#8a837a",lineHeight:1.6,borderTop:"1px solid var(--border)"}}>ブラウザのデータ削除や端末変更に備えて、定期的なバックアップをおすすめします。</div>
               </div>
             </div>
             <div className="settings-section">
