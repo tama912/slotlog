@@ -834,15 +834,15 @@ export default function App() {
                 <div className="settings-card">
                   {[
                     {label:"総実戦回数", node:<span>{records.length}回</span>},
-                    {label:"通算収支",   node:<ProfitStr n={totalProfit}/>, color:totalProfit>0?"var(--green)":totalProfit<0?"var(--red)":"var(--t2)"},
+                    {label:"通算収支",   node:<span>{profitStr(totalProfit)}</span>, color:totalProfit>0?"var(--green)":totalProfit<0?"var(--red)":"var(--t2)"},
                     {label:"勝率",       node:<span>{winRate!=null?winRate:0}%</span>, color:"var(--orange)"},
-                    {label:"平均収支",   node:<ProfitStr n={avgProfit}/>, color:avgProfit>0?"var(--green)":avgProfit<0?"var(--red)":"var(--t2)"},
-                    {label:"最高勝ち",   node:bestWin>0?<ProfitStr n={bestWin}/>:"—", color:"var(--green)"},
-                    {label:"最高負け",   node:bestLose<0?<ProfitStr n={bestLose}/>:"—", color:"var(--red)"},
+                    {label:"平均収支",   node:<span>{profitStr(avgProfit)}</span>, color:avgProfit>0?"var(--green)":avgProfit<0?"var(--red)":"var(--t2)"},
+                    {label:"最高勝ち",   node:<span>{bestWin>0?profitStr(bestWin):"—"}</span>, color:"var(--green)"},
+                    {label:"最高負け",   node:<span>{bestLose<0?profitStr(bestLose):"—"}</span>, color:"var(--red)"},
                   ].map(({label,node,color})=>(
                     <div className="settings-row" key={label}>
                       <div className="settings-row-label">{label}</div>
-                      <div style={{fontSize:15,fontWeight:800,color:color||"var(--t1)",fontFamily:"'Nunito',sans-serif",letterSpacing:"-0.3px"}}>{node}</div>
+                      <div style={{fontSize:15,fontWeight:800,color:color||"var(--t1)",fontFamily:"system-ui,sans-serif",letterSpacing:"-0.3px"}}>{node}</div>
                     </div>
                   ))}
                 </div>
