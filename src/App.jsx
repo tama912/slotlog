@@ -794,7 +794,7 @@ export default function App() {
               <div className={`profit-preview${(form.invest||form.collect)?previewProfit>0?" is-plus":previewProfit<0?" is-minus":" is-zero":""}`}>
                 <div className="profit-preview-label">収支（自動計算）</div>
                 <div className={`profit-preview-val ${form.invest||form.collect?profitColor(previewProfit):"empty"}`}>
-                  {form.invest||form.collect ? profitStr(previewProfit) : "—"}
+                  {form.invest||form.collect ? <ProfitStr n={previewProfit}/> : "—"}
                 </div>
                 {(form.invest||form.collect) && (
                   <div className="profit-preview-sub" style={{fontSize:12,fontWeight:700,opacity:1}}>
@@ -833,16 +833,16 @@ export default function App() {
                 <div className="settings-title">あなたの記録</div>
                 <div className="settings-card">
                   {[
-                    {label:"総実戦回数", val:`${records.length}回`},
-                    {label:"通算収支",   val:profitStr(totalProfit), color:totalProfit>0?"var(--green)":totalProfit<0?"var(--red)":"var(--t2)"},
-                    {label:"勝率",       val:`${winRate!=null?winRate:0}%`, color:"var(--orange)"},
-                    {label:"平均収支",   val:profitStr(avgProfit), color:avgProfit>0?"var(--green)":avgProfit<0?"var(--red)":"var(--t2)"},
-                    {label:"最高勝ち",   val:bestWin>0?profitStr(bestWin):"—", color:"var(--green)"},
-                    {label:"最高負け",   val:bestLose<0?profitStr(bestLose):"—", color:"var(--red)"},
-                  ].map(({label,val,color})=>(
+                    {label:"総実戦回数", node:<span>{records.length}回</span>},
+                    {label:"通算収支",   node:<ProfitStr n={totalProfit}/>, color:totalProfit>0?"var(--green)":totalProfit<0?"var(--red)":"var(--t2)"},
+                    {label:"勝率",       node:<span>{winRate!=null?winRate:0}%</span>, color:"var(--orange)"},
+                    {label:"平均収支",   node:<ProfitStr n={avgProfit}/>, color:avgProfit>0?"var(--green)":avgProfit<0?"var(--red)":"var(--t2)"},
+                    {label:"最高勝ち",   node:bestWin>0?<ProfitStr n={bestWin}/>:"—", color:"var(--green)"},
+                    {label:"最高負け",   node:bestLose<0?<ProfitStr n={bestLose}/>:"—", color:"var(--red)"},
+                  ].map(({label,node,color})=>(
                     <div className="settings-row" key={label}>
                       <div className="settings-row-label">{label}</div>
-                      <div style={{fontSize:15,fontWeight:800,color:color||"var(--t1)",fontFamily:"'Nunito',sans-serif",letterSpacing:"-0.3px"}}>{val}</div>
+                      <div style={{fontSize:15,fontWeight:800,color:color||"var(--t1)",fontFamily:"'Nunito',sans-serif",letterSpacing:"-0.3px"}}>{node}</div>
                     </div>
                   ))}
                 </div>
