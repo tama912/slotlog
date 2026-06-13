@@ -22,7 +22,7 @@ const addMonth    = (ym, n) => { const [y,m]=ym.split("-").map(Number); const d=
 const profitColor = (n) => n > 0 ? "plus" : n < 0 ? "minus" : "zero";
 const roundY      = (n) => Math.round(n / 100) * 100;
 const profitStr   = (n) => { const r=roundY(n); return r>0?`+${r.toLocaleString()}円`:r<0?`-${Math.abs(r).toLocaleString()}円`:"±0円"; };
-const ProfitStr   = ({n}) => { const r=roundY(n); const s={fontSize:"0.83em",fontWeight:"inherit",fontFamily:"inherit"}; if(r>0) return <>{`+${r.toLocaleString()}`}<span style={s}>円</span></>; if(r<0) return <>{`-${Math.abs(r).toLocaleString()}`}<span style={s}>円</span></>; return <>±0<span style={s}>円</span></>; };
+const ProfitStr   = ({n}) => { const r=roundY(n); if(r>0) return <>+{r.toLocaleString()}</>; if(r<0) return <>-{Math.abs(r).toLocaleString()}</>; return <>±0</>; };
 const calcYTicks  = (data) => {
   if (!data.length) return [0];
   const vals=data.map(d=>d.profit);
@@ -541,7 +541,7 @@ export default function App() {
             <div className="kpi-grid">
               {/* Hero: 今月収支 */}
               <div className="kpi hero">
-                <div className="kpi-hero-label">今月の収支</div>
+                <div className="kpi-hero-label">今月の収支（円）</div>
                 <div className={`kpi-val hero ${profitColor(monthProfit)}`}><ProfitStr n={monthProfit}/></div>
                 {monthRecs.length > 0 && (
                   <div style={{marginTop:8,display:"flex",flexWrap:"wrap",gap:4}}>
@@ -572,7 +572,7 @@ export default function App() {
                   <div className="kpi-icon-wrap" style={{background:"rgba(249,115,22,0.05)"}}>
                     <svg viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
                   </div>
-                  <div className="kpi-label">最高勝ち</div>
+                  <div className="kpi-label">最高勝ち（円）</div>
                   <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?<ProfitStr n={bestWin}/>:<span style={{fontSize:11,color:"var(--t2)",fontWeight:500}}>未記録</span>}</div>
                 </div>
               </div>
@@ -630,7 +630,7 @@ export default function App() {
             <div className="sum-grid su">
               {/* Hero */}
               <div className="sum-cell accent">
-                <div className="kpi-hero-label">今月の収支</div>
+                <div className="kpi-hero-label">今月の収支（円）</div>
                 <div className={`kpi-val hero ${profitColor(viewMonthProfit)}`}><ProfitStr n={viewMonthProfit}/></div>
                 {viewMonthRecs.length > 0 ? (
                   <div className="hero-copy">
@@ -648,7 +648,7 @@ export default function App() {
                   <div className={`kpi-val sub ${profitColor(avgProfit)}`}>{records.length?<ProfitStr n={avgProfit}/>:"—"}</div>
                 </div>
                 <div className="sum-sub">
-                  <div className="kpi-label">最高勝ち</div>
+                  <div className="kpi-label">最高勝ち（円）</div>
                   <div className={`kpi-val sub ${bestWin>0?"plus":"zero"}`}>{bestWin>0?<ProfitStr n={bestWin}/>:<span style={{fontSize:11,color:"var(--t2)",fontWeight:500}}>未記録</span>}</div>
                 </div>
                 <div className="sum-sub">
