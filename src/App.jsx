@@ -22,7 +22,7 @@ const addMonth    = (ym, n) => { const [y,m]=ym.split("-").map(Number); const d=
 const profitColor = (n) => n > 0 ? "plus" : n < 0 ? "minus" : "zero";
 const roundY      = (n) => Math.round(n / 100) * 100;
 const profitStr   = (n) => { const r=roundY(n); return r>0?`+${r.toLocaleString()}円`:r<0?`-${Math.abs(r).toLocaleString()}円`:"±0円"; };
-const ProfitStr   = ({n}) => { const r=roundY(n); if(r>0) return <>+{r.toLocaleString()}</>; if(r<0) return <>-{Math.abs(r).toLocaleString()}</>; return <>±0</>; };
+const ProfitStr   = ({n}) => { const r=roundY(n); const s={fontSize:"0.75em",fontWeight:"inherit",fontFamily:"inherit"}; if(r>0) return <>{`+${r.toLocaleString()}`}<span style={s}>円</span></>; if(r<0) return <>{`-${Math.abs(r).toLocaleString()}`}<span style={s}>円</span></>; return <>±0<span style={s}>円</span></>; };
 const calcYTicks  = (data) => {
   if (!data.length) return [0];
   const vals=data.map(d=>d.profit);
