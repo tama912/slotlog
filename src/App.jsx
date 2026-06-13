@@ -207,7 +207,7 @@ body{background:#e8e4de;color:var(--t1);font-family:'Nunito Sans',sans-serif;-we
 .settings-row-sub{font-size:12px;color:#8a837a;margin-top:3px;line-height:1.5}
 .settings-btn{background:var(--orange);color:#fff;border:none;border-radius:10px;padding:9px 16px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .15s;min-height:44px}
 .settings-btn:hover{background:var(--orange-hover)}
-.settings-btn.secondary{background:var(--bg2);color:var(--t2);border:1px solid var(--border)}
+.settings-btn.secondary{background:#fff4ec;color:#E66A00;border:1px solid #FFD1B0}
 .settings-btn.secondary:hover{background:var(--border)}
 .settings-btn.danger{background:var(--red-l);color:var(--red);border:1.5px solid rgba(220,38,38,0.4);font-weight:700;letter-spacing:0.01em}
 .settings-btn.danger:hover{background:var(--red-l)}
@@ -862,7 +862,7 @@ export default function App() {
                 <div className="settings-row">
                   <div>
                     <div className="settings-row-label">インポート</div>
-                    <div className="settings-row-sub">JSONファイルから記録を復元（現在のデータを上書き）</div>
+                    <div className="settings-row-sub">JSONファイルから記録を復元（現在のデータは置き換わります）</div>
                   </div>
                   <button className="settings-btn secondary" onClick={()=>fileInputRef.current?.click()}>読み込み</button>
                   <input ref={fileInputRef} type="file" accept=".json" style={{display:"none"}} onChange={handleImport}/>
