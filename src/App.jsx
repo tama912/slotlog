@@ -642,6 +642,9 @@ export default function App() {
                 </div>
               </div>
             </div>
+            <div style={{textAlign:"center",padding:"16px 0 8px",fontSize:12,color:"var(--t3)",fontWeight:600}}>
+              スロログ v1.0.0
+            </div>
           </div>
         )}
 
