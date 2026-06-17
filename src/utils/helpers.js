@@ -1,0 +1,20 @@
+export const todayStr    = () => new Date().toISOString().slice(0, 10);
+export const thisMonth   = () => new Date().toISOString().slice(0, 7);
+export const fmtDate     = (s) => new Date(s + "T00:00:00").toLocaleDateString("ja-JP", { month:"numeric", day:"numeric", weekday:"short" });
+export const fmtMon      = (s) => new Date(s + "-01T00:00:00").toLocaleDateString("ja-JP", { year:"numeric", month:"long" });
+export const addMonth    = (ym, n) => { const [y,m]=ym.split("-").map(Number); const d=new Date(y,m-1+n,1); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`; };
+export const profitColor = (n) => n > 0 ? "plus" : n < 0 ? "minus" : "zero";
+export const roundY      = (n) => Math.round(n / 100) * 100;
+export const profitStr   = (n) => { const r=roundY(n); return r>0?`+${r.toLocaleString()}円`:r<0?`-${Math.abs(r).toLocaleString()}円`:"±0円"; };
+export const calcYTicks  = (data) => {
+  if (!data.length) return [0];
+  const vals=data.map(d=>d.profit);
+  const mn=Math.min(...vals,0), mx=Math.max(...vals,0);
+  const range=mx-mn||1000, rawStep=range/4;
+  const mag=Math.pow(10,Math.floor(Math.log10(Math.abs(rawStep)||1)));
+  const step=Math.ceil(rawStep/mag)*mag||1000;
+  const lo=Math.floor(mn/step)*step, hi=Math.ceil(mx/step)*step;
+  const ticks=[];
+  for(let v=lo;v<=hi+step*0.01;v+=step) ticks.push(Math.round(v));
+  return [...new Set(ticks)];
+};
